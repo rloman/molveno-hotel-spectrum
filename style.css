@@ -1,0 +1,108 @@
+body {
+  font-family: "DejaVu Sans";
+  font-size: 12pt;
+  margin: 0;
+}
+h1, h2, h3 {
+  margin: 0 0 10px 0;
+  text-align: center;
+}
+.mainDiv {
+  background-color: #ddeeff;
+  padding: 10px;
+}
+.roomFrame, .roomExtras, .viewFrame, .bedsFrame {
+  border-radius: 10px;
+  border: solid 1px #000;
+  padding: 10px;
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.days {
+  background-color: #bbccdd;
+  padding: 5px;
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  text-align: center;
+  border-radius: 50%;
+}
+.days:nth-child(odd) {
+  background-color: #ccddee;
+}
+.now {
+  background-color: #aaddff;
+  padding: 5px;
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  text-align: center;
+  border-radius: 50%;
+}
+.days:hover, .now:hover {
+  background-color: #88bbdd;
+  cursor: default;
+}
+#calendar {
+  display: inline-block;
+  margin: 10px 0 10px 0;
+}
+.month {
+  border-radius: 10px;
+  border: solid 1px #000;
+  padding: 10px;
+  display: inline-block;
+}
+#info {
+  border: solid 1px #000;
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+select {
+  font-family: "DejaVu Sans";
+  font-size: 12pt;
+  border: none;
+  background-color: #ccddee;
+  border-radius: 10px 0 0 10px;
+  padding: 5px;
+}
+button {
+  font-family: "DejaVu Sans";
+  font-size: 12pt;
+  border: none;
+  background-color: #ccddee;
+  border-radius: 20px;
+  padding: 15px;
+}
+input {
+  font-family: "DejaVu Sans";
+  font-size: 12pt;
+  border: solid 1px;
+  background-color: #ccddee;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  display: block;
+  transition: all 0.3s;
+}
+.text {
+  width: 250px;
+}
+input:focus {
+  background-color: #eeffff;
+  transition: all 0.3s;
+}
+label {
+  display: block;
+}
+button:hover {
+  background-color: #88bbdd;
+}
+#message {
+  color: red;
+}
+#next {
+  margin-top: 10px;
+}
