@@ -1,4 +1,8 @@
 class Room {
 
-  
+  constructor() {
+    
+  }
+
+
 }
