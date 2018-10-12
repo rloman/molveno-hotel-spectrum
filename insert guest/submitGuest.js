@@ -1,4 +1,5 @@
 "use strict";
+let arr = [];
 
 function GuestData(){
   // de value's van de input fields
@@ -8,7 +9,7 @@ function GuestData(){
   let postalCode = document.getElementById("postalCodeId").value;
   let guestID = document.getElementById("guestId").value;
   let paymentMethod = document.getElementById("paymentMethodId").value;
-  let guest;
-  guest = new Guest(0, guestName, address, homeTown, postalCode, guestID, paymentMethod);
-  console.log(guest)
+  let guest = new Guest(0, guestName, address, homeTown, postalCode, guestID, paymentMethod);
+  arr.push(guest);
+  console.log(arr);
 }
