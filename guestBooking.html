@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Molveno Hotel Guest Booking</title>
+    <script src="classGuest.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <div id="mainDiv" class="mainDiv">
+      <div id="roomInfo" class="roomInfo">
+        <h1>Booking a room, room info</h1>
+        <div id="calendar"></div>
+        <div class="bedsFrame">
+          <h3>People</h3>
+          <input id="beds1" type="radio" name="beds" value="1" checked> 1</input>
+          <input id="beds2" type="radio" name="beds" value="2"> 2</input>
+          <input id="beds3" type="radio" name="beds" value="3"> 3</input>
+          <input id="beds4" type="radio" name="beds" value="4"> 4</input>
+        </div>
+        <div class="roomFrame">
+          <h3>Room Type</h3>
+          <input id="roomType1" type="radio" name="roomType" value="Budget" checked> Budget</input><br />
+          <input id="roomType2" type="radio" name="roomType" value="Standard"> Standard</input><br />
+          <input id="roomType3" type="radio" name="roomType" value="Lux"> Luxurious</input><br />
+        </div>
+        <div class="roomExtras">
+          <h3>Extras</h3>
+          <input id="roomExtras1" type="checkbox" name="roomExtras1" value="babyBed"> Crib (+ € xx,xx)</input><br />
+          <input id="roomExtras2" type="checkbox" name="roomExtras2" value="espresso"> Espresso machine (+ € xx,xx)</input><br />
+          <input id="roomExtras3" type="checkbox" name="roomExtras3" value="bigTV"> Big screen TV (+ € xx,xx)</input><br />
+        </div>
+      </div>
+      <div id="guestInfo" class="guestInfo" style=";">
+        <h1>Booking a room, guest info</h1>
+        <input class="text" name="guestName" id="guestName" maxlength="30" placeholder="Name" required onblur="guestInfo('guestName');"><label>Name</label></input><br />
+        <input class="text" name="address" id="address" maxlength="30" placeholder="Address" required onblur="guestInfo('address');"></input><br />
+        <input class="text" name="postalCode" id="postalCode" maxlength="30" placeholder="Postal Code" required onblur="guestInfo('postalCode');"></input><br />
+        <input class="text" name="homeTown" id="homeTown" maxlength="30" placeholder="Home Town" required onblur="guestInfo('homeTown');"></input><br />
+        <input class="text" name="country" id="country" maxlength="30" placeholder="Country" required onblur="guestInfo('country');"></input><br />
+        <div id="invalid email"></div>
+        <input class="text" name="eMail" id="eMail" maxlength="30" placeholder="E-mail" required onblur="guestInfo('eMail');"></input><br />
+        <input class="text" name="phone" id="phone" maxlength="30" placeholder="Phone Number" required onblur="guestInfo('phone');"></input><br />
+        <input class="text" name="mobile" id="mobile" maxlength="30" placeholder="Cell Phone Number" onblur="guestInfo('mobile');"></input><br />
+        <input class="text" name="guestID" id="guestID" maxlength="30" placeholder="Identification Document" required onblur="guestInfo('guestID');"></input><br />
+        Payment Method:
+        <select>
+          <option value="credit">Credit Card</option>
+          <option value="cash">Cash</option>
+          <option value="debit">Debit Card</option>
+        </select>
+      </div>
+      <div id="output"></div>
+    </div>
+    <script src="guestBooking.js"></script>
+    <button onclick="console.log(name);">test</button>
+    <script>
+      calendar();
+    </script>
+  </body>
+</html>
