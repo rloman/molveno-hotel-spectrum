@@ -21,12 +21,9 @@ class Team {
     return this._workingHours;
   }
 
-<<<<<<< HEAD
   set id(value) {
     this._id = value;
   }
-=======
->>>>>>> 3b27810abb3cbc913d289be52141c5fe1bf846fe
   set teamId(value) {
     this._teamId = value;
   }
