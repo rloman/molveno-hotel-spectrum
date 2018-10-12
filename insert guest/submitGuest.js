@@ -9,6 +9,6 @@ function GuestData(){
   let guestID = document.getElementById("guestId").value;
   let paymentMethod = document.getElementById("paymentMethodId").value;
   let guest;
-  guest = new Guest(id, guestName, address, homeTown, postalCode, guestID, paymentMethod);
+  guest = new Guest(0, guestName, address, homeTown, postalCode, guestID, paymentMethod);
   console.log(guest)
 }
