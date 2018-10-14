@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Molveno Hotel Room Insertion</title>
+  <h1>Hotel Molveno</h1>
+  <script src="classRoom.js"></script>
+  <script src="insert_room.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+  <div id="mainDiv" class="mainDiv">
+    <div id="roomInfo" class="roomInfo">
+      <h1>Room Input</h1>
+      <input id="roomNumber" type="text" placeholder="Room Number" value=""></input>
+      <br>
+      <div class="roomFrame">
+        <h3>Room Type</h3>
+        <input id="roomType1" type="radio" name="roomType" value="Budget" checked> Budget</input><br>
+        <input id="roomType2" type="radio" name="roomType" value="Standard"> Standard</input><br>
+        <input id="roomType3" type="radio" name="roomType" value="Luxurious"> Luxurious</input><br>
+      </div>
+      <br>
+      <div class="peopleFrame">
+        <h3>People</h3>
+        <input id="people1" type="radio" name="people" value="1"> 1</input>
+        <input id="people2" type="radio" name="people" value="2" checked> 2</input>
+        <input id="people3" type="radio" name="people" value="3"> 3</input>
+        <input id="people4" type="radio" name="people" value="4"> 4</input>
+      </div>
+      <br>
+      <button onclick="roomData()">Submit</button>
+    </div>
+  </div>
+  <script>
+
+  </script>
+</body>
+
+</html>
