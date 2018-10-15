@@ -13,6 +13,10 @@ function GuestData(){
   let guest = new Guest(id, guestName, address, homeTown, postalCode, guestID, paymentMethod);
   arr.push(guest);
   console.log(arr);
-  document.getElementById('arrayOfGuest').innerHTML = arr
+  for (let i = 0; i < arr.length; i++) {
+    document.getElementById('arrayOfGuest').innerHTML = `${arr[i].guestName} <br>
+    ${arr[i].address} <br> ${arr[i].homeTown} <br> ${arr[i].postalCode} <br>
+    ${arr[i].guestID} <br> ${arr[i].paymentMethod}`;
+  }
   id += 1;
 }
