@@ -1,20 +1,34 @@
 <!doctype html>
 <html>
-  <head>
-    <script src="ClassGuest.js"></script>
-    <script src="submitGuest.js"></script>
-  </head>
-  <body>
-    <div id="inputFields" align="center">
-      <input id="guestNameId" type="text" placeholder="first name and last name" value=""></input>
-      <input id="addressId" type="text" placeholder="address" value=""></input>
-      <input id="homeTownId" type="text" placeholder="home town" value=""></input>
-      <br><br>
-      <input id="postalCodeId" type="text" placeholder="postal code" value=""></input>
-      <input id="guestId" type="text" placeholder="guest ID" value=""></input>
-      <input id="paymentMethodId" type="text" placeholder="payment method" value=""></input>
-      <br><br>
-      <button onclick="GuestData()">Submit</button>
-    </div>
-  </body>
+
+<head>
+  <script src="ClassGuest.js"></script>
+  <script src="submitGuest.js"></script>
+</head>
+
+<body>
+  <div id="buttonfieldOn" align="center">
+    <button onclick="divInputFieldsAan()">to guest</button>
+  </div>
+  <div id="inputFields" align="center">
+    <input id="guestNameId" type="text" placeholder="first name and last name" value=""></input>
+    <input id="addressId" type="text" placeholder="address" value=""></input>
+    <input id="homeTownId" type="text" placeholder="home town" value=""></input>
+    <br><br>
+    <input id="postalCodeId" type="text" placeholder="postal code" value=""></input>
+    <input id="guestId" type="text" placeholder="guest ID" value=""></input>
+    <input id="paymentMethodId" type="text" placeholder="payment method" value=""></input>
+    <br><br>
+    <button onclick="GuestData()">Submit</button>
+  </div>
+  <script>
+    document.getElementById("inputFields").style.display = "none";
+
+    function divInputFieldsAan() {
+      document.getElementById("inputFields").style.display = "";
+      document.getElementById("buttonfieldOn").style.display = "none";
+    }
+  </script>
+</body>
+
 </html>
