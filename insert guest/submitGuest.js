@@ -1,6 +1,6 @@
 "use strict";
 let arr = [];
-let id = 0;
+let id = 1;
 
 function GuestData(){
   // de value's van de input fields
@@ -13,5 +13,6 @@ function GuestData(){
   let guest = new Guest(id, guestName, address, homeTown, postalCode, guestID, paymentMethod);
   arr.push(guest);
   console.log(arr);
+  document.getElementById('arrayOfGuest').innerHTML = arr
   id += 1;
 }
