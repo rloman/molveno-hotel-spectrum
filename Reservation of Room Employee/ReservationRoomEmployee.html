@@ -5,11 +5,25 @@
   <style>
     .inputReservationRoom{
       text-align: center;
-      margin-top: 100px;
-      /* display: flex; */
+      margin-top: 50px;
+      border-radius: 10px;
+      border: solid 1px #000;
+      padding: 10px;
+      display: inline-block;
     }
     .text{
       font-weight: bold;
+    }
+    body {
+      background-color: #ddeeff;
+    }
+    .guestNameFrame, .telOrMailframe, .numOfPeopleframe, .dateCheckInnOutframe, .buttonframe{
+      border-radius: 10px;
+      border: solid 1px #000;
+      padding: 10px;
+      display: inline-block;
+      margin-right: 10px;
+      margin-bottom: 10px;
     }
   </style>
   <script src="ReservationRoomEmployee.js"></script>
@@ -17,34 +31,39 @@
 
 <body>
   <div id="inputReservationRoom" class="inputReservationRoom">
-    <h4>First name and last name:</h4>
-    <input id="guestName" type="text" placeholder="first name and last name" value=""></input>
-    <br><br>
-    <h4>Telephone number or email address:</h4>
-    <input id="telOrEmail" type="text" placeholder="telephone or email address" value=""></input>
-    <br><br>
-    <h4>Number of peopel:</h4>
-    <select id="numberOfPeople">
-      <option valeu="1">1 person</option>
-      <option valeu="2">2 persons</option>
-      <option valeu="3">3 persons</option>
-      <option valeu="4">4 persons</option>
-    </select>
-    <!-- <input id="beds1" type="radio" name="beds" value="1"> 1</input>
-    <input id="beds2" type="radio" name="beds" value="2"> 2</input>
-    <input id="beds3" type="radio" name="beds" value="3"> 3</input>
-    <input id="beds4" type="radio" name="beds" value="4"> 4</input> -->
-    <br><br>
-    <span class="text">Date of arrival:</span>
-    <input type="date" name="checkIn" id="checkIn" value=""></input>
-    <br><br>
-    <span class="text">Departure date:</span>
-    <input type="date" name="checkOut" id="checkOut" value=""></input>
-    <br><br>
-    <button onclick="inputResRoom()">Submit</button>
-    <br><br>
-    <p id="arrGuestinPar"></p>
-
+    <div class="guestNameFrame">
+      <h4>First name and last name:</h4>
+      <input id="guestName" type="text" placeholder="first name and last name" value=""></input>
+    </div>
+    <br>
+    <div class="telOrMailframe">
+      <h4>Telephone number or email address:</h4>
+      <input id="telOrEmail" type="text" placeholder="telephone or email address" value=""></input>
+    </div>
+    <br>
+    <div class="numOfPeopleframe">
+     <h4>Number of peopel:</h4>
+      <select id="numberOfPeople">
+        <option valeu="1">1 person</option>
+        <option valeu="2">2 persons</option>
+        <option valeu="3">3 persons</option>
+        <option valeu="4">4 persons</option>
+      </select>
+    </div>
+    <br>
+    <div class="dateCheckInnOutframe">
+      <span class="text">Date of arrival:</span>
+      <input type="date" name="checkIn" id="checkIn" value=""></input>
+      <br><br>
+      <span class="text">Departure date:</span>
+      <input type="date" name="checkOut" id="checkOut" value=""></input>
+    </div>
+    <br>
+    <div class="buttonframe">
+      <button onclick="inputResRoom()">Submit</button>
+      <br><br>
+      <p id="arrGuestinPar"></p>
+    </div>
   </div>
 </body>
 
