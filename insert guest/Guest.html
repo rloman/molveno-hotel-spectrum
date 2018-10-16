@@ -4,23 +4,63 @@
 <head>
   <script src="ClassGuest.js"></script>
   <script src="submitGuest.js"></script>
+  <style>
+    .mainFrame{
+      text-align: center;
+      margin-top: 50px;
+      border-radius: 10px;
+      border: solid 1px #000;
+      padding: 10px;
+      display: inline-block;
+      background-color: #ddeeff;
+    }
+    .frame1, .frame2, .frame3, .frame4, .frame5, .frame6, .frame7{
+      border-radius: 10px;
+      border: solid 1px #000;
+      padding: 10px;
+      display: inline-block;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+  </style>
 </head>
 
 <body>
   <div id="buttonfieldOn" align="center">
     <button onclick="divInputFieldsAan()">to guest</button>
   </div>
-  <div id="inputFields" align="center">
-    <input id="guestNameId" type="text" placeholder="first name and last name" value=""></input>
-    <input id="addressId" type="text" placeholder="address" value=""></input>
-    <input id="homeTownId" type="text" placeholder="home town" value=""></input>
-    <br><br>
-    <input id="postalCodeId" type="text" placeholder="postal code" value=""></input>
-    <input id="guestId" type="text" placeholder="guest ID" value=""></input>
-    <input id="paymentMethodId" type="text" placeholder="payment method" value=""></input>
-    <br><br>
-    <button onclick="GuestData()">Submit</button>
-    <p id="arrayOfGuest"></p>
+  <div id="inputFields" align="center" class="mainFrame">
+    <div class="frame1">
+      <h4>First name and last name</h4>
+      <input id="guestNameId" type="text" placeholder="first name and last name" value=""></input>
+    </div>
+    <div class="frame2">
+      <h4>Address</h4>
+      <input id="addressId" type="text" placeholder="address" value=""></input>
+    </div>
+    <div class="frame3">
+      <h4>Home town</h4>
+      <input id="homeTownId" type="text" placeholder="home town" value=""></input>
+    </div>
+    <br>
+    <div class="frame4">
+      <h4>Postal code</h4>
+      <input id="postalCodeId" type="text" placeholder="postal code" value=""></input>
+    </div>
+    <div class="frame5">
+      <h4>Guest ID</h4>
+      <input id="guestId" type="text" placeholder="guest ID" value=""></input>
+    </div>
+    <div class="frame6">
+      <h4>Payment method</h4>
+      <input id="paymentMethodId" type="text" placeholder="payment method" value=""></input>
+    </div>
+
+    <br>
+    <div class="frame7">
+      <button onclick="GuestData()">Submit</button>
+      <p id="arrayOfGuest"></p>
+    </div>
   </div>
   <script>
     document.getElementById("inputFields").style.display = "none";
