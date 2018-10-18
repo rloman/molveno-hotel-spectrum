@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Molveno Hotel Room Insertion</title>
+  <h1>Hotel Molveno</h1>
+  <script src="classRoom.js"></script>
+  <script src="insert_room.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+  <div id="mainDiv" class="mainDiv">
+    <div id="roomInfo" class="roomInfo">
+      <h1>Room Input</h1>
+      <input id="roomNumber" type="text" placeholder="Room Number" value=""></input>
+      <br>
+      <div class="roomFrame">
+        <h3>Room Type</h3>
+        <input id="roomType1" type="radio" name="roomType" value="Budget" checked> Budget</input><br>
+        <input id="roomType2" type="radio" name="roomType" value="Standard"> Standard</input><br>
+        <input id="roomType3" type="radio" name="roomType" value="Luxurious"> Luxurious</input><br>
+      </div>
+      <br>
+      <div class="peopleFrame">
+        <h3>People</h3>
+        <input id="people1" type="radio" name="people" value="1"> 1</input>
+        <input id="people2" type="radio" name="people" value="2" checked> 2</input>
+        <input id="people3" type="radio" name="people" value="3"> 3</input>
+        <input id="people4" type="radio" name="people" value="4"> 4</input>
+      </div>
+      <br>
+      <button onclick="insertRoomData()">Submit</button>
+    </div>
+    <div id="roomCheckFrame" class="roomCheckFrame">
+      <h1>Room overview</h1>
+      <!-- <select id="rooms"></select> -->
+      <button onclick="getRoomData()">Get data</button>
+      <button onclick="resetRoomData()">Reset</button>
+      <p id="arrayOfRooms">
+    </div>
+    <div id="filterRoomFrame" class="filterRoomFrame">
+      <h1>Filter Rooms</h1>
+      <div class="filterRoomTypeFrame">
+        <h3>Room Type</h3>
+        <input id="filterRoomType1" type="radio" name="filterRoomType" value="Budget" checked> Budget</input><br>
+        <input id="filterRoomType2" type="radio" name="filterRoomType" value="Standard"> Standard</input><br>
+        <input id="filterRoomType3" type="radio" name="filterRoomType" value="Luxurious"> Luxurious</input><br>
+      </div>
+      <br>
+      <div class="filterPeopleFrame">
+        <h3>People</h3>
+        <input id="filterPeople1" type="radio" name="filterPeople" value="1"> 1</input>
+        <input id="filterPeople2" type="radio" name="filterPeople" value="2"> 2</input>
+        <input id="filterPeople3" type="radio" name="filterPeople" value="3"> 3</input>
+        <input id="filterPeople4" type="radio" name="filterPeople" value="4" checked> 4</input>
+      </div>
+      <br>
+      <button onclick="filterRoomData()">Filter</button>
+      <p id="filterArray">
+        <!--
+    <div id="reserveRoomFrame" class="reserveRoomFrame">
+      <h1>Room reservation</h1>
+      <div id="calendarFrame" class="calendarFrame">
+        <label for="start">Arrival</label>
+        <input type="date" id="arrival" name="reservation" />
+        <label for="end">Departure</label>
+        <input type="date" id="departure" name="reservation" />
+      </div>
+      <br>
+      <button onclick="checkRoomData()">Submit</button>
+    -->
+    </div>
+    <script>
+    </script>
+</body>
+
+</html>
