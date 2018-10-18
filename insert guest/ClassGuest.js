@@ -1,12 +1,12 @@
 "use strict";
 class Guest {
-  constructor(id, guestName, address, homeTown, postalCode, guestID, paymentMethod) {
+  constructor(id, guestName, address, homeTown, postalCode, paspoortnummer, paymentMethod) {
     this.id = id;
     this.guestName = guestName;
     this.address = address;
     this.homeTown = homeTown;
     this.postalCode = postalCode;
-    this.guestID = guestID;
+    this.paspoortnummer = paspoortnummer;
     this.paymentMethod = paymentMethod;
   }
 
@@ -25,8 +25,8 @@ class Guest {
   get postalCode() {
     return this._postalCode;
   }
-  get guestID() {
-    return this._guestID;
+  get paspoortnummer() {
+    return this._paspoortnummer;
   }
   get paymentMethod() {
     return this._paymentMethod;
@@ -47,8 +47,8 @@ class Guest {
   set postalCode(value) {
     this._postalCode = value;
   }
-  set guestID(value) {
-    this._guestID = value;
+  set paspoortnummer(value) {
+    this._paspoortnummer = value;
   }
   set paymentMethod(value) {
     this._paymentMethod = value;

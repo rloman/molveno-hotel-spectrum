@@ -8,9 +8,9 @@ function GuestData(){
   let address = document.getElementById("addressId").value;
   let homeTown = document.getElementById("homeTownId").value;
   let postalCode = document.getElementById("postalCodeId").value;
-  let guestID = document.getElementById("guestId").value;
+  let paspoortnummer = document.getElementById("paspoortnummer").value;
   let paymentMethod = document.getElementById("paymentMethodId").value;
-  let guest = new Guest(id, guestName, address, homeTown, postalCode, guestID, paymentMethod);
+  let guest = new Guest(id, guestName, address, homeTown, postalCode, paspoortnummer, paymentMethod);
   arr.push(guest);
   console.log(arr);
   for (let i = 0; i < arr.length; i++) {
