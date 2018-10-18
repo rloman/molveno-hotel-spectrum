@@ -3,28 +3,30 @@ body {
   font-size: 12pt;
   margin: 0;
 }
+* {
+  box-sizing: border-box;
+}
 h1, h2, h3 {
   margin: 0 0 10px 0;
   text-align: center;
 }
 .mainDiv {
   background-color: #ddeeff;
-  padding: 10px;
+  padding: 10px 10%;
 }
 .roomFrame, .roomExtras, .viewFrame, .bedsFrame {
   border-radius: 10px;
   border: solid 1px #000;
   padding: 10px;
   display: inline-block;
-  margin-right: 10px;
   margin-bottom: 10px;
 }
 .days {
   background-color: #bbccdd;
   padding: 5px;
   display: inline-block;
-  width: 18px;
-  height: 18px;
+  width: 28px;
+  height: 28px;
   text-align: center;
   border-radius: 50%;
 }
@@ -35,8 +37,8 @@ h1, h2, h3 {
   background-color: #aaddff;
   padding: 5px;
   display: inline-block;
-  width: 18px;
-  height: 18px;
+  width: 28px;
+  height: 28px;
   text-align: center;
   border-radius: 50%;
 }
@@ -44,15 +46,22 @@ h1, h2, h3 {
   background-color: #88bbdd;
   cursor: default;
 }
-#calendar {
+#start, #end {
+  border-radius: 10px;
+  border: solid 1px #000;
   display: inline-block;
   margin: 10px 0 10px 0;
+  padding: 10px;
+}
+#startyear, #endyear {
+  margin-right: 10px;
 }
 .month {
   border-radius: 10px;
   border: solid 1px #000;
   padding: 10px;
   display: inline-block;
+  margin-top: 10px;
 }
 #info {
   border: solid 1px #000;
@@ -83,19 +92,25 @@ input {
   background-color: #ccddee;
   padding: 10px;
   margin-bottom: 10px;
-  border-radius: 5px;
-  display: block;
-  transition: all 0.3s;
+  border-radius: 10px;
+  transition: all 0.5s;
 }
 .text {
-  width: 250px;
+  width: 100%;
+}
+@keyframes inputFocus {
+  from {
+    background-color: #ccddee;
+  }
+  to {
+    background-color: #ffffff;
+  }
 }
 input:focus {
-  background-color: #eeffff;
-  transition: all 0.3s;
-}
-label {
-  display: block;
+  animation-name: inputFocus;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 button:hover {
   background-color: #88bbdd;
@@ -103,6 +118,6 @@ button:hover {
 #message {
   color: red;
 }
-#next {
+#next, #paymentDiv {
   margin-top: 10px;
 }
