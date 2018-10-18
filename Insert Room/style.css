@@ -10,14 +10,16 @@ h1, h2, h3 {
 }
 .mainDiv {
   display: flex;
+  text-align: center;
 }
-.roomInfo, .roomFrame, .peopleFrame {
+.roomInfo, .roomFrame, .peopleFrame, .roomCheckFrame, .reserveRoomFrame, .filterRoomFrame, .filterRoomTypeFrame, .filterPeopleFrame, .calendarFrame {
   border-radius: 10px;
   border: solid 1px #000;
   padding: 10px;
   display: inline-block;
   margin-right: 10px;
   margin-bottom: 10px;
+  text-align: center;
 }
 select {
   font-family: "DejaVu Sans";
@@ -51,4 +53,9 @@ input:focus {
 }
 button:hover {
   background-color: #88bbdd;
+}
+label {
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
