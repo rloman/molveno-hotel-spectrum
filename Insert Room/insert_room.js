@@ -17,10 +17,10 @@ const getRoomData = () => {
   for (let i = 0; i < arr.length; i++) {
     document.getElementById('arrayOfRooms').innerHTML += `<br> Room number: ${arr[i].roomNumber} <br>
     Room Type: ${arr[i].roomType} <br> People: ${arr[i].people} <br>`;
-     /* let select = document.getElementById("rooms");
-     let option = document.createElement("option");
-     option.text = arr[i].roomNumber;
-     select.add(option); */
+    /* let select = document.getElementById("rooms");
+    let option = document.createElement("option");
+    option.text = arr[i].roomNumber;
+    select.add(option); */
   }
 }
 
@@ -32,26 +32,43 @@ const filterRoomData = () => {
   let filteredPeople = document.querySelector('input[name="filterPeople"]:checked').value;
   for (let i = 0; i < arr.length; i++) {
     if (filteredRoomType === arr[i].roomType && filteredPeople === arr[i].people) {
-      rooms += "<div>Room Number " + arr[i].roomNumber + "</div>";
+      rooms += `<div>Room Number ${arr[i].roomNumber} </div>`;
       count++;
     }
-    if (count === 0) {
-      document.getElementById("filterArray").innerHTML = `<h2>No rooms found</h2>`;
-      return;
-    }
-    if (count === 1) {
-      document.getElementById("filterArray").innerHTML = `<h2>${count} room found`;
-    }
-    if (count > 1) {
-      document.getElementById("filterArray").innerHTML = `<h2>${count} rooms found`;
-    }
+  }
+  switch (count) {
+    case 0:
+    document.getElementById("filterArray").innerHTML = `<h2>No rooms found</h2>`;
+    break;
+
+    case 1:
+    document.getElementById("filterArray").innerHTML = `<h2>One room found</h2>`;
+    document.getElementById("filterArray").innerHTML += rooms;
+    break;
+  }
+
+  if (count > 1) {
+    document.getElementById("filterArray").innerHTML += `<h2>${count} rooms found</h2>`;
+    document.getElementById("filterArray").innerHTML += rooms;
+  }
+}
+/*
+  if (count === 0) {
+    document.getElementById("filterArray").innerHTML = `<h2>No rooms found</h2>`;
+  }
+  if (count === 1) {
+    document.getElementById("filterArray").innerHTML = `<h2>${count} room found`;
+  }
+  if (count > 1) {
+    document.getElementById("filterArray").innerHTML = `<h2>${count} rooms found`;
   }
   document.getElementById("filterArray").innerHTML += rooms;
 }
+*/
 
 const resetRoomData = () => {
-   /* let select = document.getElementById("rooms");
-   select.options.length = 0; */
+  /* let select = document.getElementById("rooms");
+  select.options.length = 0; */
   document.getElementById('arrayOfRooms').innerHTML = "";
 }
 
