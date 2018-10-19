@@ -2,10 +2,13 @@
 <html>
 
 <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Molveno Hotel Insert Guest</title>
+  <h1>Hotel Molveno</h1>
   <script src="ClassGuest.js"></script>
   <script src="submitGuest.js"></script>
   <style>
-    .mainFrame{
+    .mainFrame {
       text-align: center;
       margin-top: 50px;
       border-radius: 10px;
@@ -14,7 +17,7 @@
       display: inline-block;
       background-color: #ddeeff;
     }
-    .frame1, .frame2, .frame3, .frame4, .frame5, .frame6, .frame7{
+    .frame1, .frame2, .frame3, .frame4, .frame5, .frame6, .frame7 {
       border-radius: 10px;
       border: solid 1px #000;
       padding: 10px;
@@ -22,16 +25,19 @@
       margin-right: 10px;
       margin-bottom: 10px;
     }
+    h1 {
+      text-align: center;
+    }
   </style>
 </head>
 
 <body>
   <div id="buttonfieldOn" align="center">
-    <button onclick="divInputFieldsAan()">to guest</button>
+    <button onclick="divInputFieldsAan()">To Guest</button>
   </div>
   <div id="inputFields" align="center" class="mainFrame">
     <div class="frame1">
-      <h4>First name and last name</h4>
+      <h4>First and last name</h4>
       <input id="guestNameId" type="text" placeholder="first name and last name" value=""></input>
     </div>
     <div class="frame2">
@@ -39,25 +45,33 @@
       <input id="addressId" type="text" placeholder="address" value=""></input>
     </div>
     <div class="frame3">
-      <h4>Home town</h4>
+      <h4>Home Town</h4>
       <input id="homeTownId" type="text" placeholder="home town" value=""></input>
     </div>
     <br>
     <div class="frame4">
-      <h4>Postal code</h4>
+      <h4>Postal Code</h4>
       <input id="postalCodeId" type="text" placeholder="postal code" value=""></input>
     </div>
     <div class="frame5">
-      <h4>Paspoortnummer</h4>
-      <input id="paspoortnummer" type="text" placeholder="paspoortnummer" value=""></input>
+      <h4>Telephone Number</h4>
+      <input id="telephonenumber" type="text" placeholder="Telephone Number" value=""></input>
     </div>
     <div class="frame6">
-      <h4>Payment method</h4>
+      <h4>E-mail Address</h4>
+      <input id="emailaddress" type="text" place="Email Address" value=""></input>
+    </div>
+    <div class="frame7">
+      <h4>Passport Number</h4>
+      <input id="passportnumber" type="text" placeholder="passportnumber" value=""></input>
+    </div>
+    <div class="frame8">
+      <h4>Payment Method</h4>
       <!-- <input id="paymentMethodId" type="text" placeholder="payment method" value=""></input> -->
       <select id="paymentMethodId">
-        <option valeu="creditcard">creditcard</option>
-        <option valeu="cash">cash</option>
-        <option valeu="bankcard">bankcard</option>
+        <option value="Creditcard">Creditcard</option>
+        <option value="Cash">Cash</option>
+        <option value="Bankcard">Bankcard</option>
       </select>
     </div>
 
