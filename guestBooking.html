@@ -37,42 +37,47 @@
       </div>
       <div id="guestInfo" class="guestInfo" style="display: none;">
         <h2>Booking a room, guest info</h2>
-        <div id="inputerror"></div>
         <div>
+          <div id="guestNameError" class="error"></div>
           <input id="guestName" class="text" name="guestName" maxlength="30" placeholder="Name" required onblur="guestInfo('guestName');" />
         </div>
         <div>
+          <div id="addressError" class="error"></div>
           <input id="address" class="text" name="address" maxlength="30" placeholder="Address" required onblur="guestInfo('address');" />
         </div>
         <div>
+          <div id="postalCodeError" class="error"></div>
           <input id="postalCode" class="text" name="postalCode" maxlength="30" placeholder="Postal Code" required onblur="guestInfo('postalCode');" />
         </div>
         <div>
+          <div id="homeTownError" class="error"></div>
           <input id="homeTown" class="text" name="homeTown" maxlength="30" placeholder="Home Town" required onblur="guestInfo('homeTown');" />
         </div>
         <div>
+          <div id="countryError" class="error"></div>
           <input id="country" class="text" name="country" maxlength="30" placeholder="Country" required onblur="guestInfo('country');" />
         </div>
         <div>
-          <div id="invalid email"></div>
+          <div id="eMailError"></div>
           <input id="eMail" class="text" name="eMail" maxlength="30" placeholder="E-mail" required onblur="guestInfo('eMail');" />
         </div>
         <div>
+          <div id="phoneError" class="error"></div>
           <input id="phone" class="text" name="phone" maxlength="30" placeholder="Phone Number" required onblur="guestInfo('phone');" />
         </div>
         <div>
+          <div id="mobileError" class="error"></div>
           <input id="mobile" class="text" name="mobile" maxlength="30" placeholder="Cell Phone Number" onblur="guestInfo('mobile');" />
         </div>
         <div>
+          <div id="guestIDError" class="error"></div>
           <input id="guestID" class="text" name="guestID" maxlength="30" placeholder="Identification Document" required onblur="guestInfo('guestID');" />
         </div>
         <div>
           Payment Method:
-          <select>
-            <option name="payment" value="Cash" onclick="paymentField()">Cash</option>
-            <option name="payment" value="Creditcard" onclick="paymentField()">Creditcard</option>
-            <option name="payment" value="Debitcard" onclick="paymentField()">Debitcard</option>
-          </select>
+          <input id="payment1" type="radio" name="payment" value="Cash" onclick="paymentField();" checked>Cash</input>
+          <input id="payment2" type="radio" name="payment" value="Creditcard" onclick="paymentField();">Creditcard</input>
+          <input id="payment3" type="radio" name="payment" value="Debitcard" onclick="paymentField();">Debitcard</input>
           <div id="paymentDiv"></div>
         </div>
         <button onclick="back();">Back</button><button onclick="submit();">Send</button>

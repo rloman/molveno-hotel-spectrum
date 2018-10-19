@@ -16,56 +16,102 @@ let month = today.getMonth();
 let months = ["January", "Februari", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 let first, second;
 let guestCount = 0;
+let error = false;
 
 function guestInfo(value) {
   let input = document.getElementById(value).value;
   if (input) {
     if (!special.test(input)) {
-      document.getElementById("inputerror").innerHTML = "";
+      document.getElementById("error").innerHTML = "";
     } else {
-      document.getElementById("inputerror").innerHTML = "No special characters allowed (^ \ < > { } ?). Field Emptied.";
+      document.getElementById("error").innerHTML = "No special characters allowed (^ \ < > { } ?). Field Emptied.";
       document.getElementById(value).value = "";
     }
   }
   if (value === "guestName") {
-    guestName = document.getElementById(value).value;
+    if (input === "") {
+      document.getElementById("guestNameError").innerHTML = "Please enter your Name.";
+    } else {
+      guestName = document.getElementById(value).value;
+      document.getElementById("guestNameError").innerHTML = "";
+    }
   }
   if (value === "address") {
-    address = document.getElementById(value).value;
+    if (input === "") {
+      document.getElementById("addressError").innerHTML = "Please enter your Address.";
+    } else {
+      address = document.getElementById(value).value;
+      document.getElementById("addressError").innerHTML = "";
+    }
   }
   if (value === "postalCode") {
-    postalCode = document.getElementById(value).value;
+    if (input === "") {
+      document.getElementById("postalCodeError").innerHTML = "Please enter your Postal Code.";
+    } else {
+      postalCode = document.getElementById(value).value;
+      document.getElementById("postalCodeError").innerHTML = "";
+    }
   }
   if (value === "homeTown") {
-    homeTown = document.getElementById(value).value;
+    if (input === "") {
+      document.getElementById("homeTownError").innerHTML = "Please enter your homeTown.";
+    } else {
+      homeTown = document.getElementById(value).value;
+      document.getElementById("homeTownError").innerHTML = "";
+    }
   }
   if (value === "country") {
-    country = document.getElementById(value).value;
+    if (input === "") {
+      document.getElementById("countryError").innerHTML = "Please enter your Country.";
+    } else {
+      country = document.getElementById(value).value;
+      document.getElementById("countryError").innerHTML = "";
+    }
   }
   if (value === "eMail") {
     if (input) {
       if (!regMail.test(input)) {
-        document.getElementById("invalid email").innerHTML = "Not a valid E-mail address!";
+        document.getElementById("eMailError").innerHTML = "Not a valid E-mail address!";
       } else {
         eMail = document.getElementById(value).value;
-        document.getElementById("invalid email").innerHTML = "";
+        document.getElementById("eMailError").innerHTML = "";
       }
     }
   }
   if (value === "phone") {
-    phone = document.getElementById(value).value;
+    if (input === "") {
+      document.getElementById("phoneError").innerHTML = "Please enter your Phone Number.";
+    } else {
+      phone = document.getElementById(value).value;
+      document.getElementById("phoneError").innerHTML = "";
+    }
   }
   if (value === "mobile") {
     mobile = document.getElementById(value).value;
   }
   if (value === "guestID") {
-    guestID = document.getElementById(value).value;
+    if (input === "") {
+      document.getElementById("guestIDError").innerHTML = "Please enter your Identification Document number.";
+    } else {
+      guestID = document.getElementById(value).value;
+      document.getElementById("guestIDError").innerHTML = "";
+    }
   }
   if (value === "ccNum") {
-    ccNum = document.getElementById(value).value;
+    if (input === "") {
+      document.getElementById("ccNumError").innerHTML = "Please enter your Creditcard number.";
+    } else {
+      ccNum = document.getElementById(value).value;
+      document.getElementById("ccNumError").innerHTML = "";
+    }
   }
   if (value === "dcNum") {
-    dcNum = document.getElementById(value).value;
+    if (input === "") {
+      document.getElementById("dcNumError").innerHTML = "Please enter your Debitcard number.";
+    } else {
+      dcNum = document.getElementById(value).value;
+      document.getElementById("dcNumError").innerHTML = "";
+    }
   }
 }
 
@@ -204,7 +250,7 @@ function select(d, m, y, z) {
 
 function next() {
   if (startdate >= enddate) {
-    document.getElementById("error").innerHTML = "You can't have an arrival date later or equal to the departure date";
+    document.getElementById("error").innerHTML = "You can't have an arrival date later or equal to the departure date.";
   } else {
     document.getElementById("error").innerHTML = "";
     document.getElementById("roomInfo").setAttribute("style", "display: none");
@@ -224,12 +270,12 @@ function back() {
 }
 
 function paymentField() {
-  let pay = document.querySelector("div.guestInfo option[name='payment']:checked").value;
+  let pay = document.querySelector("div.guestInfo input[name='payment']:checked").value;
   if (pay === "Creditcard") {
-    document.getElementById("paymentDiv").innerHTML = `<input id='ccNum' class='text' name='ccNum' maxlength='30' placeholder='Creditcard Number' required onblur='guestInfo("ccNum");' />`;
+    document.getElementById("paymentDiv").innerHTML = `<div id='ccNumError' class='error'></div><input id='ccNum' class='text' name='ccNum' maxlength='30' placeholder='Creditcard Number' required onblur='guestInfo("ccNum");' />`;
   }
   if (pay === "Debitcard") {
-    document.getElementById("paymentDiv").innerHTML = `<input id='dcNum' class='text' name='dcNum' maxlength='30' placeholder='Debitcard Number' required onblur='guestInfo("dcNum");' />`;
+    document.getElementById("paymentDiv").innerHTML = `<div id='dcNumError' class='error'></div><input id='dcNum' class='text' name='dcNum' maxlength='30' placeholder='Debitcard Number' required onblur='guestInfo("dcNum");' />`;
   }
   if (pay === "Cash") {
     document.getElementById("paymentDiv").innerHTML = "";
@@ -238,11 +284,10 @@ function paymentField() {
 
 function submit() {
   guestCount++
-  paymentSel = document.querySelector("div.guestInfo option[name='payment']:checked").value;
+  paymentSel = document.querySelector("div.guestInfo input[name='payment']:checked").value;
   let newGuest = new guest(guestCount, guestName, address, postalCode, homeTown, country, eMail, phone, mobile, guestID, paymentSel);
   guestBooking.push(newGuest, arrival, departure);
-  console.log(guestBooking[0]);
-  output = document.getElementById("output");
+  let output = document.getElementById("output");
   output.innerHTML += "Number of People: " + numOfBeds + "<br />Roomtype: " + roomTypeSel + "<br />Selected Extra's: " + roomExtrasSel;
   output.innerHTML += "<br />Name: " + guestName + "<br />Address: " + address + "<br />Postal Code: " + postalCode + "<br />Home Town: " + homeTown + "<br />Country: " + country + "<br />E-Mail: " + eMail + "<br />Phone: " + phone + "<br />Cell Phone: " + mobile + "<br />Identification Document: " + guestID + "<br />Payment Method: " + paymentSel;
   if (ccNum != undefined) {

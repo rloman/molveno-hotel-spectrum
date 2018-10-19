@@ -115,7 +115,7 @@ input:focus {
 button:hover {
   background-color: #88bbdd;
 }
-#message {
+.error, #error {
   color: red;
 }
 #next, #paymentDiv {
