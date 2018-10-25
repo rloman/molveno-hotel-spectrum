@@ -3,10 +3,11 @@
   <head>
     <meta charset="utf-8">
     <title>Molveno Hotel Guest Booking</title>
-    <script src="modules/classGuestAns.js"></script>
-    <link rel="stylesheet" type="text/css" href="insert_guest/style.css" />
+    <script src="classGuest.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
+    <div class="image"></div>
     <div id="mainDiv" class="mainDiv">
       <h1>Molveno Hotel</h1>
       <div id="roomInfo" class="roomInfo">
@@ -39,39 +40,39 @@
         <h2>Booking a room, guest info</h2>
         <div>
           <div id="guestNameError" class="error"></div>
-          <input id="guestName" class="text" name="guestName" maxlength="30" placeholder="Name" required onblur="guestInfo('guestName');" />
+          <input id="guestName" class="text" name="guestName" maxlength="30" placeholder="Name" required onblur="guestInfo('guestName', 'Name');" />
         </div>
         <div>
           <div id="addressError" class="error"></div>
-          <input id="address" class="text" name="address" maxlength="30" placeholder="Address" required onblur="guestInfo('address');" />
+          <input id="address" class="text" name="address" maxlength="30" placeholder="Address" required onblur="guestInfo('address', 'Address');" />
         </div>
         <div>
           <div id="postalCodeError" class="error"></div>
-          <input id="postalCode" class="text" name="postalCode" maxlength="30" placeholder="Postal Code" required onblur="guestInfo('postalCode');" />
+          <input id="postalCode" class="text" name="postalCode" maxlength="30" placeholder="Postal Code" required onblur="guestInfo('postalCode', 'Postal Code');" />
         </div>
         <div>
           <div id="homeTownError" class="error"></div>
-          <input id="homeTown" class="text" name="homeTown" maxlength="30" placeholder="Home Town" required onblur="guestInfo('homeTown');" />
+          <input id="homeTown" class="text" name="homeTown" maxlength="30" placeholder="Home Town" required onblur="guestInfo('homeTown', 'Home Town');" />
         </div>
         <div>
           <div id="countryError" class="error"></div>
-          <input id="country" class="text" name="country" maxlength="30" placeholder="Country" required onblur="guestInfo('country');" />
+          <input id="country" class="text" name="country" maxlength="30" placeholder="Country" required onblur="guestInfo('country', 'Country');" />
         </div>
         <div>
-          <div id="eMailError"></div>
-          <input id="eMail" class="text" name="eMail" maxlength="30" placeholder="E-mail" required onblur="guestInfo('eMail');" />
+          <div id="eMailError" class="error"></div>
+          <input id="eMail" class="text" name="eMail" maxlength="30" placeholder="E-mail" required onblur="guestInfo('eMail', 'E-mail');" />
         </div>
         <div>
           <div id="phoneError" class="error"></div>
-          <input id="phone" class="text" name="phone" maxlength="30" placeholder="Phone Number" required onblur="guestInfo('phone');" />
+          <input id="phone" class="text" name="phone" maxlength="30" placeholder="Phone Number" required onblur="guestInfo('phone', 'Phone Number');" />
         </div>
         <div>
           <div id="mobileError" class="error"></div>
-          <input id="mobile" class="text" name="mobile" maxlength="30" placeholder="Cell Phone Number" onblur="guestInfo('mobile');" />
+          <input id="mobile" class="text" name="mobile" maxlength="30" placeholder="Cell Phone Number" onblur="guestInfo('mobile', 'Cell Phone Number');" />
         </div>
         <div>
           <div id="guestIDError" class="error"></div>
-          <input id="guestID" class="text" name="guestID" maxlength="30" placeholder="Identification Document" required onblur="guestInfo('guestID');" />
+          <input id="guestID" class="text" name="guestID" maxlength="30" placeholder="Identification Document" required onblur="guestInfo('guestID', 'Identification Document');" />
         </div>
         <div>
           Payment Method:
@@ -84,7 +85,7 @@
       </div>
       <div id="output"></div>
     </div>
-    <script src="insert_guest/guestBooking.js"></script>
+    <script src="guestBooking.js"></script>
     <script>
       calendar("start");
       calendar("end");
