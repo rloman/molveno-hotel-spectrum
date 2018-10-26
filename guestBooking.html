@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <title>Molveno Hotel Guest Booking</title>
-    <script src="classGuest.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="modules/classGuest.js"></script>
+    <link rel="stylesheet" type="text/css" href="guest_booking/style.css" />
   </head>
   <body>
     <div class="image"></div>
@@ -81,11 +81,11 @@
           <input id="payment3" type="radio" name="payment" value="Debitcard" onclick="paymentField();">Debitcard</input>
           <div id="paymentDiv"></div>
         </div>
-        <button onclick="back();">Back</button><button onclick="submit();">Send</button>
+        <button onclick="back();">Back</button><button onclick="submit();">Ok</button><button onclick="cancel();">Cancel</button>
       </div>
       <div id="output"></div>
     </div>
-    <script src="guestBooking.js"></script>
+    <script src="guest_booking/guestBooking.js"></script>
     <script>
       calendar("start");
       calendar("end");

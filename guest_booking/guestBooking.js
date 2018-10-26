@@ -220,6 +220,11 @@ function paymentField() {
 
 function submit() {
   guestCount++
+  let guestDiv = document.querySelector(".guestInfo");
+  let textFields = guestDiv.querySelectorAll("input[class='text']");
+  for (let i = 0; textFields.length > i; i++) {
+    guestBooking.push(textFields[i].value);
+  }
   paymentSel = document.querySelector("div.guestInfo input[name='payment']:checked").value;
   guestName = document.querySelector("div.guestInfo input[name='guestName']").value;
   address = document.querySelector("div.guestInfo input[name='address']").value;
@@ -244,4 +249,8 @@ function submit() {
     dcNum = document.querySelector("div.guestInfo input[name='dcNum']").value;
     output.innerHTML += "<br />Debitcard Number: " + dcNum;
   }
+}
+
+function cancel() {
+  window.location.reload();
 }
