@@ -1,23 +1,41 @@
 <!doctype>
 <html>
+
 <head>
   <script src="../modules/reservationJSON.js"></script>
-  <script src="../guest_booking/guestBooking.js"></script>
   <link rel="stylesheet" type="text/css" href="../style.css" />
   <style>
   </style>
 </head>
+
 <body>
-  <div class = "mainDiv">
+  <div class="mainDiv">
     <div>
-      <div id="start"><h3>Arrival Date</h3></div>
-      <div id="end"><h3>Departure Date</h3></div>
+      <b>Check in: </b><input type="date" id="checkIn" value="">
+      <b>Check out: </b><input type="date" id="checkOut" value="">
+    </div>
+    <br>
+    <div>
+        <input type="radio" name="budgetRoom" id="budgetID" value="budget" checked>Budget<br>
+        <input type="radio" name="standardRoom" id="standardID" value="standard">Standard<br>
+        <input type="radio" name="luxuriousRoom" id="luxuriousID" value="luxurious">Luxurious<br>
+    </div>
+    <br>
+    <div>
+      <select id="optionNumberBeds">
+        <option value="1">1 bed</option>
+        <option value="2">2 beds</option>
+        <option value="3">3 beds</option>
+        <option value="4">4 beds</option>
+      </select>
+    </div>
+    <br>
+    <div>
+      <button onclick=""><b>OK</b></button>
     </div>
   </div>
 
-  <script>
-    calendar("start");
-    calendar("end");
-  </script>
+
 </body>
+
 </html>
