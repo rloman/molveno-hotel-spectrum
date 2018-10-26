@@ -7,7 +7,8 @@ let hotelrooms = [
    "checkOutDate": "",
    "guest": "",
    "email": "",
-   "telephone": ""
+   "telephone": "",
+   "country": ""
  },
  {"roomNumber": "room 2",
   "roomType": "budget",
@@ -17,17 +18,19 @@ let hotelrooms = [
   "checkOutDate": "",
   "guest": "",
   "email": "",
-  "telephone": ""
+  "telephone": "",
+  "country": ""
  },
  {"roomNumber": "room 3",
   "roomType": "budget",
   "numberOfPeople": "2",
   "status": "occupied",
-  "checkInDate": "",
-  "checkOutDate": "",
-  "guest": "",
-  "email": "",
-  "telephone": ""
+  "checkInDate": "31-01-2019",
+  "checkOutDate": "31-12-2019",
+  "guest": "Adje van Bavel",
+  "email": "adje.van.bavel@hotmail.com",
+  "telephone": "",
+  "country": "The Netherlands"
  },
  {"roomNumber": "room 4",
   "roomType": "budget",
@@ -37,7 +40,8 @@ let hotelrooms = [
   "checkOutDate": "",
   "guest": "",
   "email": "",
-  "telephone": ""
+  "telephone": "",
+  "country": ""
  },
  {"roomNumber": "room 5",
   "roomType": "budget",
@@ -47,7 +51,8 @@ let hotelrooms = [
   "checkOutDate": "",
   "guest": "",
   "email": "",
-  "telephone": ""
+  "telephone": "",
+  "country": ""
  },
  {"roomNumber": "room 6",
   "roomType": "budget",
@@ -57,27 +62,30 @@ let hotelrooms = [
   "checkOutDate": "",
   "guest": "",
   "email": "",
-  "telephone": ""
+  "telephone": "",
+  "country": ""
  },
  {"roomNumber": "room 7",
   "roomType": "budget",
   "numberOfPeople": "3",
   "status": "occupied",
-  "checkInDate": "",
-  "checkOutDate": "",
-  "guest": "",
-  "email": "",
-  "telephone": ""
+  "checkInDate": "12-12-2018",
+  "checkOutDate": "30-12-2018",
+  "guest": "Bill Gates",
+  "email": "thebillionaire@windhoos.com",
+  "telephone": "0015554895",
+  "country": "United States"
  },
  {"roomNumber": "room 8",
   "roomType": "budget",
   "numberOfPeople": "4",
   "status": "occupied",
-  "checkInDate": "",
-  "checkOutDate": "",
-  "guest": "",
+  "checkInDate": "02-02-2019",
+  "checkOutDate": "03-02-2019",
+  "guest": "Bas van Toor",
   "email": "",
-  "telephone": ""
+  "telephone": "0031102484000",
+  "country": "The Netherlands"
  },
  {"roomNumber": "room 9",
   "roomType": "budget",
@@ -87,7 +95,8 @@ let hotelrooms = [
   "checkOutDate": "",
   "guest": "",
   "email": "",
-  "telephone": ""
+  "telephone": "",
+  "country": ""
  },
  {"roomNumber": "room 10",
   "roomType": "budget",
@@ -97,7 +106,8 @@ let hotelrooms = [
   "checkOutDate": "",
   "guest": "",
   "email": "",
-  "telephone": ""
+  "telephone": "",
+  "country": ""
  },
  {"roomNumber": "room 11",
   "roomType": "standard",
@@ -107,7 +117,8 @@ let hotelrooms = [
   "checkOutDate": "",
   "guest": "",
   "email": "",
-  "telephone": ""
+  "telephone": "",
+  "country": ""
  },
  {"roomNumber": "room 12",
   "roomType": "standard",
@@ -117,7 +128,8 @@ let hotelrooms = [
   "checkOutDate": "",
   "guest": "",
   "email": "",
-  "telephone": ""
+  "telephone": "",
+  "country": ""
  },
  {"roomNumber": "room 13",
   "roomType": "standard",
@@ -127,7 +139,8 @@ let hotelrooms = [
   "checkOutDate": "",
   "guest": "",
   "email": "",
-  "telephone": ""
+  "telephone": "",
+  "country": ""
  },
  {"roomNumber": "room 14",
   "roomType": "standard",
@@ -137,66 +150,73 @@ let hotelrooms = [
   "checkOutDate": "",
   "guest": "",
   "email": "",
-  "telephone": ""
+  "telephone": "",
+  "country": ""
  },
  {"roomNumber": "room 15",
   "roomType": "standard",
   "numberOfPeople": "2",
   "status": "occupied",
-  "checkInDate": "",
-  "checkOutDate": "",
-  "guest": "",
+  "checkInDate": "06-11-2019",
+  "checkOutDate": "10-11-2019",
+  "guest": "Mahmoud Ahmadinejad",
   "email": "",
-  "telephone": ""
+  "telephone": "009199323211",
+  "country": "Iran"
  },
  {"roomNumber": "room 16",
-  "roomType": "standardurious",
+  "roomType": "luxurious",
   "numberOfPeople": "2",
   "status": "vacant",
   "checkInDate": "",
   "checkOutDate": "",
   "guest": "",
   "email": "",
-  "telephone": ""
+  "telephone": "",
+  "country": ""
  },
  {"roomNumber": "room 17",
-  "roomType": "standardurious",
+  "roomType": "luxurious",
   "numberOfPeople": "2",
   "status": "occupied",
-  "checkInDate": "",
-  "checkOutDate": "",
-  "guest": "",
-  "email": "",
-  "telephone": ""
+  "checkInDate": "31-12-2018",
+  "checkOutDate": "04-01-2019",
+  "guest": "Donald J. Trump",
+  "email": "therealdonaldtrump@whitehouse.gov",
+  "telephone": "",
+  "country": "United States"
  },
  {"roomNumber": "room 18",
-  "roomType": "standardurious",
+  "roomType": "luxurious",
   "numberOfPeople": "2",
   "status": "vacant",
   "checkInDate": "",
   "checkOutDate": "",
   "guest": "",
   "email": "",
-  "telephone": ""
+  "telephone": "",
+  "country": ""
  },
  {"roomNumber": "room 19",
-  "roomType": "standardurious",
+  "roomType": "luxurious",
   "numberOfPeople": "3",
   "status": "occupied",
-  "checkInDate": "",
-  "checkOutDate": "",
-  "guest": "",
+  "checkInDate": "12-12-2018",
+  "checkOutDate": "01-01-2019",
+  "guest": "Jan Modaal",
   "email": "",
-  "telephone": ""
+  "telephone": "00312937509",
+  "country": "The Netherlands"
  },
  {"roomNumber": "room 20",
-  "roomType": "standardurious",
+  "roomType": "luxurious",
   "numberOfPeople": "2",
   "status": "vacant",
   "checkInDate": "",
   "checkOutDate": "",
   "guest": "",
   "email": "",
-  "telephone": ""
+  "telephone": "",
+  "country": ""
  }
 ];
