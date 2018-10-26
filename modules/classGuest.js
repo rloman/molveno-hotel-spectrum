@@ -1,14 +1,16 @@
 "use strict";
-class Guest {
-  constructor(id, guestName, address, homeTown, postalCode, telephoneNumber, emailAddress, passportNumber, paymentMethod) {
+class guest {
+  constructor(id, guestName, address, postalCode, homeTown, country, eMail, phone, mobile, guestID, paymentMethod) {
     this.id = id;
     this.guestName = guestName;
     this.address = address;
-    this.homeTown = homeTown;
     this.postalCode = postalCode;
-    this.telephoneNumber = telephoneNumber;
-    this.emailAddress = emailAddress;
-    this.passportNumber = passportNumber;
+    this.homeTown = homeTown;
+    this.country = country;
+    this.eMail = eMail;
+    this.phone = phone;
+    this.mobile = mobile;
+    this.guestID = guestID;
     this.paymentMethod = paymentMethod;
   }
 
@@ -21,20 +23,26 @@ class Guest {
   get address() {
     return this._address;
   }
-  get homeTown() {
-    return this._homeTown;
-  }
   get postalCode() {
     return this._postalCode;
   }
-  get telephoneNumber() {
-    return this._telephoneNumber;
+  get homeTown() {
+    return this._homeTown;
   }
-  get emailAddress() {
-    return this._emailAddress;
+  get country() {
+    return this._country;
   }
-  get passportNumber() {
-    return this._passportNumber;
+  get eMail() {
+    return this._eMail;
+  }
+  get phone() {
+    return this._phone;
+  }
+  get mobile() {
+    return this._mobile;
+  }
+  get guestID() {
+    return this._guestID;
   }
   get paymentMethod() {
     return this._paymentMethod;
@@ -49,20 +57,26 @@ class Guest {
   set address(value) {
     this._address = value;
   }
-  set homeTown(value) {
-    this._homeTown = value;
-  }
   set postalCode(value) {
     this._postalCode = value;
   }
-  set telephoneNumber(value) {
-    this._telephoneNumber = value;
+  set homeTown(value) {
+    this._homeTown = value;
   }
-  set emailAddress(value) {
-    this._emailAddress = value;
+  set country(value) {
+    this._country = value;
   }
-  set passportNumber(value) {
-    this._passportNumber = value;
+  set eMail(value) {
+    this._eMail = value;
+  }
+  set phone(value) {
+    this._phone = value;
+  }
+  set mobile(value) {
+    this._mobile = value;
+  }
+  set guestID(value) {
+    this._guestID = value;
   }
   set paymentMethod(value) {
     this._paymentMethod = value;
