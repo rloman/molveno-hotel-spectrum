@@ -2,7 +2,14 @@
 let arr = [];
 let id = 0;
 
+function *idIncrement() {
+  while (id < id + 1) {
+    yield id++;
+  }
+}
+
 const roomReservation = () => {
+  let genId = idIncrement().next().value;
   let guestFirstName = document.getElementById("firstName").value;
   let guestLastName = document.getElementById("lastName").value;
   let telephonenumber = document.getElementById("telephonenumber").value;
@@ -14,9 +21,8 @@ const roomReservation = () => {
   if (checkInDate > checkOutDate) {
     throw new Error("Arrival date can't be later than departure date");
   }
-  let reservation = new Reservation(id, guestFirstName, guestLastName, roomNumber, telephonenumber,
+  let reservation = new Reservation(genId, guestFirstName, guestLastName, roomNumber, telephonenumber,
   emailaddress, people, checkInDate, checkOutDate);
   arr.push(reservation);
   console.log(arr);
-  id += 1;
 }
