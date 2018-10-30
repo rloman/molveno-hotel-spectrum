@@ -9,7 +9,6 @@ function *idIncrement() {
 }
 
 const roomReservation = () => {
-  let genId = idIncrement().next().value;
   let guestFirstName = document.getElementById("firstName").value;
   let guestLastName = document.getElementById("lastName").value;
   let telephonenumber = document.getElementById("telephonenumber").value;
@@ -21,6 +20,7 @@ const roomReservation = () => {
   if (checkInDate > checkOutDate) {
     throw new Error("Arrival date can't be later than departure date");
   }
+  let genId = idIncrement().next().value;
   let reservation = new Reservation(genId, guestFirstName, guestLastName, roomNumber, telephonenumber,
   emailaddress, people, checkInDate, checkOutDate);
   arr.push(reservation);
