@@ -2,7 +2,7 @@
 let arr = [];
 let id = 0;
 
-function *idIncrement() {
+function* idIncrement() {
   while (id < id + 1) {
     yield id++;
   }
@@ -22,7 +22,7 @@ const roomReservation = () => {
   }
   let genId = idIncrement().next().value;
   let reservation = new Reservation(genId, guestFirstName, guestLastName, roomNumber, telephonenumber,
-  emailaddress, people, checkInDate, checkOutDate);
+    emailaddress, people, checkInDate, checkOutDate);
   arr.push(reservation);
   console.log(arr);
 }
