@@ -17,8 +17,6 @@ const insertRoomData = () => {
   console.table(arr);
   id += 1;
   for (let i = 0; i < arr.length; i++) {
-    document.getElementById('arrayOfRooms').innerHTML += `<br> Room number: ${arr[i].roomNumber} <br>
-    Room Type: ${arr[i].roomType} <br> People: ${arr[i].people} <br>`;
     let row = table.insertRow(-1);
     let cell1 = row.insertCell(0);
     let cell2 = row.insertCell(1);
