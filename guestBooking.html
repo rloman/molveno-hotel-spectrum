@@ -13,8 +13,15 @@
       <div id="roomInfo" class="roomInfo">
         <h2>Booking a room, room info</h2>
         <div id="error"></div>
-        <div id="start"><h3>Arrival Date</h3></div>
-        <div id="end"><h3>Departure Date</h3></div>
+        <div id="start">
+          <h3>Arrival Date</h3>
+          <input id="arrivalDate" type="date" name="arrivalDate"></input>
+        </div>
+        <div id="end">
+          <h3>Departure Date</h3>
+          <input id="departureDate" type="date" name="departureDate"></input>
+        </div>
+        <br /><br />
         <div class="bedsFrame">
           <h3>People</h3>
           <input id="beds1" type="radio" name="beds" value="1" checked> 1</input>
@@ -30,14 +37,15 @@
         </div>
         <div class="roomExtras">
           <h3>Extras</h3>
-          <input id="roomExtras1" type="checkbox" name="roomExtras" value="Crib"> Crib (+ € xx,xx)</input><br />
-          <input id="roomExtras2" type="checkbox" name="roomExtras" value="Espresso machine"> Espresso machine (+ € xx,xx)</input><br />
-          <input id="roomExtras3" type="checkbox" name="roomExtras" value="Big screen TV"> Big screen TV (+ € xx,xx)</input><br />
+          <input id="roomExtras1" type="checkbox" name="roomExtras" value="Crib"> Crib (+ € 5,-)</input><br />
+          <input id="roomExtras2" type="checkbox" name="roomExtras" value="Espresso machine"> Espresso machine (+ € 7,-)</input><br />
+          <input id="roomExtras3" type="checkbox" name="roomExtras" value="Big screen TV"> Big screen TV (+ € 8,-)</input><br />
         </div>
-        <button onclick="next();">Next</button>
+        <br /><br /><button onclick="next();">Next</button> <button onclick="cancel();">Cancel</button>
       </div>
       <div id="guestInfo" class="guestInfo" style="display: none;">
         <h2>Booking a room, guest info</h2>
+        <div class="flex">
         <div>
           <div id="guestNameError" class="error"></div>
           <input id="guestName" class="text" name="guestName" maxlength="30" placeholder="Name" required onblur="guestInfo('guestName', 'Name');" />
@@ -74,6 +82,7 @@
           <div id="guestIDError" class="error"></div>
           <input id="guestID" class="text" name="guestID" maxlength="30" placeholder="Identification Document" required onblur="guestInfo('guestID', 'Identification Document');" />
         </div>
+      </div>
         <div>
           Payment Method:
           <input id="payment1" type="radio" name="payment" value="Cash" onclick="paymentField();" checked>Cash</input>
@@ -81,14 +90,13 @@
           <input id="payment3" type="radio" name="payment" value="Debitcard" onclick="paymentField();">Debitcard</input>
           <div id="paymentDiv"></div>
         </div>
-        <button onclick="back();">Back</button><button onclick="submit();">Ok</button><button onclick="cancel();">Cancel</button>
+        <button onclick="back();">Back</button> <button onclick="submit();">Ok</button> <button onclick="cancel();">Cancel</button>
       </div>
       <div id="output"></div>
     </div>
     <script src="guest_booking/guestBooking.js"></script>
     <script>
-      calendar("start");
-      calendar("end");
+      todayF();
     </script>
   </body>
 </html>
