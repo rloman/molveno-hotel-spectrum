@@ -14,7 +14,7 @@ const insertRoomData = () => {
   <td>Room Type</td>
   <td>People</td>`;
   arr.push(room);
-  console.log(arr);
+  console.table(arr);
   id += 1;
   for (let i = 0; i < arr.length; i++) {
     document.getElementById('arrayOfRooms').innerHTML += `<br> Room number: ${arr[i].roomNumber} <br>
