@@ -24,5 +24,5 @@ const roomReservation = () => {
   let reservation = new Reservation(genId, guestFirstName, guestLastName, roomNumber, telephonenumber,
     emailaddress, people, checkInDate, checkOutDate);
   arr.push(reservation);
-  console.log(arr);
+  console.table(arr);
 }
