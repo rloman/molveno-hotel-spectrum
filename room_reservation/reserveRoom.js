@@ -24,5 +24,13 @@ const roomReservation = () => {
   let reservation = new Reservation(genId, guestFirstName, guestLastName, roomNumber, telephonenumber,
     emailaddress, people, checkInDate, checkOutDate);
   arr.push(reservation);
+  let output = document.getElementById("output");
+  output.innerHTML = `First name: ${guestFirstName} <br> Last name: ${guestLastName} <br> Room number: ${roomNumber}
+  <br> Telephone number: ${telephonenumber} <br> Email Address: ${emailaddress} <br> People: ${people} <br>
+  Arrival date: ${checkInDate} <br> Departure date: ${checkOutDate}`;
   console.table(arr);
+}
+
+function cancel() {
+  location.reload(true);
 }
