@@ -2,7 +2,7 @@
 
 class Reservation {
   constructor(id, guestFirstName, guestLastName, roomNumber, guestTelephoneNumber,
-    guestEmailAddress, numberOfGuests, checkInDate, checkOutDate) {
+    guestEmailAddress, numberOfGuests, checkInDate, checkOutDate, check) {
     this.id = id;
     this.guestFirstName = guestFirstName;
     this.guestLastName = guestLastName;
@@ -12,6 +12,7 @@ class Reservation {
     this.numberOfGuests = numberOfGuests;
     this.checkInDate = checkInDate;
     this.checkOutDate = checkOutDate;
+    this.check = check;
   }
   get id() {
     return this._id;
@@ -40,6 +41,9 @@ class Reservation {
   get checkOutDate() {
     return this._checkOutDate;
   }
+  get check() {
+    return this._check;
+  }
 
   set id(value) {
     this._id = value;
@@ -67,5 +71,8 @@ class Reservation {
   }
   set checkOutDate(value) {
     this._checkOutDate = value;
+  }
+  set check(value) {
+    this._check = value;
   }
 }
