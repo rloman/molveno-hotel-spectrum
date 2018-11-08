@@ -236,4 +236,4 @@ let hotelRooms = [
   "email": "",
   "telephone": "",
   "country": ""
-}';
+};
