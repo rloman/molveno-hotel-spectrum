@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 function inputDate() {
   let checkIn = document.getElementById('checkIn').value;
@@ -6,3 +6,4 @@ function inputDate() {
   console.log(checkIn);
   console.log(checkOut);
 }
+console.log()
