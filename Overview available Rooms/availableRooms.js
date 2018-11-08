@@ -11,7 +11,7 @@ function inputDate() {
   for (i = 0; i < hotelRooms.length; i++) {
       if(hotelRooms[i].checkOutDate <= checkIn || hotelRooms[i].checkInDate >= checkOut) {
         console.log((hotelRooms[i]));
-        output.innerHTML = `Room: ${hotelRooms[i].roomNumber}`;
+        output.innerHTML += `Room: ${hotelRooms[i].roomNumber}`;
       }
   }
 
