@@ -2,9 +2,9 @@
 <html>
 
 <head>
-  <script src="../modules/reservationJSON.js"></script>
-  <script src="availableRooms.js"></script>
-  <link rel="stylesheet" type="text/css" href="../style.css" />
+  <script src="reservationJSON.js"></script>
+  <script src="availableRooms.js" defer></script>
+  <link rel="stylesheet" type="text/css" href="style.css" />
   <style>
   </style>
 </head>
@@ -14,12 +14,13 @@
     <div>
       <b>Check in: </b><input type="date" id="checkIn" value="">
       <b>Check out: </b><input type="date" id="checkOut" value="">
+
     </div>
     <br>
     <div>
-        <input type="radio" name="roomType" id="budgetID" value="budget" checked>Budget<br>
-        <input type="radio" name="roomType" id="standardID" value="standard">Standard<br>
-        <input type="radio" name="roomType" id="luxuriousID" value="luxurious">Luxurious<br>
+        <input type="radio" name="budgetRoom" id="budgetID" value="budget" checked>Budget<br>
+        <input type="radio" name="standardRoom" id="standardID" value="standard">Standard<br>
+        <input type="radio" name="luxuriousRoom" id="luxuriousID" value="luxurious">Luxurious<br>
     </div>
     <br>
     <div>
@@ -33,6 +34,8 @@
     <br>
     <div>
       <button onclick="inputDate()"><b>OK</b></button>
+      <div id="vacantRooms">
+      </div>
     </div>
   </div>
 
