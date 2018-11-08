@@ -6,13 +6,20 @@ function inputDate() {
   console.log(checkIn);
   console.log(checkOut);
   let output = document.getElementById("vacantRooms");
+  let roomType = document.querySelector('input[name="room"]:checked').value;
+  output.innerHTML = `<b>These are the ${roomType} rooms: </b><br>`;
 
-//console.log("hotelRooms: " + hotelRooms)
+  //console.log("hotelRooms: " + hotelRooms)
   for (i = 0; i < hotelRooms.length; i++) {
-      if(hotelRooms[i].checkOutDate <= checkIn || hotelRooms[i].checkInDate >= checkOut) {
-        console.log((hotelRooms[i]));
-        output.innerHTML += `Room: ${hotelRooms[i].roomNumber}`;
+    if (hotelRooms[i].checkOutDate <= checkIn || hotelRooms[i].checkInDate >= checkOut) {
+console.log("roomType:" + roomType);
+      if (roomType === hotelRooms[i].roomType) {
+
+        //console.log((hotelRooms[i]));
+        output.innerHTML += `Room: ${hotelRooms[i].roomNumber} <br>`;
       }
+
+    }
   }
 
 
