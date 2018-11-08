@@ -7,20 +7,23 @@ const insertRoomData = () => {
   let roomType = document.querySelector('input[name="roomType"]:checked').value;
   let people = document.querySelector('input[name="people"]:checked').value;
   let room = new Room(id, roomNumber, roomType, people);
-  arr.push(room);
-  console.log(arr);
-  id += 1;
-}
-
-const getRoomData = () => {
+  let table = document.getElementById("roomTable");
   document.getElementById('arrayOfRooms').innerHTML = "";
+  table.innerHTML = "";
+  table.innerHTML = `<td>Room Number</td>
+  <td>Room Type</td>
+  <td>People</td>`;
+  arr.push(room);
+  console.table(arr);
+  id += 1;
   for (let i = 0; i < arr.length; i++) {
-    document.getElementById('arrayOfRooms').innerHTML += `<br> Room number: ${arr[i].roomNumber} <br>
-    Room Type: ${arr[i].roomType} <br> People: ${arr[i].people} <br>`;
-    /* let select = document.getElementById("rooms");
-    let option = document.createElement("option");
-    option.text = arr[i].roomNumber;
-    select.add(option); */
+    let row = table.insertRow(-1);
+    let cell1 = row.insertCell(0);
+    let cell2 = row.insertCell(1);
+    let cell3 = row.insertCell(2);
+    cell1.innerHTML = `${arr[i].roomNumber}`;
+    cell2.innerHTML = `${arr[i].roomType}`;
+    cell3.innerHTML = `${arr[i].people}`;
   }
 }
 
@@ -38,13 +41,13 @@ const filterRoomData = () => {
   }
   switch (count) {
     case 0:
-    document.getElementById("filterArray").innerHTML = `<h2>No rooms found</h2>`;
-    break;
+      document.getElementById("filterArray").innerHTML = `<h2>No rooms found</h2>`;
+      break;
 
     case 1:
-    document.getElementById("filterArray").innerHTML = `<h2>One room found</h2>`;
-    document.getElementById("filterArray").innerHTML += rooms;
-    break;
+      document.getElementById("filterArray").innerHTML = `<h2>One room found</h2>`;
+      document.getElementById("filterArray").innerHTML += rooms;
+      break;
   }
 
   if (count > 1) {
@@ -65,13 +68,3 @@ const filterRoomData = () => {
   document.getElementById("filterArray").innerHTML += rooms;
 }
 */
-
-const resetRoomData = () => {
-  /* let select = document.getElementById("rooms");
-  select.options.length = 0; */
-  document.getElementById('arrayOfRooms').innerHTML = "";
-}
-
-/* const checkRoomData = () => {
-  console.log(`test`);
-} */

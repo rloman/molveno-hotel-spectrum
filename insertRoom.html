@@ -31,13 +31,17 @@
         <input id="people4" type="radio" name="people" value="4"> 4</input>
       </div>
       <br>
-      <button onclick="insertRoomData()">Submit</button>
+      <button onclick="insertRoomData()">OK</button>
     </div>
     <div id="roomCheckFrame" class="roomCheckFrame">
       <h1>Room overview</h1>
-      <!-- <select id="rooms"></select> -->
-      <button onclick="getRoomData()">Get data</button>
-      <button onclick="resetRoomData()">Reset</button>
+      <table id="roomTable">
+        <tr>
+          <td>Room Number</td>
+          <td>Room Type</td>
+          <td>People</td>
+        </tr>
+      </table>
       <p id="arrayOfRooms">
     </div>
     <div id="filterRoomFrame" class="filterRoomFrame">

@@ -20,8 +20,9 @@ let hotelRooms = [
   "email": "",
   "telephone": "",
   "country": ""
- },
- {"roomNumber": "room 3",
+},
+{
+  "roomNumber": "room 3",
   "roomType": "budget",
   "numberOfPeople": "2",
   "status": "occupied",
@@ -31,8 +32,9 @@ let hotelRooms = [
   "email": "adje.van.bavel@hotmail.com",
   "telephone": "",
   "country": "The Netherlands"
- },
- {"roomNumber": "room 4",
+},
+{
+  "roomNumber": "room 4",
   "roomType": "budget",
   "numberOfPeople": "2",
   "status": "vacant",
@@ -42,8 +44,9 @@ let hotelRooms = [
   "email": "",
   "telephone": "",
   "country": ""
- },
- {"roomNumber": "room 5",
+},
+{
+  "roomNumber": "room 5",
   "roomType": "budget",
   "numberOfPeople": "4",
   "status": "vacant",
@@ -53,8 +56,9 @@ let hotelRooms = [
   "email": "",
   "telephone": "",
   "country": ""
- },
- {"roomNumber": "room 6",
+},
+{
+  "roomNumber": "room 6",
   "roomType": "budget",
   "numberOfPeople": "2",
   "status": "vacant",
@@ -64,8 +68,9 @@ let hotelRooms = [
   "email": "",
   "telephone": "",
   "country": ""
- },
- {"roomNumber": "room 7",
+},
+{
+  "roomNumber": "room 7",
   "roomType": "budget",
   "numberOfPeople": "3",
   "status": "occupied",
@@ -75,8 +80,9 @@ let hotelRooms = [
   "email": "thebillionaire@windhoos.com",
   "telephone": "0015554895",
   "country": "United States"
- },
- {"roomNumber": "room 8",
+},
+{
+  "roomNumber": "room 8",
   "roomType": "budget",
   "numberOfPeople": "4",
   "status": "occupied",
@@ -86,8 +92,9 @@ let hotelRooms = [
   "email": "",
   "telephone": "0031102484000",
   "country": "The Netherlands"
- },
- {"roomNumber": "room 9",
+},
+{
+  "roomNumber": "room 9",
   "roomType": "budget",
   "numberOfPeople": "2",
   "status": "vacant",
@@ -97,8 +104,9 @@ let hotelRooms = [
   "email": "",
   "telephone": "",
   "country": ""
- },
- {"roomNumber": "room 10",
+},
+{
+  "roomNumber": "room 10",
   "roomType": "budget",
   "numberOfPeople": "3",
   "status": "vacant",
@@ -108,8 +116,9 @@ let hotelRooms = [
   "email": "",
   "telephone": "",
   "country": ""
- },
- {"roomNumber": "room 11",
+},
+{
+  "roomNumber": "room 11",
   "roomType": "standard",
   "numberOfPeople": "2",
   "status": "vacant",
@@ -119,8 +128,9 @@ let hotelRooms = [
   "email": "",
   "telephone": "",
   "country": ""
- },
- {"roomNumber": "room 12",
+},
+{
+  "roomNumber": "room 12",
   "roomType": "standard",
   "numberOfPeople": "4",
   "status": "vacant",
@@ -130,8 +140,9 @@ let hotelRooms = [
   "email": "",
   "telephone": "",
   "country": ""
- },
- {"roomNumber": "room 13",
+},
+{
+  "roomNumber": "room 13",
   "roomType": "standard",
   "numberOfPeople": "3",
   "status": "vacant",
@@ -141,8 +152,9 @@ let hotelRooms = [
   "email": "",
   "telephone": "",
   "country": ""
- },
- {"roomNumber": "room 14",
+},
+{
+  "roomNumber": "room 14",
   "roomType": "standard",
   "numberOfPeople": "2",
   "status": "vacant",
@@ -152,8 +164,9 @@ let hotelRooms = [
   "email": "",
   "telephone": "",
   "country": ""
- },
- {"roomNumber": "room 15",
+},
+{
+  "roomNumber": "room 15",
   "roomType": "standard",
   "numberOfPeople": "2",
   "status": "occupied",
@@ -163,8 +176,9 @@ let hotelRooms = [
   "email": "",
   "telephone": "009199323211",
   "country": "Iran"
- },
- {"roomNumber": "room 16",
+},
+{
+  "roomNumber": "room 16",
   "roomType": "luxurious",
   "numberOfPeople": "2",
   "status": "vacant",
@@ -174,8 +188,9 @@ let hotelRooms = [
   "email": "",
   "telephone": "",
   "country": ""
- },
- {"roomNumber": "room 17",
+},
+{
+  "roomNumber": "room 17",
   "roomType": "luxurious",
   "numberOfPeople": "2",
   "status": "occupied",
@@ -185,8 +200,9 @@ let hotelRooms = [
   "email": "therealdonaldtrump@whitehouse.gov",
   "telephone": "",
   "country": "United States"
- },
- {"roomNumber": "room 18",
+},
+{
+  "roomNumber": "room 18",
   "roomType": "luxurious",
   "numberOfPeople": "2",
   "status": "vacant",
@@ -196,8 +212,9 @@ let hotelRooms = [
   "email": "",
   "telephone": "",
   "country": ""
- },
- {"roomNumber": "room 19",
+},
+{
+  "roomNumber": "room 19",
   "roomType": "luxurious",
   "numberOfPeople": "3",
   "status": "occupied",
@@ -207,8 +224,9 @@ let hotelRooms = [
   "email": "",
   "telephone": "00312937509",
   "country": "The Netherlands"
- },
- {"roomNumber": "room 20",
+},
+{
+  "roomNumber": "room 20",
   "roomType": "luxurious",
   "numberOfPeople": "2",
   "status": "vacant",
@@ -218,5 +236,4 @@ let hotelRooms = [
   "email": "",
   "telephone": "",
   "country": ""
- }
-];
+}';
