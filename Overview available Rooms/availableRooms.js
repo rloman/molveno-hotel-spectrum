@@ -6,4 +6,3 @@ function inputDate() {
   let roomType = document.querySelector("input[name='roomType']:checked").value;
   let numberBeds = document.getElementById('optionNumberBeds').value;
 }
-console.log()
