@@ -1,0 +1,39 @@
+<!doctype>
+<html>
+
+<head>
+  <script src="../modules/reservationJSON.js"></script>
+  <script src="blocked_Rooms.js" ></script>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <style>
+  </style>
+</head>
+
+<body>
+
+
+
+  <div class="mainDiv">
+    <h1>Block a Room</h1>
+    <div>
+      <b>Check for available rooms:</b><br><br>
+      <b>Start Date: </b><input type="date" name="arrivalDate" id="arrivalDate" value="" required>
+      <b>End Date: </b><input type="date" name="departureDate" id="departureDate" value="" required>
+    </div>
+      <div>
+      <button onclick="inputDate()"><b>Check</b></button>
+      <br>
+      <select id="availableRooms"></select>
+
+    </div>
+    <br>
+    <div>
+      <button onclick="cancel()"><b>Cancel</b></button>
+    </div>
+  </div>
+<script>today();
+</script>
+
+</body>
+
+</html>
