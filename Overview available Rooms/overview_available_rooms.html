@@ -3,7 +3,7 @@
 
 <head>
   <script src="../modules/reservationJSON.js"></script>
-  <script src="availableRooms.js" defer></script>
+  <script src="availableRooms.js" ></script>
   <link rel="stylesheet" type="text/css" href="style.css" />
   <style>
   </style>
@@ -12,33 +12,39 @@
 <body>
   <div class="mainDiv">
     <div>
-      <b>Check in: </b><input type="date" id="checkIn" value="">
-      <b>Check out: </b><input type="date" id="checkOut" value="">
+      <b>Check in: </b><input type="date" name="arrivalDate" id="arrivalDate" value="" required>
+      <b>Check out: </b><input type="date" name="departureDate" id="departureDate" value="" required>
 
     </div>
     <br>
     <div>
-        <input type="radio" name="room" id="budgetID" value="budget" checked>Budget<br>
-        <input type="radio" name="room" id="standardID" value="standard">Standard<br>
-        <input type="radio" name="room" id="luxuriousID" value="luxurious">Luxurious<br>
+      <b>Roomtype:</b><br><br>
+      <input type="radio" name="room" id="budgetID" value="budget" checked>Budget<br>
+      <input type="radio" name="room" id="standardID" value="standard">Standard<br>
+      <input type="radio" name="room" id="luxuriousID" value="luxurious">Luxurious<br>
     </div>
     <br>
     <div>
-      <select id="optionNumberBeds">
-        <option value="1">1 bed</option>
-        <option value="2">2 beds</option>
-        <option value="3">3 beds</option>
-        <option value="4">4 beds</option>
-      </select>
+      <b>Number of Beds:</b><br><br>
+      <input type="radio" name="beds" id="bed1" value="1" checked>1<br>
+      <input type="radio" name="beds" id="bed2" value="2">2<br>
+      <input type="radio" name="beds" id="bed3" value="3">3<br>
+      <input type="radio" name="beds" id="bed4" value="4">4<br>
     </div>
     <br>
     <div>
       <button onclick="inputDate()"><b>OK</b></button>
+      <br>
       <div id="vacantRooms">
       </div>
     </div>
+    <br>
+    <div>
+      <button onclick="cancel()"><b>Cancel</b></button>
+    </div>
   </div>
-
+<script>today();
+</script>
 
 </body>
 
