@@ -33,6 +33,7 @@ function submitBlock() {
   let select = document.querySelectorAll('#availableRooms option:checked');
   let selectArray = Array.from(select).map(element => element.value);
   console.log(selectArray);
+  console.log(checkIn.toLocaleString('en-GB'));
   output.innerHTML = `<br><b>Blocked room(s):</b> <br>`
   for (let i = 0; i < selectArray.length; i++) {
     output.innerHTML += `${selectArray[i]} From: ${checkIn} Until: ${checkOut} <br>`;
