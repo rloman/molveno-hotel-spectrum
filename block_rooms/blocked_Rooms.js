@@ -12,8 +12,8 @@ function inputDate() {
   console.log(checkIn);
   console.log(checkOut);
   let output = document.getElementById("vacantRooms");
-
-
+  // Removes the hidden attribute, showing the select dropdown menu
+  let select = document.getElementById("availableRooms").removeAttribute("hidden");
   //console.log("hotelRooms: " + hotelRooms)
   for (let i = 0; i < hotelRooms.length; i++) {
     if (hotelRooms[i].checkOutDate <= checkIn || hotelRooms[i].checkInDate >= checkOut) {
@@ -22,6 +22,20 @@ function inputDate() {
       option.text = hotelRooms[i].roomNumber;
       select.add(option);
     }
+  }
+}
+
+function submitBlock() {
+  let checkIn = document.getElementById('arrivalDate').value;
+  let checkOut = document.getElementById('departureDate').value;
+  let output = document.getElementById("arrayOfRooms");
+  // Get all selected values from the dropdown menu
+  let select = document.querySelectorAll('#availableRooms option:checked');
+  let selectArray = Array.from(select).map(element => element.value);
+  console.log(selectArray);
+  output.innerHTML = `<br><b>Blocked room(s):</b> <br>`
+  for (let i = 0; i < selectArray.length; i++) {
+    output.innerHTML += `${selectArray[i]} From: ${checkIn} Until: ${checkOut} <br>`;
   }
 }
 
