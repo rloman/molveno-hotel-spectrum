@@ -1,6 +1,5 @@
-//"use strict";
-//let now = new Date();
-//let today = new Date();
+"use strict";
+
 function inputDate() {
   let checkIn = document.getElementById('arrivalDate').value;
   let checkOut = document.getElementById('departureDate').value;
@@ -12,7 +11,7 @@ function inputDate() {
   output.innerHTML = `<b>These are the ${roomType} rooms available: </b><br>`;
 
   //console.log("hotelRooms: " + hotelRooms)
-  for (i = 0; i < hotelRooms.length; i++) {
+  for (let i = 0; i < hotelRooms.length; i++) {
     if (hotelRooms[i].checkOutDate <= checkIn || hotelRooms[i].checkInDate >= checkOut) {
       console.log("roomType:" + roomType);
       if (roomType === hotelRooms[i].roomType) {
@@ -41,26 +40,6 @@ function today() {
   document.getElementById("arrivalDate").setAttribute("min", today);
   document.getElementById("departureDate").setAttribute("min", today);
 };
-
-/*
-function todayF() {
-  today.setDate(now.getDate() + 1);
-  function day_of_the_month(d)
-  {
-    return (d.getDate() < 10 ? '0' : '') + d.getDate();
-  }
-  function month_of_the_year(d)
-  {
-    return ((d.getMonth() + 1) < 10 ? '0' : '') + (d.getMonth() + 1);
-  }
-  let dateControl = document.querySelector('input[name="arrivalDate"]');
-  dateControl.setAttribute("min", `${now.getFullYear()}-${month_of_the_year(now)}-${day_of_the_month(now)}`);
-  dateControl.value = now.getFullYear() + "-" + month_of_the_year(now) + "-" + day_of_the_month(now);
-  dateControl = document.querySelector('input[name="departureDate"]');
-  dateControl.setAttribute("min", `${now.getFullYear()}-${month_of_the_year(today)}-${day_of_the_month(today)}`);
-  dateControl.value = now.getFullYear() + "-" + month_of_the_year(today) + "-" + day_of_the_month(today);
-}
-*/
 
 function cancel() {
   location.reload(true);
