@@ -7,16 +7,16 @@ function blockRoom(){
 }
 
 function inputDate() {
-  let checkIn = document.getElementById('arrivalDate').value;
-  let checkOut = document.getElementById('departureDate').value;
-  console.log(checkIn);
-  console.log(checkOut);
+  let arrivalDate = document.getElementById('arrivalDate').value;
+  let departureDate = document.getElementById('departureDate').value;
+  console.log(arrivalDate);
+  console.log(departureDate);
   let output = document.getElementById("vacantRooms");
   // Removes the hidden attribute, showing the select dropdown menu
   let select = document.getElementById("availableRooms").removeAttribute("hidden");
   //console.log("hotelRooms: " + hotelRooms)
   for (let i = 0; i < hotelRooms.length; i++) {
-    if (hotelRooms[i].checkOutDate <= checkIn || hotelRooms[i].checkInDate >= checkOut) {
+    if (hotelRooms[i].checkInDate <= arrivalDate || hotelRooms[i].checkOutDate >= departureDate) {
       let select = document.getElementById("availableRooms");
       let option = document.createElement('option');
       option.text = hotelRooms[i].roomNumber;
@@ -26,17 +26,22 @@ function inputDate() {
 }
 
 function submitBlock() {
-  let checkIn = document.getElementById('arrivalDate').value;
-  let checkOut = document.getElementById('departureDate').value;
+  let arrivalDate = document.getElementById('arrivalDate').value;
+  let arrivalDateStr = arrivalDate.split('-');
+  let formattedArrivalDate = `${arrivalDateStr[2]}-${arrivalDateStr[1]}-${arrivalDateStr[0]}`;
+  let departureDate = document.getElementById('departureDate').value;
+  let departureDateStr = departureDate.split('-');
+  let formattedDepartureDate = `${departureDateStr[2]}-${departureDateStr[1]}-${departureDateStr[0]}`;
   let output = document.getElementById("arrayOfRooms");
   // Get all selected values from the dropdown menu
   let select = document.querySelectorAll('#availableRooms option:checked');
   let selectArray = Array.from(select).map(element => element.value);
   console.log(selectArray);
-  console.log(checkIn.toLocaleString('en-GB'));
+  console.log(formattedArrivalDate);
+  console.log(formattedDepartureDate);
   output.innerHTML = `<br><b>Blocked room(s):</b> <br>`
   for (let i = 0; i < selectArray.length; i++) {
-    output.innerHTML += `${selectArray[i]} From: ${checkIn} Until: ${checkOut} <br>`;
+    output.innerHTML += `${selectArray[i]} From: ${formattedArrivalDate} Until: ${formattedDepartureDate} <br>`;
   }
 }
 
