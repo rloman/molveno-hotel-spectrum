@@ -24,8 +24,8 @@ function Createcheckbox(chkboxid) {
            checkbox.onclick = function(){
             this.onclick = null;
             var label = this.parentNode;
-            label.removeChild(this);
-            label.parentNode.removeChild(label);
+            //label.removeChild(this);
+            //label.parentNode.removeChild(label);
            };
            checkbox.id = chkboxid;
            checkbox.value = chkboxid;

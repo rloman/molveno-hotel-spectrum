@@ -14,8 +14,8 @@
     <h1>Block a Room</h1>
     <div>
       <b>Check for available rooms:</b><br><br>
-      <b>Start Date: </b><input type="date" name="arrivalDate" id="arrivalDate" value="" required>
-      <b>End Date: </b><input type="date" name="departureDate" id="departureDate" value="" required>
+      <b>Start Date: </b><input type="date" name="arrivalDate" id="arrivalDate" onchange="secondDateAfterFirst();" required>
+      <b>End Date: </b><input type="date" name="departureDate" id="departureDate" required>
     </div>
     <div>
       <button onclick="inputDate()"><b>Check</b></button>
