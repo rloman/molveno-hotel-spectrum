@@ -1,18 +1,18 @@
 "use strict"
 
 function bodyOnload(){
-  document.getElementById("guestDatails").style.display = "none";
+  document.getElementById("guestDetails").style.display = "none";
 }
 
 function guestDetails() {
   document.getElementById("bookingNumberField").style.display = "none";
-  document.getElementById("guestDatails").style.display = "";
+  document.getElementById("guestDetails").style.display = "";
   document.getElementById('DBoutput').innerHTML = "" ;
 }
 
 function backToBookingNumber(){
   document.getElementById("bookingNumberField").style.display = "";
-  document.getElementById("guestDatails").style.display = "none";
+  document.getElementById("guestDetails").style.display = "none";
   document.getElementById('DBoutput').innerHTML = "" ;
 }
 
@@ -38,7 +38,8 @@ function searchForBookingNumber(){
       "<b>" +"status: " + "</b>" + hotelrooms[i].status + "<br>" +
       "<b>" +"check in date: " + "</b>" + hotelrooms[i].checkInDate + "<br>" +
       "<b>" +"check out date: " + "</b>" + hotelrooms[i].checkOutDate + "<br>" +
-      "<b>" +"guest: " + "</b>" + hotelrooms[i].guest + "<br>" +
+      "<b>" +"firstname: " + "</b>" + hotelrooms[i].firstname + "<br>" +
+      "<b>" +"surname: " + "</b>" + hotelrooms[i].surname + "<br>" +
       "<b>" +"email: " + "</b>" + hotelrooms[i].email + "<br>" +
       "<b>" +"telephone: " + "</b>" + hotelrooms[i].telephone + "<br>" +
       "<b>" +"telephone: " + "</b>" + hotelrooms[i].country + "<br>" +
@@ -74,7 +75,8 @@ function checkInGuest(){
     "<b>" +"status: " + "</b>" + hotelrooms[indexVanJsonFile].status + "<br>" +
     "<b>" +"check in date: " + "</b>" + hotelrooms[indexVanJsonFile].checkInDate + "<br>" +
     "<b>" +"check out date: " + "</b>" + hotelrooms[indexVanJsonFile].checkOutDate + "<br>" +
-    "<b>" +"guest: " + "</b>" + hotelrooms[indexVanJsonFile].guest + "<br>" +
+    "<b>" +"firstname: " + "</b>" + hotelrooms[indexVanJsonFile].firstname + "<br>" +
+    "<b>" +"surname: " + "</b>" + hotelrooms[indexVanJsonFile].surname + "<br>" +
     "<b>" +"email: " + "</b>" + hotelrooms[indexVanJsonFile].email + "<br>" +
     "<b>" +"telephone: " + "</b>" + hotelrooms[indexVanJsonFile].telephone + "<br>" +
     "<b>" +"telephone: " + "</b>" + hotelrooms[indexVanJsonFile].country + "<br>" +
@@ -106,7 +108,8 @@ function searchForGuestDetails(){
       "<b>" +"status: " + "</b>" + hotelrooms[i].status + "<br>" +
       "<b>" +"check in date: " + "</b>" + hotelrooms[i].checkInDate + "<br>" +
       "<b>" +"check out date: " + "</b>" + hotelrooms[i].checkOutDate + "<br>" +
-      "<b>" +"guest: " + "</b>" + hotelrooms[i].guest + "<br>" +
+      "<b>" +"firstname: " + "</b>" + hotelrooms[i].firstname + "<br>" +
+      "<b>" +"surname: " + "</b>" + hotelrooms[i].surname + "<br>" +
       "<b>" +"email: " + "</b>" + hotelrooms[i].email + "<br>" +
       "<b>" +"telephone: " + "</b>" + hotelrooms[i].telephone + "<br>" +
       "<b>" +"telephone: " + "</b>" + hotelrooms[i].country + "<br>" +
