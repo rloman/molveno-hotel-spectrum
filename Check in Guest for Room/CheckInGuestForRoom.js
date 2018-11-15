@@ -44,6 +44,7 @@ function searchForBookingNumber(){
       "<b>" +"telephone: " + "</b>" + hotelrooms[i].telephone + "<br>" +
       "<b>" +"telephone: " + "</b>" + hotelrooms[i].country + "<br>" +
       "<b>" +"bookingNumber: " + "</b>" + hotelrooms[i].bookingNumber + "<br>" +
+      "<b>" +"address: " + "</b>" + hotelrooms[i].address + "<br>" +
       "<b>" +"check: " + "</b>" + hotelrooms[i].check ;
 
       indexVanFunctieBookingnumber = i;
@@ -80,7 +81,8 @@ function checkInGuest(){
     "<b>" +"email: " + "</b>" + hotelrooms[indexVanJsonFile].email + "<br>" +
     "<b>" +"telephone: " + "</b>" + hotelrooms[indexVanJsonFile].telephone + "<br>" +
     "<b>" +"telephone: " + "</b>" + hotelrooms[indexVanJsonFile].country + "<br>" +
-    "<b>" +"bookingNumber: " + "</b>" + hotelrooms[indexVanJsonFile].bookingNumber + "<br>" +
+    "<b>" +"bookingNumber: " + "</b>" + hotelrooms[indexVanJsonFile].bookingNumber +
+    "<b>" +"address: " + "</b>" + hotelrooms[indexVanJsonFile].address + "<br>" +
     "<b>" +"check: " + "</b>" + hotelrooms[indexVanJsonFile].check ;
  }
  if (!nogGeenBookingNumberIngevuld){
@@ -92,6 +94,7 @@ function checkInGuest(){
 //////////////////////
 
 function searchForGuestDetails(){
+  document.getElementById('DBoutput').innerHTML = "";
   let guestName = document.getElementById('guestName').value;
   let guestSurname = document.getElementById('guestSurname').value;
   let guestAddress = document.getElementById('guestAddress').value;
@@ -99,7 +102,11 @@ function searchForGuestDetails(){
     return
   }
   for (let i=0; i<hotelrooms.length; i++){
-    if (hotelrooms[i].firstname === guestName && hotelrooms[i].surname === guestSurname && hotelrooms[i].email === guestAddress){
+    let filterName = new RegExp(guestName, 'i');
+    let filterSurname = new RegExp(guestSurname, 'i');
+    let filterAddress = new RegExp(guestAddress, 'i');
+    if (filterName.test(hotelrooms[i].firstname) && filterSurname.test(hotelrooms[i].surname) && filterAddress.test(hotelrooms[i].address)){
+
       document.getElementById('DBoutput').innerHTML =
       "<br>"+
       "<b>" +"room: " + "</b>" + hotelrooms[i].roomNumber + "<br>" +
@@ -114,8 +121,39 @@ function searchForGuestDetails(){
       "<b>" +"telephone: " + "</b>" + hotelrooms[i].telephone + "<br>" +
       "<b>" +"telephone: " + "</b>" + hotelrooms[i].country + "<br>" +
       "<b>" +"bookingNumber: " + "</b>" + hotelrooms[i].bookingNumber + "<br>" +
+      "<b>" +"address: " + "</b>" + hotelrooms[i].address + "<br>" +
       "<b>" +"check: " + "</b>" + hotelrooms[i].check ;
+
+      indexVanGuestDetails = i;
       break;
     }
   }
+}
+
+let indexVanGuestDetails = 0;
+function checkInGuestFromGuestDetails(){
+  let guestName = document.getElementById('guestName').value;
+  let guestSurname = document.getElementById('guestSurname').value;
+  let guestAddress = document.getElementById('guestAddress').value;
+  if (guestName === "" || guestSurname === "" || guestAddress === ""){
+    return
+  }
+  let indexVanJsonFile = indexVanGuestDetails;
+  hotelrooms[indexVanJsonFile].check = "satisfied";
+  document.getElementById('DBoutput').innerHTML =
+  "<br>"+
+  "<b>" +"room: " + "</b>" + hotelrooms[indexVanJsonFile].roomNumber + "<br>" +
+  "<b>" +"room type: " + "</b>" + hotelrooms[indexVanJsonFile].roomType + "<br>" +
+  "<b>" +"number of people: " + "</b>" + hotelrooms[indexVanJsonFile].numberOfPeople + "<br>" +
+  "<b>" +"status: " + "</b>" + hotelrooms[indexVanJsonFile].status + "<br>" +
+  "<b>" +"check in date: " + "</b>" + hotelrooms[indexVanJsonFile].checkInDate + "<br>" +
+  "<b>" +"check out date: " + "</b>" + hotelrooms[indexVanJsonFile].checkOutDate + "<br>" +
+  "<b>" +"firstname: " + "</b>" + hotelrooms[indexVanJsonFile].firstname + "<br>" +
+  "<b>" +"surname: " + "</b>" + hotelrooms[indexVanJsonFile].surname + "<br>" +
+  "<b>" +"email: " + "</b>" + hotelrooms[indexVanJsonFile].email + "<br>" +
+  "<b>" +"telephone: " + "</b>" + hotelrooms[indexVanJsonFile].telephone + "<br>" +
+  "<b>" +"telephone: " + "</b>" + hotelrooms[indexVanJsonFile].country + "<br>" +
+  "<b>" +"bookingNumber: " + "</b>" + hotelrooms[indexVanJsonFile].bookingNumber + "<br>" +
+  "<b>" +"address: " + "</b>" + hotelrooms[indexVanJsonFile].address + "<br>" +
+  "<b>" +"check: " + "</b>" + hotelrooms[indexVanJsonFile].check ;
 }

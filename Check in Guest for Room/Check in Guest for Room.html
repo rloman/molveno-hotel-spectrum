@@ -3,6 +3,7 @@
 <head>
   <script src="CheckInGuestForRoom.js"></script>
   <script src="reservationJSON_checkInGuestForRoom.js"></script>
+  <!-- <link rel="stylesheet" type="text/css" href="../guest_booking/style.css" /> -->
   <style>
     .dataFromDB {
       border: double;
@@ -14,7 +15,6 @@
     }
     .mainDiv {
       display: flex;
-      /* text-align: center; */
     }
     .frameGuestDetails {
       border: double;
@@ -46,7 +46,8 @@
       <b>firstname: </b> <input type="text" id="guestName" placeholder="firstname" value=""><br><br>
       <b>surname: &nbsp</b><input type="text" id="guestSurname" placeholder="surname" value=""><br><br>
       <b>address: &nbsp&nbsp</b><input type="text" id="guestAddress" placeholder="address" value=""><br><br>
-      <button onclick="searchForGuestDetails()"><b>search</b></button><br><br><br><br>
+      <button onclick="searchForGuestDetails()"><b>search</b></button><br><br>
+      <button onclick="checkInGuestFromGuestDetails()">Check in</button><br><br>
       <button onclick="backToBookingNumber()">back to booking number</button>
     </div>
     <div class="dataFromDB" id="DBoutput">
@@ -55,8 +56,3 @@
   </div>
 </body>
 </html>
-
-
-
-I ask for his booking number and register that this booking is "satisfied".
-If the guest does not have a booking number at hand, than guest details (name, surname, guest number and / or address)

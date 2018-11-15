@@ -11,6 +11,7 @@ let hotelrooms = [{
   "telephone": "",
   "country": "",
   "bookingNumber": "",
+  "address": "",
   "check": ""
 },
 {
@@ -26,6 +27,7 @@ let hotelrooms = [{
   "telephone": "00317937409",
   "country": "The Netherlands",
   "bookingNumber": "7",
+  "address": "Jansenlaan 49",
   "check": ""
 },
 {
@@ -41,6 +43,7 @@ let hotelrooms = [{
   "telephone": "",
   "country": "The Netherlands",
   "bookingNumber": "1",
+  "address": "Dommel 2",
   "check": ""
 },
 {
@@ -56,6 +59,7 @@ let hotelrooms = [{
   "telephone": "",
   "country": "",
   "bookingNumber": "",
+  "address": "",
   "check": ""
 },
 {
@@ -71,6 +75,7 @@ let hotelrooms = [{
   "telephone": "",
   "country": "",
   "bookingNumber": "",
+  "address": "",
   "check": ""
 },
 {
@@ -86,6 +91,7 @@ let hotelrooms = [{
   "telephone": "",
   "country": "",
   "bookingNumber": "",
+  "address": "",
   "check": ""
 },
 {
@@ -101,6 +107,7 @@ let hotelrooms = [{
   "telephone": "0015554895",
   "country": "United States",
   "bookingNumber": "2",
+  "address": "billy lane 123",
   "check": ""
 },
 {
@@ -116,6 +123,7 @@ let hotelrooms = [{
   "telephone": "0031102484000",
   "country": "The Netherlands",
   "bookingNumber": "3",
+  "address": "sesamstraat 7",
   "check": ""
 },
 {
@@ -131,6 +139,7 @@ let hotelrooms = [{
   "telephone": "",
   "country": "",
   "bookingNumber": "",
+  "address": "",
   "check": ""
 },
 {
@@ -146,6 +155,7 @@ let hotelrooms = [{
   "telephone": "",
   "country": "",
   "bookingNumber": "",
+  "address": "",
   "check": ""
 },
 {
@@ -161,6 +171,7 @@ let hotelrooms = [{
   "telephone": "",
   "country": "",
   "bookingNumber": "",
+  "address": "",
   "check": ""
 },
 {
@@ -176,6 +187,7 @@ let hotelrooms = [{
   "telephone": "",
   "country": "",
   "bookingNumber": "",
+  "address": "",
   "check": ""
 },
 {
@@ -191,6 +203,7 @@ let hotelrooms = [{
   "telephone": "",
   "country": "",
   "bookingNumber": "",
+  "address": "",
   "check": ""
 },
 {
@@ -206,6 +219,7 @@ let hotelrooms = [{
   "telephone": "",
   "country": "",
   "bookingNumber": "",
+  "address": "",
   "check": ""
 },
 {
@@ -221,6 +235,7 @@ let hotelrooms = [{
   "telephone": "009199323211",
   "country": "Iran",
   "bookingNumber": "4",
+  "address": "Pannenschuurhoven 1",
   "check": ""
 },
 {
@@ -236,6 +251,7 @@ let hotelrooms = [{
   "telephone": "",
   "country": "",
   "bookingNumber": "",
+  "address": "",
   "check": ""
 },
 {
@@ -251,6 +267,7 @@ let hotelrooms = [{
   "telephone": "",
   "country": "United States",
   "bookingNumber": "5",
+  "address": "white house 1",
   "check": ""
 },
 {
@@ -266,6 +283,7 @@ let hotelrooms = [{
   "telephone": "",
   "country": "",
   "bookingNumber": "",
+  "address": "",
   "check": ""
 },
 {
@@ -281,6 +299,7 @@ let hotelrooms = [{
   "telephone": "00312937509",
   "country": "The Netherlands",
   "bookingNumber": "6",
+  "address": "Modaal laan 124",
   "check": ""
 },
 {
@@ -296,6 +315,7 @@ let hotelrooms = [{
   "telephone": "",
   "country": "",
   "bookingNumber": "",
+  "address": "",
   "check": ""
 }
 ];
