@@ -42,56 +42,53 @@
           <input id="roomExtras2" type="checkbox" name="roomExtras" value="Espresso machine"> Espresso machine (+ € 7,-)</input><br />
           <input id="roomExtras3" type="checkbox" name="roomExtras" value="Big screen TV"> Big screen TV (+ € 8,-)</input><br />
         </div>
-        <br /><br /><button onclick="next();">Next</button> <button onclick="cancel();">Cancel</button>
+        <br /><br /><button class="nextBtn" onclick="next();">Next</button> <button class="cancelBtn" onclick="cancel();">Cancel</button>
       </div>
       <div id="guestInfo" class="guestInfo" style="display: none;">
         <h2>Booking a room, guest info</h2>
         <div class="flex">
         <div>
           <div id="guestNameError" class="error"></div>
-          <input id="guestName" class="text" name="guestName" maxlength="30" placeholder="Name" required onblur="guestInfo('guestName', 'Name');" />
+          <label id="guestNameLabel" for="guestName" style="display: none;">Name</label>
+          <input id="guestName" class="text" name="guestName" maxlength="40" placeholder="Name" required oninput="guestInfo('guestName', 'Name');" />
         </div>
         <div>
           <div id="addressError" class="error"></div>
-          <input id="address" class="text" name="address" maxlength="30" placeholder="Address" required onblur="guestInfo('address', 'Address');" />
+          <label id="addressLabel" for="address" style="display: none;">Address</label>
+          <input id="address" class="text" name="address" maxlength="40" placeholder="Address" required oninput="guestInfo('address', 'Address');" />
         </div>
         <div>
           <div id="postalCodeError" class="error"></div>
-          <input id="postalCode" class="text" name="postalCode" maxlength="30" placeholder="Postal Code" required onblur="guestInfo('postalCode', 'Postal Code');" />
+          <label id="postalCodeLabel" for="postalCode" style="display: none;">Postal Code</label>
+          <input id="postalCode" class="text" name="postalCode" maxlength="15" placeholder="Postal Code" required oninput="guestInfo('postalCode', 'Postal Code');" />
         </div>
         <div>
           <div id="homeTownError" class="error"></div>
-          <input id="homeTown" class="text" name="homeTown" maxlength="30" placeholder="Home Town" required onblur="guestInfo('homeTown', 'Home Town');" />
+          <label id="homeTownLabel" for="homeTown" style="display: none;">Home Town</label>
+          <input id="homeTown" class="text" name="homeTown" maxlength="30" placeholder="Home Town" required oninput="guestInfo('homeTown', 'Home Town');" />
         </div>
         <div>
           <div id="countryError" class="error"></div>
-          <input id="country" class="text" name="country" maxlength="30" placeholder="Country" required onblur="guestInfo('country', 'Country');" />
+          <label id="countryLabel" for="country" style="display: none;">Country</label>
+          <input id="country" class="text" name="country" maxlength="30" placeholder="Country" required oninput="guestInfo('country', 'Country');" />
         </div>
         <div>
           <div id="eMailError" class="error"></div>
-          <input id="eMail" class="text" name="eMail" maxlength="30" placeholder="E-mail" required onblur="guestInfo('eMail', 'E-mail');" />
+          <label id="eMailLabel" for="eMail" style="display: none;">E-mail</label>
+          <input id="eMail" class="text" name="eMail" maxlength="30" placeholder="E-mail" required oninput="guestInfo('eMail', 'E-mail');" />
         </div>
         <div>
           <div id="phoneError" class="error"></div>
-          <input id="phone" class="text" name="phone" maxlength="30" placeholder="Phone Number" required onblur="guestInfo('phone', 'Phone Number');" />
+          <label id="phoneLabel" for="phone" style="display: none;">Phone Number</label>
+          <input id="phone" class="text" name="phone" maxlength="30" placeholder="Phone Number" required oninput="guestInfo('phone', 'Phone Number');" />
         </div>
         <div>
           <div id="mobileError" class="error"></div>
-          <input id="mobile" class="text" name="mobile" maxlength="30" placeholder="Cell Phone Number" onblur="guestInfo('mobile', 'Cell Phone Number');" />
-        </div>
-        <div>
-          <div id="guestIDError" class="error"></div>
-          <input id="guestID" class="text" name="guestID" maxlength="30" placeholder="Identification Document" required onblur="guestInfo('guestID', 'Identification Document');" />
+          <label id="mobileLabel" for="mobile" style="display: none;">Cell Phone Number</label>
+          <input id="mobile" class="text" name="mobile" maxlength="30" placeholder="Cell Phone Number" oninput="guestInfo('mobile', 'Cell Phone Number');" />
         </div>
       </div>
-        <div>
-          Payment Method:
-          <input id="payment1" type="radio" name="payment" value="Cash" onclick="paymentField();" checked>Cash</input>
-          <input id="payment2" type="radio" name="payment" value="Creditcard" onclick="paymentField();">Creditcard</input>
-          <input id="payment3" type="radio" name="payment" value="Debitcard" onclick="paymentField();">Debitcard</input>
-          <div id="paymentDiv"></div>
-        </div>
-        <button onclick="back();">Back</button> <button onclick="submit();">Ok</button> <button onclick="cancel();">Cancel</button>
+        <button class="backBtn" onclick="back();">Back</button> <button class="okBtn" onclick="submit();">Ok</button> <button class="cancelBtn" onclick="cancel();">Cancel</button>
       </div>
       <div id="output"></div>
     </div>

@@ -1,9 +1,10 @@
 class Accessories {
-  constructor(id, accessoryName, accessoryPrice, accessoryAvailability) {
+  constructor(id, accessoryName, accessoryPrice, accessoryAvailability, accessoryTotal) {
     this.id = id;
     this.accessoryName = accessoryName;
     this.accessoryPrice = accessoryPrice;
     this.accessoryAvailability = accessoryAvailability;
+    this.accessoryTotal = accessoryTotal;
   }
 
   get id() {
@@ -22,6 +23,10 @@ class Accessories {
     return this._accessoryAvailability;
   }
 
+  get accessoryTotal() {
+    return this._accessoryTotal;
+  }
+
   set id(value) {
     this._id = value;
   }
@@ -36,5 +41,9 @@ class Accessories {
 
   set accessoryAvailiability(value) {
     this._accessoryAvailability = value;
+  }
+
+  set accessoryTotal(value) {
+    this._accessoryTotal = value;
   }
 }
