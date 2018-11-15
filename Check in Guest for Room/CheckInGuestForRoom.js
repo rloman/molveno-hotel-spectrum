@@ -48,7 +48,6 @@ function searchForBookingNumber(){
       "<b>" +"check: " + "</b>" + hotelrooms[i].check ;
 
       indexVanFunctieBookingnumber = i;
-      // nogGeenBookingNumberIngevuld = true;
       break;
     }
   }
@@ -60,7 +59,6 @@ function searchForBookingNumber(){
   }
 }
 let indexVanFunctieBookingnumber = 0;
-///// is eigelijk het zelfde als: let found = false; bij function searchForBookingNumber ///
 let nogGeenBookingNumberIngevuld = false;
 function checkInGuest(){
   if (nogGeenBookingNumberIngevuld){
@@ -100,6 +98,7 @@ function searchForGuestDetails(){
   let guestSurname = document.getElementById('guestSurname').value;
   let guestAddress = document.getElementById('guestAddress').value;
   if (guestName === "" || guestSurname === "" || guestAddress === ""){
+    document.getElementById('DBoutput').innerHTML = "<b>" + "booking not found" + "<b>";
     return
   }
   for (let i=0; i<hotelrooms.length; i++){
@@ -137,9 +136,12 @@ function checkInGuestFromGuestDetails(){
   let guestSurname = document.getElementById('guestSurname').value;
   let guestAddress = document.getElementById('guestAddress').value;
   if (guestName === "" || guestSurname === "" || guestAddress === ""){
+    document.getElementById('DBoutput').innerHTML = "<b>" + "booking not found" + "<b>";;
+
     return
   }
   if (guestDetailsKloppenNiet === false){
+    document.getElementById('DBoutput').innerHTML = "<b>" + "booking not found" + "<b>";
     return
   }
   let indexVanJsonFile = indexVanGuestDetails;
