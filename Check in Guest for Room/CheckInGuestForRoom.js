@@ -94,6 +94,7 @@ function checkInGuest(){
 //////////////////////
 
 function searchForGuestDetails(){
+  guestDetailsKloppenNiet = false;
   document.getElementById('DBoutput').innerHTML = "";
   let guestName = document.getElementById('guestName').value;
   let guestSurname = document.getElementById('guestSurname').value;
@@ -106,7 +107,7 @@ function searchForGuestDetails(){
     let filterSurname = new RegExp(guestSurname, 'i');
     let filterAddress = new RegExp(guestAddress, 'i');
     if (filterName.test(hotelrooms[i].firstname) && filterSurname.test(hotelrooms[i].surname) && filterAddress.test(hotelrooms[i].address)){
-
+      guestDetailsKloppenNiet = true;
       document.getElementById('DBoutput').innerHTML =
       "<br>"+
       "<b>" +"room: " + "</b>" + hotelrooms[i].roomNumber + "<br>" +
@@ -129,13 +130,16 @@ function searchForGuestDetails(){
     }
   }
 }
-
+let guestDetailsKloppenNiet = false;
 let indexVanGuestDetails = 0;
 function checkInGuestFromGuestDetails(){
   let guestName = document.getElementById('guestName').value;
   let guestSurname = document.getElementById('guestSurname').value;
   let guestAddress = document.getElementById('guestAddress').value;
   if (guestName === "" || guestSurname === "" || guestAddress === ""){
+    return
+  }
+  if (guestDetailsKloppenNiet === false){
     return
   }
   let indexVanJsonFile = indexVanGuestDetails;
