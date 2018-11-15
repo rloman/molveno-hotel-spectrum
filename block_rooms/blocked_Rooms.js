@@ -8,9 +8,16 @@ function secondDateAfterFirst() {
 function inputDate() {
   let arrivalDate = document.getElementById('arrivalDate').value;
   let departureDate = document.getElementById('departureDate').value;
+  let errorMessage = document.getElementById('errorMessage');
+  if (departureDate < arrivalDate) {
+    errorMessage.innerHTML = `<b>Departure date can't be earlier than arrival date</b>`;
+    document.getElementById("availableRooms").options.length = 0;
+    throw new Error(`Departure date can't be earlier than arrival date`);
+  }
   console.log(arrivalDate);
   console.log(departureDate);
   let output = document.getElementById("vacantRooms");
+  document.getElementById("availableRooms").options.length = 0;
   // Removes the hidden attribute, showing the select dropdown menu
   let select = document.getElementById("availableRooms").removeAttribute("hidden");
   //console.log("hotelRooms: " + hotelRooms)

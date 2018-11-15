@@ -2,32 +2,27 @@ body {
   font-family: "DejaVu Sans";
   font-size: 12pt;
   margin: 0;
+  background-color: #ddeeff;
 }
 * {
   box-sizing: border-box;
-}
-.image {
-  height: 500px;
-  background-image: url('molveno-lake.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  width: 100%;
 }
 h1, h2, h3 {
   margin: 0 0 10px 0;
   text-align: center;
 }
 .mainDiv {
-  background-color: #ddeeff;
-  padding: 10px 10%;
+  display: flex;
+  text-align: center;
 }
-.roomFrame, .roomExtras, .viewFrame, .bedsFrame {
+.roomInfo {
   border-radius: 10px;
-  background-color: #eff7ff;
+  border: solid 1px #000;
   padding: 10px;
   display: inline-block;
+  margin-right: 10px;
   margin-bottom: 10px;
+  text-align: center;
 }
 select {
   font-family: "DejaVu Sans";
@@ -75,6 +70,11 @@ input:focus {
 button:hover {
   background-color: #88bbdd;
 }
-.error, #error {
+label {
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.error, #error, .errorMessage {
   color: red;
 }
