@@ -9,7 +9,7 @@ body {
 }
 .image {
   height: 600px;
-  background-image: url('molveno-lake.jpg');
+  background-image: url('../guest_booking/molveno-lake.jpg');
   filter: opacity(40%);
   background-repeat: no-repeat;
   background-size: cover;
