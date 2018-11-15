@@ -1,18 +1,18 @@
 "use strict"
 
 function bodyOnload(){
-  document.getElementById("guestDatails").style.display = "none";
+  document.getElementById("guestDetails").style.display = "none";
 }
 
 function guestDetails() {
   document.getElementById("bookingNumberField").style.display = "none";
-  document.getElementById("guestDatails").style.display = "";
+  document.getElementById("guestDetails").style.display = "";
   document.getElementById('DBoutput').innerHTML = "" ;
 }
 
 function backToBookingNumber(){
   document.getElementById("bookingNumberField").style.display = "";
-  document.getElementById("guestDatails").style.display = "none";
+  document.getElementById("guestDetails").style.display = "none";
   document.getElementById('DBoutput').innerHTML = "" ;
 }
 
