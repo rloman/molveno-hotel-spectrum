@@ -3,23 +3,23 @@ let regMail = /^[a-z0-9]{3,15}@[a-z0-9]{2,10}\.[a-z]{2,3}$/;
 let phoneNum = /^[0-9\(\)\-\+]*$/;
 let special = /[\^\\\/\<\>\{\}\?\[\]]/;
 let guestBooking = [];
-let guestName, address, postalCode, homeTown, country, eMail, phone, mobile, guestID, arrival, departure, ccNum, dcNum;
+let guestName, address, postalCode, homeTown, country, eMail, phone, mobile;
 let numOfBeds;
 let roomTypeSel;
 let roomExtrasSel = "";
-let paymentSel;
 let now = new Date();
 let today = new Date();
 let startdate;
 let enddate;
-let guestCount = 0;
 
 function guestInfo(fieldName, placeHolder) {
   let input = document.getElementById(fieldName).value;
   if (input === "") {
-    document.getElementById(`${fieldName}Error`).innerHTML = `Please enter your ${placeHolder}.`;
+    document.getElementById(`${fieldName}Error`).innerHTML = "";
+    document.getElementById(`${fieldName}Label`).setAttribute("style", "display: none;");
   } else {
     document.getElementById(`${fieldName}Error`).innerHTML = "";
+    document.getElementById(`${fieldName}Label`).setAttribute("style", "display: block;");
   }
   if (input) {
     if (!special.test(input)) {
@@ -87,58 +87,32 @@ function back() {
   document.getElementById("guestInfo").setAttribute("style", "display: none");
 }
 
-function paymentField() {
-  let pay = document.querySelector("div.guestInfo input[name='payment']:checked").value;
-  if (pay === "Creditcard") {
-    ccNum = "";
-    dcNum = undefined;
-    document.getElementById("paymentDiv").innerHTML = `<div id='ccNumError' class='error'></div><input id='ccNum' class='text' name='ccNum' maxlength='30' placeholder='Creditcard Number' required onblur='guestInfo("ccNum", "Creditcard Number");' />`;
-  }
-  if (pay === "Debitcard") {
-    dcNum = "";
-    ccNum = undefined;
-    document.getElementById("paymentDiv").innerHTML = `<div id='dcNumError' class='error'></div><input id='dcNum' class='text' name='dcNum' maxlength='30' placeholder='Debitcard Number' required onblur='guestInfo("dcNum", "Debitcard Number");' />`;
-  }
-  if (pay === "Cash") {
-    ccNum = undefined;
-    dcNum = undefined;
-    document.getElementById("paymentDiv").innerHTML = "";
-  }
-}
-
 function submit() {
-  guestCount++
   let guestDiv = document.querySelector(".guestInfo");
   let textFields = guestDiv.querySelectorAll("input[class='text']");
   for (let i = 0; textFields.length > i; i++) {
     guestBooking.push(textFields[i].value);
   }
-  paymentSel = document.querySelector("div.guestInfo input[name='payment']:checked").value;
   guestName = document.querySelector("div.guestInfo input[name='guestName']").value;
   address = document.querySelector("div.guestInfo input[name='address']").value;
   postalCode = document.querySelector("div.guestInfo input[name='postalCode']").value;
-  homeTown = document.querySelector("div.guestInfo input[name='country']").value;
+  homeTown = document.querySelector("div.guestInfo input[name='homeTown']").value;
   country = document.querySelector("div.guestInfo input[name='country']").value;
   eMail = document.querySelector("div.guestInfo input[name='eMail']").value;
   phone = document.querySelector("div.guestInfo input[name='phone']").value;
   mobile = document.querySelector("div.guestInfo input[name='mobile']").value;
-  guestID = document.querySelector("div.guestInfo input[name='guestID']").value;
-  arrival = startdate;
-  departure = enddate;
-  let newGuest = new guest(guestCount, guestName, address, postalCode, homeTown, country, eMail, phone, mobile, guestID, paymentSel);
   let output = document.getElementById("output");
   output.innerHTML += "Number of People: " + numOfBeds + "<br />Roomtype: " + roomTypeSel + "<br />Selected Extra's: " + roomExtrasSel;
-  output.innerHTML += "<br />Name: " + guestName + "<br />Address: " + address + "<br />Postal Code: " + postalCode + "<br />Home Town: " + homeTown + "<br />Country: " + country + "<br />E-mail: " + eMail + "<br />Phone: " + phone + "<br />Cell Phone: " + mobile + "<br />Identification Document: " + guestID + "<br />Payment Method: " + paymentSel;
-  if (ccNum != undefined) {
-    ccNum = document.querySelector("div.guestInfo input[name='ccNum']").value;
-    output.innerHTML += "<br />Creditcard Number: " + ccNum;
-  }
-  if (dcNum != undefined) {
-    dcNum = document.querySelector("div.guestInfo input[name='dcNum']").value;
-    output.innerHTML += "<br />Debitcard Number: " + dcNum;
-  }
+  output.innerHTML += "<br />Name: " + guestName + "<br />Address: " + address + "<br />Postal Code: " + postalCode + "<br />Home Town: " + homeTown + "<br />Country: " + country + "<br />E-mail: " + eMail + "<br />Phone: " + phone + "<br />Cell Phone: " + mobile;
+  output.innerHTML += "<br />Days: " + totalDays() + "<br />Checkin: " + startdate + "<br />Checkout: " + enddate;
 }
 
 function cancel() {
   location.reload(true);
+}
+
+function totalDays() {
+  let arrival = new Date(startdate);
+  let departure = new Date(enddate);
+  return ((((departure.getTime() - arrival.getTime()) / 1000) / 60) / 60) / 24;
 }
