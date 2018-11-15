@@ -1,7 +1,7 @@
 body {
   font-family: "DejaVu Sans";
   font-size: 12pt;
-  margin: 0;
+  margin: 8px;
   background-color: #ddeeff;
 }
 * {
@@ -12,8 +12,8 @@ h1, h2, h3 {
   text-align: center;
 }
 .mainDiv {
-  display: flex;
   text-align: center;
+  left: 50%;
 }
 .roomInfo {
   border-radius: 10px;
