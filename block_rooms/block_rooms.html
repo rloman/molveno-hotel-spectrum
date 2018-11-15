@@ -10,7 +10,8 @@
   </style>
 </head>
 <body>
-  <div class="mainDiv">
+  <div id="mainDiv" class="mainDiv">
+    <div id="roomInfo" class="roomInfo">
     <h1>Block a Room</h1>
     <div>
       <b>Check for available rooms:</b><br><br>
@@ -19,6 +20,7 @@
     </div>
     <div>
       <button onclick="inputDate()"><b>Check</b></button>
+      <div id="errorMessage" class="errorMessage"></div>
       <br><br>
       <select id="availableRooms" multiple hidden></select>
     </div>
@@ -28,7 +30,7 @@
         <button onclick="cancel()"><b>Cancel</b></button>
       <div id="arrayOfRooms"><br></div>
     </div>
-  </div>
+    </div>
   <script>
     today();
   </script>
