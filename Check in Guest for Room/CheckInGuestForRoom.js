@@ -79,7 +79,7 @@ function checkInGuest(){
     "<b>" +"email: " + "</b>" + hotelrooms[indexVanJsonFile].email + "<br>" +
     "<b>" +"telephone: " + "</b>" + hotelrooms[indexVanJsonFile].telephone + "<br>" +
     "<b>" +"telephone: " + "</b>" + hotelrooms[indexVanJsonFile].country + "<br>" +
-    "<b>" +"bookingNumber: " + "</b>" + hotelrooms[indexVanJsonFile].bookingNumber +
+    "<b>" +"bookingNumber: " + "</b>" + hotelrooms[indexVanJsonFile].bookingNumber + "<br>" +
     "<b>" +"address: " + "</b>" + hotelrooms[indexVanJsonFile].address + "<br>" +
     "<b>" +"check: " + "</b>" + hotelrooms[indexVanJsonFile].check ;
  }
