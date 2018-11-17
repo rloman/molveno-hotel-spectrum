@@ -10,9 +10,9 @@ const insertRoomData = () => {
   let table = document.getElementById("roomTable");
   document.getElementById('arrayOfRooms').innerHTML = "";
   table.innerHTML = "";
-  table.innerHTML = `<td>Room Number</td>
-  <td>Room Type</td>
-  <td>People</td>`;
+  table.innerHTML = `<th>Room Number</th>
+  <th>Room Type</th>
+  <th>People</th>`;
   arr.push(room);
   console.table(arr);
   id += 1;
@@ -35,7 +35,7 @@ const filterRoomData = () => {
   let filteredPeople = document.querySelector('input[name="filterPeople"]:checked').value;
   for (let i = 0; i < arr.length; i++) {
     if (filteredRoomType === arr[i].roomType && filteredPeople === arr[i].people) {
-      rooms += `<div>Room Number ${arr[i].roomNumber} </div>`;
+      rooms += `<div><b>Room Number: ${arr[i].roomNumber}</b></div>`;
       count++;
     }
   }

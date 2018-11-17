@@ -1,5 +1,5 @@
 "use strict";
-class guest {
+class Guest {
   constructor(id, guestName, address, postalCode, homeTown, country, eMail, phone, mobile, guestID, paymentMethod) {
     this.id = id;
     this.guestName = guestName;

@@ -81,7 +81,7 @@ function invoice(i) {
   let invoice = document.getElementById("invoice");
   let table = document.createElement("table");
   invoice.innerHTML = `<h2>Invoice of ${reservationJSON[i][6]}</h2>`;
-  invoice.innerHTML += `<button class="close" onclick="document.getElementById('invoice').setAttribute('style', 'display: none');">X</button>`;
+  invoice.innerHTML += `<button class="closeBtn" onclick="document.getElementById('invoice').setAttribute('style', 'display: none');">X</button>`;
   invoice.innerHTML += `<b>Date:</b> ${dateF(now)}<br /><br />`;
   invoice.setAttribute("style", "display: block");
   invoice.appendChild(table);

@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8">
   <script src="../modules/reservationJSON.js"></script>
-  <script src="availableRooms.js" ></script>
-  <link rel="stylesheet" type="text/css" href="style.css" />
+  <script src="../js/availableRooms.js" ></script>
+  <link rel="stylesheet" type="text/css" href="../styling/style.css" />
   <style>
   </style>
 </head>
@@ -16,27 +16,28 @@
       <h1>Overview available rooms</h1>
       <div id="dateFrame" class="dateFrame">
       <b>Check in: </b><input type="date" name="arrivalDate" id="arrivalDate" value="" required>
-      <br>
+      <br /><br />
       <b>Check out: </b><input type="date" name="departureDate" id="departureDate" value="" required>
     </div>
-    <br>
-    <div id="roomType" class="roomType">
+    <br />
+    <div id="roomType" class="roomFrame">
       <b>Room Type:</b><br><br>
       <input type="radio" name="room" id="budgetID" value="Budget" checked>Budget<br>
       <input type="radio" name="room" id="standardID" value="Standard">Standard<br>
       <input type="radio" name="room" id="luxuriousID" value="Luxurious">Luxurious<br>
     </div>
-    <br>
-    <div id="numberOfBeds" class="numberOfBeds">
+    <br /><br />
+    <div id="numberOfBeds" class="bedsFrame">
       <b>Number of Beds:</b><br><br>
       <input type="radio" name="beds" id="bed1" value="1" checked>1<br>
       <input type="radio" name="beds" id="bed2" value="2">2<br>
       <input type="radio" name="beds" id="bed3" value="3">3<br>
       <input type="radio" name="beds" id="bed4" value="4">4<br>
     </div>
+    <br /><br />
     <div>
       <button onclick="inputDate()"><b>OK</b></button>
-      <br>
+      <br />
       <div id="vacantRooms">
       </div>
     </div>
