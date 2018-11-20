@@ -7,6 +7,12 @@ body {
 * {
   box-sizing: border-box;
 }
+label.inputNumber {
+  margin: 0;
+  padding: 0;
+  /* display: block; */
+  /* background: #ff0000 */
+}
 label.inputNumber input[type="text"]{
   width: 60px
 }
