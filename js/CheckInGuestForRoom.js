@@ -43,7 +43,7 @@ function searchForBookingNumber(){
       "<b>" +"email: " + "</b>" + hotelrooms[i].email + "<br>" +
       "<b>" +"telephone: " + "</b>" + hotelrooms[i].telephone + "<br>" +
       "<b>" +"telephone: " + "</b>" + hotelrooms[i].country + "<br>" +
-      "<b>" +"bookingNumber: " + "</b>" + hotelrooms[i].bookingNumber + "<br>" +
+      "<b>" +"booking number: " + "</b>" + hotelrooms[i].bookingNumber + "<br>" +
       "<b>" +"address: " + "</b>" + hotelrooms[i].address + "<br>" +
       "<b>" +"check: " + "</b>" + hotelrooms[i].check ;
 
@@ -79,7 +79,7 @@ function checkInGuest(){
     "<b>" +"email: " + "</b>" + hotelrooms[indexVanJsonFile].email + "<br>" +
     "<b>" +"telephone: " + "</b>" + hotelrooms[indexVanJsonFile].telephone + "<br>" +
     "<b>" +"telephone: " + "</b>" + hotelrooms[indexVanJsonFile].country + "<br>" +
-    "<b>" +"bookingNumber: " + "</b>" + hotelrooms[indexVanJsonFile].bookingNumber + "<br>" +
+    "<b>" +"booking number: " + "</b>" + hotelrooms[indexVanJsonFile].bookingNumber + "<br>" +
     "<b>" +"address: " + "</b>" + hotelrooms[indexVanJsonFile].address + "<br>" +
     "<b>" +"check: " + "</b>" + hotelrooms[indexVanJsonFile].check ;
  }
@@ -120,7 +120,7 @@ function searchForGuestDetails(){
       "<b>" +"email: " + "</b>" + hotelrooms[i].email + "<br>" +
       "<b>" +"telephone: " + "</b>" + hotelrooms[i].telephone + "<br>" +
       "<b>" +"telephone: " + "</b>" + hotelrooms[i].country + "<br>" +
-      "<b>" +"bookingNumber: " + "</b>" + hotelrooms[i].bookingNumber + "<br>" +
+      "<b>" +"booking number: " + "</b>" + hotelrooms[i].bookingNumber + "<br>" +
       "<b>" +"address: " + "</b>" + hotelrooms[i].address + "<br>" +
       "<b>" +"check: " + "</b>" + hotelrooms[i].check ;
 
@@ -159,7 +159,7 @@ function checkInGuestFromGuestDetails(){
   "<b>" +"email: " + "</b>" + hotelrooms[indexVanJsonFile].email + "<br>" +
   "<b>" +"telephone: " + "</b>" + hotelrooms[indexVanJsonFile].telephone + "<br>" +
   "<b>" +"telephone: " + "</b>" + hotelrooms[indexVanJsonFile].country + "<br>" +
-  "<b>" +"bookingNumber: " + "</b>" + hotelrooms[indexVanJsonFile].bookingNumber + "<br>" +
+  "<b>" +"booking number: " + "</b>" + hotelrooms[indexVanJsonFile].bookingNumber + "<br>" +
   "<b>" +"address: " + "</b>" + hotelrooms[indexVanJsonFile].address + "<br>" +
   "<b>" +"check: " + "</b>" + hotelrooms[indexVanJsonFile].check ;
 }
