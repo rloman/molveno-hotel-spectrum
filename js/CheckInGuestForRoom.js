@@ -16,6 +16,7 @@ function backToBookingNumber(){
   document.getElementById('DBoutput').innerHTML = "" ;
 }
 
+
 function searchForBookingNumber(){
   let inputBookingNumber = document.getElementById('bookingNumberId').value;
   let found = false;
@@ -62,8 +63,6 @@ let indexVanFunctieBookingnumber = 0;
 let nogGeenBookingNumberIngevuld = false;
 function checkInGuest(){
   if (nogGeenBookingNumberIngevuld){
-    console.log(nogGeenBookingNumberIngevuld);
-    console.log(indexVanFunctieBookingnumber);
     let indexVanJsonFile = indexVanFunctieBookingnumber;
     hotelrooms[indexVanJsonFile].check = "ok";
     document.getElementById('DBoutput').innerHTML =
