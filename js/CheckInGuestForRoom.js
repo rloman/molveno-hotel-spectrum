@@ -65,7 +65,7 @@ function checkInGuest(){
     console.log(nogGeenBookingNumberIngevuld);
     console.log(indexVanFunctieBookingnumber);
     let indexVanJsonFile = indexVanFunctieBookingnumber;
-    hotelrooms[indexVanJsonFile].check = "satisfied";
+    hotelrooms[indexVanJsonFile].check = "ok";
     document.getElementById('DBoutput').innerHTML =
     "<br>"+
     "<b>" +"room: " + "</b>" + hotelrooms[indexVanJsonFile].roomNumber + "<br>" +
@@ -145,7 +145,7 @@ function checkInGuestFromGuestDetails(){
     return
   }
   let indexVanJsonFile = indexVanGuestDetails;
-  hotelrooms[indexVanJsonFile].check = "satisfied";
+  hotelrooms[indexVanJsonFile].check = "ok";
   document.getElementById('DBoutput').innerHTML =
   "<br>"+
   "<b>" +"room: " + "</b>" + hotelrooms[indexVanJsonFile].roomNumber + "<br>" +
