@@ -3,7 +3,7 @@
 <head>
   <script src="../js/CheckInGuestForRoom.js"></script>
   <script src="../js/reservationJSON_checkInGuestForRoom.js"></script>
-  <!-- <link rel="stylesheet" type="text/css" href="../styling/style.css" /> -->
+  <link rel="stylesheet" type="text/css" href="style_verandert.css" />
   <style>
     .dataFromDB {
       border: double;
@@ -44,7 +44,8 @@
       <b>Firstname: </b> <input type="text" id="guestName" placeholder="firstname" value=""><br><br>
       <b>Surname: &nbsp</b><input type="text" id="guestSurname" placeholder="surname" value=""><br><br>
       <b>Address: &nbsp&nbsp</b><input type="text" id="guestAddress" placeholder="address" value=""><br><br>
-      <button onclick="searchForGuestDetails()"><b>search</b></button><br><br>
+      <button onclick="searchForGuestDetails()"><b>search</b></button>
+      <!-- <br><br> -->
       <button onclick="checkInGuestFromGuestDetails()">Check in</button><br><br>
       <button onclick="backToBookingNumber()">back to booking number</button>
     </div>
