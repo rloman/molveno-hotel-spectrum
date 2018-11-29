@@ -2,8 +2,8 @@ const mysql = require('mysql');
 
 const connection = mysql.createConnection({
   host: 'localhost',
-  user: 'ron',
-  password: 'ron2018!',
+  user: 'nick',
+  password: 'nick2018!',
   database: 'molveno'
 });
 
@@ -32,28 +32,23 @@ function insert(firstName, lastName, address, homeTown, postalCode, telephoneNum
 
 function list() {
   connection.query('SELECT * FROM guests', (err, guests) => {
-    if (err){
+    if (err) {
       throw err;
-    }
-    else {
-      for(let guest of guests) {
-        console.log(guest.firstName);
+    } else {
+      for (let guest of guests) {
+        console.log(`${guest.firstName} ${guest.lastName}`);
       }
     }
   });
 }
 
-
-
-
 function findById(id) {
   connection.query('SELECT * FROM guests where id=?', [id], (err, row) => {
     if (err) {
-                throw err;
-        }
-        else {
-                 console.log(row);
-        }
+      throw err;
+    } else {
+      console.log(row);
+    }
   });
 }
 
@@ -93,12 +88,12 @@ function remove(id) {
 }
 
 
-//insert('winnie', 'wpoe', 'Posthoornstraat 5243', 'Rotterdam', '3011 WD', '010-8459854', 'The Netherlands', 'w@example.com');
-//insert('Donald', 'Duck', 'Postkoetstraat 67', 'Amsterdam', '1141 AZ', '020-3354558', 'The Netherlands', 'donald.duck@duckstad.nl');
+insert('Heinrich', 'Agema', 'Kanaal van Steenenhoek Noordzijde 28', 'Gorinchem', '4203 NR', '06-51035221', 'The Netherlands', 'heinrich@gmail.com');
+insert('Donald', 'Duck', 'Postkoetstraat 67', 'Amsterdam', '1141 AZ', '020-3354558', 'The Netherlands', 'donald.duck@duckstad.nl');
 //list();
 //updateEmailAddress(5, 'poedel@example.com');
-updateAddress(3, 'Postkoetsstraat 67');
-//list();
+// updateAddress(3, 'Postkoetsstraat 67');
+list();
 //findById(2);
 //update(2, 'winnie.the.poeh@disney.com');
 //remove(1);
