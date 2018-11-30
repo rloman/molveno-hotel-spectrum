@@ -9,3 +9,8 @@ country varchar(60) not null,
 telephoneNumber varchar(60),
 emailAddress varchar(60)
 );
+
+create table rooms (
+id int not null auto_increment primary key,
+
+);
