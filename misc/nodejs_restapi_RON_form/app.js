@@ -37,7 +37,8 @@ app.post('/guests_create', (req, res) => {
       return
     }
     console.log("Inserted a new guest with id: ", results.insertId);
-    res.end()
+    //res.end()
+    res.redirect('back');
   })
 
 })
