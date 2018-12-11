@@ -1,0 +1,52 @@
+===INSERT QUERIES===
+
+insert into guests values (default, 'Sjaak', 'Trekhaak', 'Autoweg 12', 'Bussum', '8282 VR', 'The Netherlands', '0145-342421', 'sjaakdesloper@deautosloperij.nl');
+insert into guests values (default, 'Agema', 'Heinrich', 'Kanaal van Steenenhoek Noordzijde 28', 'Gorinchem', '4203 NR', 'The Netherlands', '06-51035221', 'a.heinrich@gmail.com');
+insert into guests values (default, 'Klaas', 'Knots', 'Molvenoweg 10', 'Molveno', '28121 IT', 'Italy', '03232-24243', 'klaasknots@molveno-spa.it');
+insert into guests values (default, 'de Rooie', 'Gestel', 'Hoofdweg 54', 'Gestel', '2231 FD', 'The Netherlands', '065-2324212', 'derooieuitgestel@gmail.com');
+insert into guests values (default, 'Piet', 'Piraat', 'Piraatweg 40', 'Het Schip', '8880 YA', 'Maritiem', NULL, 'devocmentaliteit@studio100.nl');
+insert into guests values (default, 'Madelijn', 'Wanrooij', 'Dauwnetel 150', 'Haaksbergen', '7483 AH', 'The Netherlands', '06-24542844', 'madelijn@iffymedia.com');
+insert into guests values (default, 'Ivon', 'de Klos', 'Emmaweg 2', 'Renesse', '4325 AJ', 'The Netherlands', '0111-232120', 'i.de.klos@zeelandnet.nl');
+insert into guests values (default, 'Maick', 'Waijers', 'Molenweg 2', 'Zutphen', '6521 IM',  'The Netherlands', '0133-212133', 'fancymike@gmail.com');
+insert into guests values (default, 'Mathieu', 'Wiegmans', 'Assendorperstraat 99', 'Zwolle', '8012 CA', 'The Netherlands', '038-1526482', 'm.wiegmans@kpn.nl');
+
+insert into rooms values (default, 1, 'Budget', 4);
+insert into rooms values (default, 2, 'Standard', 4);
+insert into rooms values (default, 3, 'Luxurious', 2);
+insert into rooms values (default, 4, 'Standard', 3);
+insert into rooms values (default, '5A', 'Standard', 2);
+insert into rooms values (default, '5B', 'Standard', 4);
+insert into rooms values (default, 6, 'Luxurious', 1);
+insert into rooms values (default, 7, 'Budget', 2);
+insert into rooms values (default, 8, 'Budget', 4);
+insert into rooms values (default, 9, 'Luxurious', 1);
+insert into rooms values (default, 10, 'Standard', 4);
+
+insert into blocked_rooms values (9, 20181220, 20181230);
+insert into blocked_rooms values (9, 20190204, 20190205);
+
+insert into reservations values (default, 2, 6, 20181206, 20181230, 2, 1, 0);
+insert into reservations values (default, 6, 3, 20181125, 20190104, 4, 1, 0);
+
+insert into accessories values (default, 'Baby Bed', 20, 9.50);
+insert into accessories values (default, 'Big Screen TV', 10, 15);
+insert into accessories values (default, 'Espresso Machine', 15, 3.95);
+
+insert into res_acc values (1, 2);
+insert into res_acc values (1, 1);
+insert into res_acc values (2, 1);
+insert into res_acc values (2, 3);
+
+===SELECT QUERIES===
+
+select * from reservations where arrivalDate between cast('2018-12-01' AS DATE) and cast('2018-12-31' AS DATE);
+
+select guests.firstName, guests.lastName, reservations.* from guests inner join reservations on guests.id = reservations.guest_id;
+
+select res_acc.*, reservations.* from res_acc inner join reservations on res_acc.reservation_id = reservations.id;
+
+select reservations.*, accessories.accessoryName from res_acc inner join accessories on res_acc.accessory_id = accessories.id
+inner join reservations on res_acc.reservation_id = reservations.id;
+
+select reservations.*, accessories.accessoryName from res_acc inner join accessories on res_acc.accessory_id = accessories.id
+inner join reservations on res_acc.reservation_id = reservations.id where reservations.id = 2;
