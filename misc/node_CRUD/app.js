@@ -100,10 +100,10 @@ function remove(id) {
 
 //insert('Ivon', 'de Klos', 'Emmaweg 2', 'Renesse', '4325 AJ', '0111-232120', 'The Netherlands', 'i.de.klos@zeelandnet.nl');
 //insert('Eric', 'Clapton', 'Main Street 123', 'London', '24212 OP', '+44 0387-298121', 'Great-Britain', 'e.clapton@gmail.com');
-//updateEmailAddress(5, 'poedel@example.com');
-updateAddress(6, 'Piraatstraat 40', 'Het Schip', '8880 YA', 'Maritiem');
+//updateEmailAddress(3, 'kareltje@hotmail.com');
+//updateName(5, 'De Blauwe', 'Gestel');
+//updateAddress(6, 'Piraatstraat 40', 'Het Schip', '8880 YA', 'Maritiem');
 //findById(2);
-//update(2, 'winnie.the.poeh@disney.com');
-//remove(10);
+remove(8);
 //remove(11);
-list();
+//list();
