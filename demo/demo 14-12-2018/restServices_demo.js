@@ -29,12 +29,12 @@ app.use(function(req, res, next) {
 });
 
 
-// create a MySQL connection
+// create a MySQL connection, change user, pw and database name to your own credentials
 const connection = mysql.createConnection({
   host: 'localhost',
-  user: 'root',
-  password: 'root',
-  database: 'molveno lake resort'
+  user: 'nick',
+  password: 'nick2018!',
+  database: 'molveno_test'
 });
 
 // this method is invoked AFTER the connection is made
@@ -415,8 +415,8 @@ app.put('/api/reservations/:id', function(req, res) {
         // console.log("Received email: "+inputUser.email);
 
         connection.query(
-          'UPDATE reservations SET guest_id=?, room_id=?, arrivalDate=?, departureDate=?, numberOfGuests=?, accessories=?, guestHasCheckedIn=?, guestHasPaid=? Where ID = ?',
-          [inputReservations.guest_id, inputReservations.room_id, inputReservations.arrivalDate, inputReservations.departureDate, inputReservations.numberOfGuests, inputReservations.accessories, inputReservations.guestHasCheckedIn, inputReservations.guestHasPaid, id],
+          'UPDATE reservations SET guest_id=?, room_id=?, arrivalDate=?, departureDate=?, numberOfGuests=?, guestHasCheckedIn=?, guestHasPaid=? Where ID = ?',
+          [inputReservations.guest_id, inputReservations.room_id, inputReservations.arrivalDate, inputReservations.departureDate, inputReservations.numberOfGuests, inputReservations.guestHasCheckedIn, inputReservations.guestHasPaid, id],
           (err, result) => {
             if (!err) {
               console.log(`Changed ${result.changedRows} row(s)`);
