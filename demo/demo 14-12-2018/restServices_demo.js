@@ -32,9 +32,9 @@ app.use(function(req, res, next) {
 // create a MySQL connection, change user, pw and database name to your own credentials
 const connection = mysql.createConnection({
   host: 'localhost',
-  user: 'nick',
-  password: 'nick2018!',
-  database: 'molveno_test'
+  user: 'root',
+  password: 'root',
+  database: 'molveno'
 });
 
 // this method is invoked AFTER the connection is made
