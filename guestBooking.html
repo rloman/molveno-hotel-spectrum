@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Molveno Hotel Guest Booking</title>
+    <script src="modules/classGuest.js"></script>
+    <script src="modules/reservationJSON.js"></script>
+    <link rel="stylesheet" type="text/css" href="guest_booking/style.css" />
+  </head>
+  <body>
+    <div class="image"></div>
+    <div id="mainDiv" class="mainDiv">
+      <h1>Molveno Hotel</h1>
+      <div id="roomInfo" class="roomInfo">
+        <h2>Booking a room, room info</h2>
+        <div id="error"></div>
+        <div id="start">
+          <h3>Arrival Date</h3>
+          <input id="arrivalDate" type="date" name="arrivalDate"></input>
+        </div>
+        <div id="end">
+          <h3>Departure Date</h3>
+          <input id="departureDate" type="date" name="departureDate"></input>
+        </div>
+        <br /><br />
+        <div class="bedsFrame">
+          <h3>People</h3>
+          <input id="beds1" type="radio" name="beds" value="1" checked> 1</input>
+          <input id="beds2" type="radio" name="beds" value="2"> 2</input>
+          <input id="beds3" type="radio" name="beds" value="3"> 3</input>
+          <input id="beds4" type="radio" name="beds" value="4"> 4</input>
+        </div>
+        <div class="roomFrame">
+          <h3>Room Type</h3>
+          <input id="roomType1" type="radio" name="roomType" value="Budget" checked> Budget</input><br />
+          <input id="roomType2" type="radio" name="roomType" value="Standard"> Standard</input><br />
+          <input id="roomType3" type="radio" name="roomType" value="Luxurious"> Luxurious</input><br />
+        </div>
+        <div class="roomExtras">
+          <h3>Extras</h3>
+          <input id="roomExtras1" type="checkbox" name="roomExtras" value="Crib"> Crib (+ € 5,-)</input><br />
+          <input id="roomExtras2" type="checkbox" name="roomExtras" value="Espresso machine"> Espresso machine (+ € 7,-)</input><br />
+          <input id="roomExtras3" type="checkbox" name="roomExtras" value="Big screen TV"> Big screen TV (+ € 8,-)</input><br />
+        </div>
+        <br /><br /><button class="nextBtn" onclick="next();">Next</button> <button class="cancelBtn" onclick="cancel();">Cancel</button>
+      </div>
+      <div id="guestInfo" class="guestInfo" style="display: none;">
+        <h2>Booking a room, guest info</h2>
+        <div class="flex">
+        <div>
+          <div id="guestNameError" class="error"></div>
+          <label id="guestNameLabel" for="guestName" style="display: none;">Name</label>
+          <input id="guestName" class="text" name="guestName" maxlength="40" placeholder="Name" required oninput="guestInfo('guestName', 'Name');" />
+        </div>
+        <div>
+          <div id="addressError" class="error"></div>
+          <label id="addressLabel" for="address" style="display: none;">Address</label>
+          <input id="address" class="text" name="address" maxlength="40" placeholder="Address" required oninput="guestInfo('address', 'Address');" />
+        </div>
+        <div>
+          <div id="postalCodeError" class="error"></div>
+          <label id="postalCodeLabel" for="postalCode" style="display: none;">Postal Code</label>
+          <input id="postalCode" class="text" name="postalCode" maxlength="15" placeholder="Postal Code" required oninput="guestInfo('postalCode', 'Postal Code');" />
+        </div>
+        <div>
+          <div id="homeTownError" class="error"></div>
+          <label id="homeTownLabel" for="homeTown" style="display: none;">Home Town</label>
+          <input id="homeTown" class="text" name="homeTown" maxlength="30" placeholder="Home Town" required oninput="guestInfo('homeTown', 'Home Town');" />
+        </div>
+        <div>
+          <div id="countryError" class="error"></div>
+          <label id="countryLabel" for="country" style="display: none;">Country</label>
+          <input id="country" class="text" name="country" maxlength="30" placeholder="Country" required oninput="guestInfo('country', 'Country');" />
+        </div>
+        <div>
+          <div id="eMailError" class="error"></div>
+          <label id="eMailLabel" for="eMail" style="display: none;">E-mail</label>
+          <input id="eMail" class="text" name="eMail" maxlength="30" placeholder="E-mail" required oninput="guestInfo('eMail', 'E-mail');" />
+        </div>
+        <div>
+          <div id="phoneError" class="error"></div>
+          <label id="phoneLabel" for="phone" style="display: none;">Phone Number</label>
+          <input id="phone" class="text" name="phone" maxlength="30" placeholder="Phone Number" required oninput="guestInfo('phone', 'Phone Number');" />
+        </div>
+        <div>
+          <div id="mobileError" class="error"></div>
+          <label id="mobileLabel" for="mobile" style="display: none;">Cell Phone Number</label>
+          <input id="mobile" class="text" name="mobile" maxlength="30" placeholder="Cell Phone Number" oninput="guestInfo('mobile', 'Cell Phone Number');" />
+        </div>
+      </div>
+        <button class="backBtn" onclick="back();">Back</button> <button class="okBtn" onclick="submit();">Ok</button> <button class="cancelBtn" onclick="cancel();">Cancel</button>
+      </div>
+      <div id="output"></div>
+    </div>
+    <script src="guest_booking/guestBooking.js"></script>
+    <script>
+      todayF();
+    </script>
+  </body>
+</html>

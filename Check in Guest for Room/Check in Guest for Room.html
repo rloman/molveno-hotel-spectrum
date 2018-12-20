@@ -1,0 +1,57 @@
+<!doctype>
+<html>
+<head>
+  <script src="../js/CheckInGuestForRoom.js"></script>
+  <script src="../js/reservationJSON_checkInGuestForRoom.js"></script>
+  <link rel="stylesheet" type="text/css" href="style_verandert.css" />
+  <style>
+    .dataFromDB {
+      border: double;
+      width: 300px;
+      height: 300px;
+      background-color: #ddeeff;
+    }
+    .frameBookingNumber {
+      border: double;
+      background-color: #ddeeff;
+    }
+    .mainDiv {
+      display: flex;
+    }
+    .frameGuestDetails {
+      border: double;
+      background-color: #ddeeff;
+    }
+  </style>
+</head>
+<body onload="bodyOnload()">
+  <div class="mainDiv">
+    <div class="frameBookingNumber" id="bookingNumberField">
+      <br>
+      <label class="inputNumber"><b>Booking number: </b><input type="text" id="bookingNumberId" value=""></label>
+      <br><br>
+      <button onclick="searchForBookingNumber()"><b>search</b></button>
+      <br><br>
+      <b>Check in guest:</b>
+      <button onclick="checkInGuest()">Check in</button>
+      <br><br><br><br>
+      <b>if guest has no booking number:</b>
+      <br>
+      <button onclick="guestDetails()">input guest details</button>
+    </div>
+    <div class="frameGuestDetails" id="guestDetails">
+      <br>
+      <b>Firstname: </b> <input type="text" id="guestName" placeholder="firstname" value=""><br><br>
+      <b>Surname: &nbsp</b><input type="text" id="guestSurname" placeholder="surname" value=""><br><br>
+      <b>Address: &nbsp&nbsp</b><input type="text" id="guestAddress" placeholder="address" value=""><br><br>
+      <button onclick="searchForGuestDetails()"><b>search</b></button>
+      <!-- <br><br> -->
+      <button onclick="checkInGuestFromGuestDetails()">Check in</button><br><br>
+      <button onclick="backToBookingNumber()">back to booking number</button>
+    </div>
+    <div class="dataFromDB" id="DBoutput">
+      <!-- in deze div komt de info terug van guest -->
+    </div>
+  </div>
+</body>
+</html>

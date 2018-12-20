@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Molveno Hotel Room Reservation</title>
+  <script src="modules/classReservation.js"></script>
+  <script src="js/reserveRoom.js"></script>
+  <link rel="stylesheet" type="text/css" href="styling/style.css" />
+</head>
+
+<body>
+  <div id="mainFrame" class="mainDiv">
+    <h1>Hotel Molveno</h1>
+    <div id="reservationFrame" class="reservationFrame">
+      <h3>Reservation</h3>
+      <div id="guestFrame" class="guestFrame">
+        <input id="firstName" type="text" placeholder="First Name" value=""></input>
+        <br>
+        <input id="lastName" type="text" placeholder="Last Name" value=""></input>
+        <br>
+        <input id="telephonenumber" type="text" placeholder="Telephone Number" value=""></input>
+        <br>
+        <input id="emailaddress" type="text" placeholder="Email Address" value=""></input>
+        <br>
+        <input id="roomNumber" type="text" placeholder="Room Number" value=""></input>
+        <h3>Number of guests</h3>
+        <input id="people1" type="radio" name="people" value="1"> 1</input>
+        <input id="people2" type="radio" name="people" value="2" checked> 2</input>
+        <input id="people3" type="radio" name="people" value="3"> 3</input>
+        <input id="people4" type="radio" name="people" value="4"> 4</input>
+      </div>
+      <div id="calendarFrame" class="calendarFrame">
+        <h3>Arrival date</h3>
+        <input id="arrivalDate" type="date"></input>
+        <h3>Departure date</h3>
+        <input id="depatureDate" type="date"></input>
+      </div>
+      <button onClick="roomReservation()">OK</button>
+      <div id="output"></div>
+      <button onClick="cancel()">Cancel</button>
+    </div>
+    <script>
+    </script>
+</body>
+
+</html>
