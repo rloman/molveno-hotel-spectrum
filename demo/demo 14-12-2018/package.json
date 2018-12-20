@@ -1,12 +1,12 @@
 {
   "name": "oefening",
-  "version": "0.1.1-SNAPSHOT",
+  "version": "0.1.0",
   "description": "oefening",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "gijs",
+  "author": "Team Progress",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
