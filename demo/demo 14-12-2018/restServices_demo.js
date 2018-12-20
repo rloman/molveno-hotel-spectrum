@@ -54,8 +54,8 @@ connection.connect((err) => {
 app.post('/api/guests', function(req, res) {
 
   // this is to read the big string from the body to a user
- // that process is called 'parsing'
- //(using the body-parser module above)
+  // that process is called 'parsing'
+  //(using the body-parser module above)
   let user = req.body;
 
   // in this function (the POST callback) execute this query
@@ -145,46 +145,46 @@ app.get('/api/guests/:id', function(req, res) {
 });
 
 app.put('/api/guests/:id', function(req, res) {
-        let id = +req.params.id
-        let inputGuest = req.body;
+  let id = +req.params.id
+  let inputGuest = req.body;
 
-        console.log("Received first name: "+inputGuest.firstName);
-        console.log("Received last name: "+inputGuest.lastName);
-        console.log("Received email: "+inputGuest.emailAddress);
+  console.log("Received first name: " + inputGuest.firstName);
+  console.log("Received last name: " + inputGuest.lastName);
+  console.log("Received email: " + inputGuest.emailAddress);
 
-        connection.query(
-          // Parameters here, if params are not mentioned then they will not be changed!
-          'UPDATE guests SET firstName=?, lastName=?, address=?, homeTown=?, postalCode=?, country=?, telephoneNumber=?, emailAddress= ? Where ID = ?',
-          [inputGuest.firstName, inputGuest.lastName, inputGuest.address,
-            inputGuest.homeTown, inputGuest.postalCode, inputGuest.country,
-            inputGuest.telephoneNumber, inputGuest.emailAddress, id],
-          (err, result) => {
-            if (!err) {
-              console.log(`Changed ${result.changedRows} row(s)`);
-              connection.query('SELECT * FROM guests where id=?', [id], (err, rows) => {
-                if (!err) {
-                  console.log('Data received from DB:\n');
+  connection.query(
+    // Parameters here, if params are not mentioned then they will not be changed!
+    'UPDATE guests SET firstName=?, lastName=?, address=?, homeTown=?, postalCode=?, country=?, telephoneNumber=?, emailAddress= ? Where ID = ?',
+    [inputGuest.firstName, inputGuest.lastName, inputGuest.address,
+      inputGuest.homeTown, inputGuest.postalCode, inputGuest.country,
+      inputGuest.telephoneNumber, inputGuest.emailAddress, id
+    ],
+    (err, result) => {
+      if (!err) {
+        console.log(`Changed ${result.changedRows} row(s)`);
+        connection.query('SELECT * FROM guests where id=?', [id], (err, rows) => {
+          if (!err) {
+            console.log('Data received from DB:\n');
 
-                  let guest = rows[0];
+            let guest = rows[0];
 
-                  console.log(guest);
-                  if (guest) {
-                    res.setHeader('Content-Type', 'application/json')
-                    res.end(JSON.stringify(guest));
-                  } else {
-                    res.setHeader('Content-Type', 'application/json')
-                    console.log("Not found!");
-                    res.status(404).end();
-                  }
-                } else {
-                  throw err;
-                }
-              });
+            console.log(guest);
+            if (guest) {
+              res.setHeader('Content-Type', 'application/json')
+              res.end(JSON.stringify(guest));
+            } else {
+              res.setHeader('Content-Type', 'application/json')
+              console.log("Not found!");
+              res.status(404).end();
             }
-            else {
-              throw err;
-            }
-      });
+          } else {
+            throw err;
+          }
+        });
+      } else {
+        throw err;
+      }
+    });
 });
 
 app.delete('/api/guests/:id', function(req, res) {
@@ -195,8 +195,7 @@ app.delete('/api/guests/:id', function(req, res) {
       if (!err) {
         console.log(`Deleted ${result.affectedRows} row(s)`);
         res.status(204).end();
-      }
-      else {
+      } else {
         throw err;
       }
     }
@@ -209,22 +208,15 @@ app.post('/api/rooms', function(req, res) {
 
   connection.query('INSERT INTO rooms SET ?', user, (err, result) => {
     if (!err) {
-
       res.setHeader('Content-Type', 'application/json')
-
       connection.query('SELECT * FROM rooms where id=?', result.insertId, (err, rows) => {
         if (!err) {
-
           let user = rows[0];
-
           if (user) {
             res.setHeader('Content-Type', 'application/json')
-
             res.status(201).end(JSON.stringify(user));
           } else {
-
             res.setHeader('Content-Type', 'application/json')
-
             res.status(404).end();
           }
         } else {
@@ -278,43 +270,39 @@ app.get('/api/rooms/:id', function(req, res) {
 
 app.put('/api/rooms/:id', function(req, res) {
 
-        let id = +req.params.id
-        let inputRoom = req.body;
+  let id = +req.params.id
+  let inputRoom = req.body;
 
-        // console.log("Received username: "+inputUser.name);
-        // console.log("Received email: "+inputUser.email);
+  connection.query(
+    'UPDATE rooms SET roomNumber=?, roomType=?, numberOfBeds = ? Where ID = ?',
+    [inputRoom.roomNumber, inputRoom.roomType, inputRoom.numberOfBeds, id],
+    (err, result) => {
+      if (!err) {
+        console.log(`Changed ${result.changedRows} row(s)`);
 
-        connection.query(
-          'UPDATE rooms SET roomNumber=?, roomType=?, numberOfBeds = ? Where ID = ?',
-          [inputRoom.roomNumber, inputRoom.roomType, inputRoom.numberOfBeds, id],
-          (err, result) => {
-            if (!err) {
-              console.log(`Changed ${result.changedRows} row(s)`);
+        connection.query('SELECT * FROM rooms where id=?', [id], (err, rows) => {
+          if (!err) {
+            console.log('Data received from Db:\n');
 
-              connection.query('SELECT * FROM rooms where id=?', [id], (err, rows) => {
-                if (!err) {
-                  console.log('Data received from Db:\n');
+            let user = rows[0];
 
-                  let user = rows[0];
-
-                  console.log(user);
-                  if (user) {
-                    res.setHeader('Content-Type', 'application/json')
-                    res.end(JSON.stringify(user));
-                  } else {
-                    res.setHeader('Content-Type', 'application/json')
-                    console.log("Not found!!!");
-                    res.status(404).end();
-                  }
-                } else {
-                  throw err;
-                }
-              });
+            console.log(user);
+            if (user) {
+              res.setHeader('Content-Type', 'application/json')
+              res.end(JSON.stringify(user));
+            } else {
+              res.setHeader('Content-Type', 'application/json')
+              console.log("Not found!!!");
+              res.status(404).end();
             }
-            else {
-              throw err;
-            }
-      });
+          } else {
+            throw err;
+          }
+        });
+      } else {
+        throw err;
+      }
+    });
 });
 
 app.delete('/api/rooms/:id', function(req, res) {
@@ -325,8 +313,7 @@ app.delete('/api/rooms/:id', function(req, res) {
       if (!err) {
         console.log(`Deleted ${result.affectedRows} row(s)`);
         res.status(204).end();
-      }
-      else {
+      } else {
         throw err;
       }
     }
@@ -339,7 +326,6 @@ app.post('/api/reservations', function(req, res) {
 
   connection.query('INSERT INTO reservations SET ?', user, (err, result) => {
     if (!err) {
-
       res.setHeader('Content-Type', 'application/json')
 
       connection.query('SELECT * FROM reservations where id=?', result.insertId, (err, rows) => {
@@ -349,12 +335,9 @@ app.post('/api/reservations', function(req, res) {
 
           if (user) {
             res.setHeader('Content-Type', 'application/json')
-
             res.status(201).end(JSON.stringify(user));
           } else {
-
             res.setHeader('Content-Type', 'application/json')
-
             res.status(404).end();
           }
         } else {
@@ -392,12 +375,9 @@ app.get('/api/reservations/:id', function(req, res) {
 
       if (user) {
         res.setHeader('Content-Type', 'application/json')
-
         res.end(JSON.stringify(user));
       } else {
-
         res.setHeader('Content-Type', 'application/json')
-
         res.status(404).end();
       }
     } else {
@@ -408,43 +388,39 @@ app.get('/api/reservations/:id', function(req, res) {
 
 app.put('/api/reservations/:id', function(req, res) {
 
-        let id = +req.params.id
-        let inputReservations = req.body;
+  let id = +req.params.id
+  let inputReservations = req.body;
 
-        // console.log("Received username: "+inputUser.name);
-        // console.log("Received email: "+inputUser.email);
+  connection.query(
+    'UPDATE reservations SET guest_id=?, room_id=?, arrivalDate=?, departureDate=?, numberOfGuests=?, guestHasCheckedIn=?, guestHasPaid=? Where ID = ?',
+    [inputReservations.guest_id, inputReservations.room_id, inputReservations.arrivalDate, inputReservations.departureDate, inputReservations.numberOfGuests, inputReservations.guestHasCheckedIn, inputReservations.guestHasPaid, id],
+    (err, result) => {
+      if (!err) {
+        console.log(`Changed ${result.changedRows} row(s)`);
 
-        connection.query(
-          'UPDATE reservations SET guest_id=?, room_id=?, arrivalDate=?, departureDate=?, numberOfGuests=?, guestHasCheckedIn=?, guestHasPaid=? Where ID = ?',
-          [inputReservations.guest_id, inputReservations.room_id, inputReservations.arrivalDate, inputReservations.departureDate, inputReservations.numberOfGuests, inputReservations.guestHasCheckedIn, inputReservations.guestHasPaid, id],
-          (err, result) => {
-            if (!err) {
-              console.log(`Changed ${result.changedRows} row(s)`);
+        connection.query('SELECT * FROM reservations where id=?', [id], (err, rows) => {
+          if (!err) {
+            console.log('Data received from Db:\n');
 
-              connection.query('SELECT * FROM reservations where id=?', [id], (err, rows) => {
-                if (!err) {
-                  console.log('Data received from Db:\n');
+            let user = rows[0];
 
-                  let user = rows[0];
-
-                  console.log(user);
-                  if (user) {
-                    res.setHeader('Content-Type', 'application/json')
-                    res.end(JSON.stringify(user));
-                  } else {
-                    res.setHeader('Content-Type', 'application/json')
-                    console.log("Not found!!!");
-                    res.status(404).end();
-                  }
-                } else {
-                  throw err;
-                }
-              });
+            console.log(user);
+            if (user) {
+              res.setHeader('Content-Type', 'application/json')
+              res.end(JSON.stringify(user));
+            } else {
+              res.setHeader('Content-Type', 'application/json')
+              console.log("Not found!!!");
+              res.status(404).end();
             }
-            else {
-              throw err;
-            }
-      });
+          } else {
+            throw err;
+          }
+        });
+      } else {
+        throw err;
+      }
+    });
 });
 
 app.delete('/api/reservations/:id', function(req, res) {
@@ -455,8 +431,7 @@ app.delete('/api/reservations/:id', function(req, res) {
       if (!err) {
         console.log(`Deleted ${result.affectedRows} row(s)`);
         res.status(204).end();
-      }
-      else {
+      } else {
         throw err;
       }
     }
