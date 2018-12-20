@@ -1,0 +1,303 @@
+@keyframes inputFocus {
+  from {
+    background-color: rgba(140,140,220,0.6);
+  }
+  to {
+    background-color: rgba(140,140,220,0.1);
+  }
+}
+@font-face {
+    font-family: Comfortaa;
+    src: url(Comfortaa-Regular.ttf);
+}
+@font-face {
+    font-family: Amita;
+    src: url(Amita-Regular.ttf);
+}
+body {
+  font-family: "Comfortaa";
+  font-size: 11pt;
+  margin: 0;
+  background-color: lightsteelblue;
+}
+* {
+  box-sizing: border-box;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  background-color: rgb(220,240,240);
+}
+th {
+  background-color: rgb(200,220,220);
+  padding: 10px;
+  text-align: left;
+}
+td {
+  padding: 10px;
+}
+tr:hover {
+  background-color: rgb(140,140,220);
+  cursor: default;
+}
+h1, h2, h3 {
+  text-align: center;
+  margin: 10px 0;
+  font-family: "Amita";
+}
+h1 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 20px;
+}
+label {
+  margin-left: 10px;
+}
+button {
+  font-family: "Comfortaa";
+  font-size: 11pt;
+  border: none;
+  background-color: rgb(140,140,220);
+  border-radius: 20px;
+  padding: 10px 15px;
+}
+button:hover {
+  animation-name: inputFocus;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+input {
+  font-family: "Comfortaa";
+  font-size: 11pt;
+  border: none;
+  background-color: rgb(200,220,220);
+  padding: 10px;
+  border-radius: 10px;
+  border: solid 2px rgb(160,180,180);
+}
+input:focus {
+  border: solid 2px rgb(140,140,220);
+}
+div {
+}
+.frameworkDiv {
+  display: grid;
+  grid-template-columns: 250px auto auto;
+  grid-template-rows: 110px auto auto;
+  grid-template-areas:
+    'logo header header'
+    'nav nav nav'
+    'mainPage mainPage mainPage';
+}
+#dashboardHeader {
+  grid-area: header;
+  font-family: "Amita";
+  font-size: 30px;
+}
+#logoImg {
+  grid-area: logo;
+  border-radius: 10px;
+  width: 100px;
+  height: 100px;
+}
+#loginLogoImg {
+  border-radius: 10px;
+  width: 200px;
+  height: 200px;
+}
+.logoImg {
+  grid-area: logo;
+  border-radius: 10px;
+  margin-left: 110px;
+  margin-top: 25px;
+}
+#invoiceTable {
+  width: 100%;
+}
+#phone, #mobile {
+  width: 330px;
+}
+#guestName, #address {
+  width: 660px;
+}
+#postalCode {
+  width: 260px;
+}
+#homeTown, #country, #eMail {
+  width: 500px;
+}
+#employeeNameLabel, #employeePasswordLabel {
+  margin-left: 0;
+}
+#overlay {
+  background-color: rgb(200,220,220);
+  z-index: 1;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border-radius: 10px;
+}
+#oneReservation {
+  display: grid;
+  grid-template-rows: [row1-start] 50px [row1-end];
+  grid-template-columns: 50% auto;
+  grid-template-areas:
+    'header header'
+    'guestInfo invoice'
+    'roomInfo invoice';
+  grid-gap: 10px;
+  padding: 10px;
+}
+#newReservation {
+  padding: 10px;
+}
+#oneReservationHeader {
+  grid-area: header;
+}
+#guestInfo {
+  grid-area: guestInfo;
+  background-color: lightsteelblue;
+  padding: 10px;
+  border-radius: 10px;
+  line-height: 20px
+}
+#roomInfo {
+  grid-area: roomInfo;
+  background-color: lightsteelblue;
+  padding: 10px;
+  border-radius: 10px;
+  line-height: 20px
+}
+#oneInvoice {
+  grid-area: invoice;
+  background-color: #fff;
+  padding: 10px;
+  line-height: 20px
+}
+.active {
+  background-color: rgba(180,180,220,0.8);
+}
+.content {
+  border: 1px solid rgba(140,140,220,0.8);
+  left: 10px;
+  right: 10px;
+  border-radius: 0 10px 10px 10px;
+  padding: 10px;
+  grid-area: mainPage;
+}
+.loginName {
+  padding: 10px;
+}
+.loginPassword {
+  padding: 0 10px 10px 10px;
+}
+#overview {
+  display: grid;
+  grid-template-areas:
+    'item1 item2 item3'
+    'item4 item4 item4';
+  grid-gap: 10px;
+}
+.overviewArrivals {
+  overflow-y: auto;
+  grid-area: table;
+  max-height: 300px;
+  padding: 0;
+  border-radius: 10px;
+}
+.overview1 {
+  border-radius: 10px;
+  grid-area: item1;
+  text-align: center;
+  height: 80px;
+  font-size: 24px;
+}
+.overview2 {
+  border-radius: 10px;
+  grid-area: item2;
+  text-align: center;
+  height: 80px;
+  font-size: 24px;
+}
+.overview3 {
+  background-color: rgba(200,20,20,0.3);
+  border-radius: 10px;
+  grid-area: item3;
+  text-align: center;
+  height: 80px;
+  font-size: 24px;
+}
+.overview4 {
+  padding: 10px;
+  background-color: lightsteelblue;
+  border-radius: 10px;
+  grid-area: item4;
+  display: grid;
+  grid-template-columns: 250px auto auto;
+  grid-template-areas:
+    'filter header header'
+    'table table table';
+  grid-gap: 10px;
+}
+.h3Overview4 {
+  grid-area: header;
+}
+#contentReservation{
+  padding: 10px;
+  border-radius: 10px;
+  background-color: lightsteelblue;
+}
+#reservationsDiv {
+  border-radius: 10px;
+  overflow-y: auto;
+  max-height: 300px;
+}
+.closeBtn {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  border-radius: 50%;
+  padding: 5px;
+  width: 29px;
+  height: 29px;
+}
+.filter {
+  margin-bottom: 10px;
+}
+.overviewFilter {
+  grid-area: filter;
+  height: 40px;
+  margin-top: 10px;
+}
+.mainDiv {
+  position: absolute;
+  background-color: rgb(200,220,220);
+  border-radius: 10px;
+  padding: 10px 10px;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+}
+.nav {
+  padding: 0;
+  grid-area: nav;
+}
+.buttonNav {
+  border-radius: 20px 20px 0 0;
+  margin-right: 10px;
+}
+.error, #error {
+  color: rgb(200,220,220);
+  font-size: 22px;
+  top: 70px;
+  position: absolute;
+  left: 20%;
+  right: 20%;
+  border-radius: 5px;
+  text-align: center;
+}
