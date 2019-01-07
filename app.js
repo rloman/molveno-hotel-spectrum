@@ -102,7 +102,9 @@ app.get('/api/guests', function(req, res) {
 });
 
 app.get('/api/reservations', function(req, res) {
-  connection.query('SELECT * FROM reservations', (err, reservations) => {
+  connection.query('select guests.firstName, guests.lastName, reservations.*\
+                    from guests inner join reservations on \
+                    guests.id = reservations.guest_id;', (err, reservations) => {
     if (!err) {
       res.setHeader('Content-Type', 'application/json');
       res.end(JSON.stringify(reservations));
