@@ -6,11 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Molveno Hotel Management</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/r-2.2.2/datatables.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/v/bs4/dt-1.10.18/r-2.2.2/datatables.min.js"></script>
   <style>
     @font-face {
         font-family: Comfortaa;
@@ -89,18 +89,18 @@
     </div>
   </nav>
   <div class="container-bg">
-    <div class="col-12">
+    <div class="container-fluid">
       <h1>Overview</h1>
-      <table id="reservationTable" class="table table-striped table-bordered table-hover text-center" style="width:100%">
+      <table id="reservationTable" class="table table-striped table-bordered justify-content-center" cellspacing="0" width="100%">
         <thead>
           <tr>
             <th>id</th>
-            <th>guest_id</th>
-            <th>firstName</th>
-            <th>lastName</th>
-            <th>room_id</th>
-            <th>Date of arrival</th>
-            <th>Date of departure</th>
+            <th>Guest_id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Room_id</th>
+            <th>Date of arrival (D-M-Y)</th>
+            <th>Date of departure (D-M-Y)</th>
             <th>Number of guests</th>
             <th>Guest has checked in</th>
             <th>Guest has paid</th>
@@ -111,12 +111,12 @@
         <tfoot>
           <tr>
             <th>id</th>
-            <th>guest_id</th>
-            <th>firstName</th>
-            <th>lastName</th>
-            <th>room_id</th>
-            <th>Date of arrival</th>
-            <th>Date of departure</th>
+            <th>Guest_id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Room_id</th>
+            <th>Date of arrival (D-M-Y)</th>
+            <th>Date of departure (D-M-Y)</th>
             <th>Number of guests</th>
             <th>Guest has checked in</th>
             <th>Guest has paid</th>
@@ -130,12 +130,12 @@
   $(document).ready(function() {
     $('#reservationTable').DataTable({
       "processing": true,
-      "responsive": true,
+      responsive: true,
       "ajax": {
         "url": "http://localhost:8081/api/reservations",
         dataSrc: ''
       },
-      "columns": [ {
+      "columns": [{
         "data": "id"
       }, {
         "data": "guest_id"
@@ -155,6 +155,19 @@
         "data": "guestHasCheckedIn"
       }, {
         "data": "guestHasPaid"
+      }],
+      columnDefs: [{
+        "targets": [5, 6],
+        "type": "date",
+        "render": function (data) {
+            if (data !== null) {
+                let formattedDate = new Date(data);
+                formattedDate = `${formattedDate.getDate()}-${formattedDate.getMonth() + 1}-${formattedDate.getFullYear()}`;
+                return formattedDate;
+            } else {
+                return "";
+            }
+          }
       }]
     });
   });
