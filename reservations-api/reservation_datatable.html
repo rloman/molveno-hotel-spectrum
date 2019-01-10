@@ -241,7 +241,7 @@
           </fieldset>
           <div class="form-group row">
             <div class="col-sm-10">
-              <button type="submit" class="btn btn-primary" id="postReservation">Submit</button>
+              <div class="btn btn-primary" id="postReservationData">Submit</div>
             </div>
           </div>
         </form>
@@ -297,14 +297,40 @@
     });
   });
 
-  $('#postReservation').click(function(){
-    let form = document.getElementById('postReservationForm');
-    let submitFormData = new FormData(form);
-    console.log(submitFormData);
-    /*$.ajax({
+  $('#postReservationData').click(function() {
+    let guestId = $("#guestId");
+    let roomId = $("#roomId");
+    let arrivalDate = $("#arrivalDate");
+    let departureDate = $("#departureDate");
+    let numberOfGuests = document.querySelector('input[name="guests"]:checked');
+    let guestCheckIn = document.querySelector('input[name="guestCheckIn"]:checked');
+    let guestHasPaid = document.querySelector('input[name="guestHasPaid"]:checked');
+
+    let reservation = {
+      guest_id: guestId,
+      room_id: roomId,
+      arrivalDate: arrivalDate,
+      departureDate: departureDate,
+      numberOfGuests: numberOfGuests,
+      guestHasCheckedIn: guestCheckIn,
+      guestHasPaid: guestHasPaid
+    };
+
+    console.log(reservation);
+    $.post({
       url: "http://localhost:8081/api/reservations",
-    }) */
-  });
+      data: JSON.stringify(reservation),
+      datatype: "json",
+      success: showNewData,
+      error: function(error) {
+        console.log(error);
+      }
+    })
+  })
+
+  function showNewData(data) {
+    console.log(data);
+  }
 
   function today() {
     let today = new Date();
