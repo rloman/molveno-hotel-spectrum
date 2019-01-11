@@ -220,6 +220,97 @@
         </div>
       </div>
     </div>
+
+    <!-- Create a reservation pane -->
+    <div id="createReservation" class="tab-pane fade">
+      <div class="container-fluid">
+        <h1>Create a new reservation</h1>
+        <form id="postReservationForm">
+          <div class="form-group row">
+            <label for="guestId" class="col-sm-2 col-form-label">Guest ID</label>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" id="guestId" placeholder="Guest ID">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="roomId" class="col-sm-2 col-form-label">Room ID</label>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" id="roomId" placeholder="Room ID">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="arrivalDate" class="col-sm-2 col-form-label">Date of arrival</label>
+            <div class="col-sm-2">
+              <input type="date" class="form-control" id="arrivalDate" placeholder="DD/MM/YYYY">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="departureDate" class="col-sm-2 col-form-label">Date of departure</label>
+            <div class="col-sm-2">
+              <input type="date" class="form-control" id="departureDate" placeholder="DD/MM/YYYY">
+            </div>
+          </div>
+          <fieldset class="form-group">
+            <div class="row">
+              <legend class="col-form-label col-sm-2 pt-0">Number of guests</legend>
+              <div class="col-sm-10">
+                <div class="form-check-inline">
+                  <input class="form-check-input" type="radio" name="guests" id="guests1" value="1">
+                  <label class="form-check-label" for="guests1">1</label>
+                </div>
+                <div class="form-check-inline">
+                  <input class="form-check-input" type="radio" name="guests" id="guests2" value="2" checked>
+                  <label class="form-check-label" for="guests2">2</label>
+                </div>
+                <div class="form-check-inline">
+                  <input class="form-check-input" type="radio" name="guests" id="guests3" value="3">
+                  <label class="form-check-label" for="guests3">3</label>
+                </div>
+                <div class="form-check-inline">
+                  <input class="form-check-input" type="radio" name="guests" id="guests4" value="4">
+                  <label class="form-check-label" for="guests4">4</label>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset class="form-group">
+            <div class="row">
+              <legend class="col-form-label col-sm-2 pt-0">Guest has checked in?</legend>
+              <div class="col-sm-10">
+                <div class="form-check-inline">
+                  <input class="form-check-input" type="radio" name="guestCheckIn" id="guestCheckIn1" value="1">
+                  <label class="form-check-label" for="guestCheckIn1">Yes</label>
+                </div>
+                <div class="form-check-inline">
+                  <input class="form-check-input" type="radio" name="guestCheckIn" id="guestCheckIn0" value="0" checked>
+                  <label class="form-check-label" for="guestCheckedIn0">No</label>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset class="form-group">
+            <div class="row">
+              <legend class="col-form-label col-sm-2 pt-0">Guest has paid?</legend>
+              <div class="col-sm-10">
+                <div class="form-check-inline">
+                  <input class="form-check-input" type="radio" name="guestHasPaid" id="guestHasPaid1" value="1">
+                  <label class="form-check-label" for="guestHasPaid1">Yes</label>
+                </div>
+                <div class="form-check-inline">
+                  <input class="form-check-input" type="radio" name="guestHasPaid" id="guestHasPaid0" value="0" checked>
+                  <label class="form-check-label" for="guestHasPaid0">No</label>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+          <div class="form-group row">
+            <div class="col-sm-10">
+              <div class="btn btn-primary" id="postReservationData">Submit</div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div> <!-- Create new reservation pane end -->
   </div> <!-- Page content end -->
   <footer class="footer">
     <div class="container-fluid">
@@ -460,6 +551,8 @@ let api = "http://localhost:8081/api/reservations"
     }
 
     today = yyyy + '-' + mm + '-' + dd;
+    document.getElementById("arrivalDate").setAttribute("min", today);
+    document.getElementById("departureDate").setAttribute("min", today);
   };
 
   today();
