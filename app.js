@@ -140,6 +140,58 @@ app.get('/api/reservations/:id', function(req, res) {
   });
 });
 
+app.put('/api/reservations/:id', function(req, res) {
+
+  let id = +req.params.id
+  let inputReservations = req.body;
+
+  connection.query(
+    'UPDATE reservations SET guest_id=?, room_id=?, arrivalDate=?, departureDate=?, numberOfGuests=?, guestHasCheckedIn=?, guestHasPaid=? Where ID = ?',
+    [inputReservations.guest_id, inputReservations.room_id, inputReservations.arrivalDate, inputReservations.departureDate, inputReservations.numberOfGuests, inputReservations.guestHasCheckedIn, inputReservations.guestHasPaid, id],
+    (err, result) => {
+      if (!err) {
+        console.log(`Changed ${result.changedRows} row(s)`);
+
+        connection.query('SELECT * FROM reservations where id=?', [id], (err, rows) => {
+          if (!err) {
+            console.log('Data received from Db:\n');
+
+            let user = rows[0];
+
+            console.log(user);
+            if (user) {
+              res.setHeader('Content-Type', 'application/json')
+              res.end(JSON.stringify(user));
+            } else {
+              res.setHeader('Content-Type', 'application/json')
+              console.log("Not found!!!");
+              res.status(404).end();
+            }
+          } else {
+            throw err;
+          }
+        });
+      } else {
+        throw err;
+      }
+    });
+});
+
+app.delete('/api/reservations/:id', function(req, res) {
+  let id = +req.params.id;
+
+  connection.query(
+    'DELETE FROM reservations WHERE id = ?', [id], (err, result) => {
+      if (!err) {
+        console.log(`Deleted ${result.affectedRows} row(s)`);
+        res.status(204).end();
+      } else {
+        throw err;
+      }
+    }
+  );
+});
+
 app.get('/api/rooms', function(req, res) {
   connection.query('SELECT * FROM rooms', (err, rooms) => {
     if (!err) {
