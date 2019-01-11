@@ -117,6 +117,29 @@ app.get('/api/reservations', function(req, res) {
   });
 });
 
+app.get('/api/reservations/:id', function(req, res) {
+
+  let id = +req.params.id
+
+  connection.query('SELECT * FROM reservations where id=?', id, (err, rows) => {
+    if (!err) {
+      console.log('Data received from Db:\n');
+
+      let user = rows[0];
+
+      if (user) {
+        res.setHeader('Content-Type', 'application/json')
+        res.end(JSON.stringify(user));
+      } else {
+        res.setHeader('Content-Type', 'application/json')
+        res.status(404).end();
+      }
+    } else {
+      throw err;
+    }
+  });
+});
+
 app.get('/api/rooms', function(req, res) {
   connection.query('SELECT * FROM rooms', (err, rooms) => {
     if (!err) {
