@@ -31,6 +31,43 @@ connection.connect((err) => {
   }
 });
 
+app.get('/api/guests', function(req, res) {
+  connection.query('SELECT * FROM guests', (err, guests) => {
+    if (!err) {
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify(guests));
+      let now = new Date;
+      console.log(now + `: Guests List Returned (${req.connection.remoteAddress})!`);
+      console.log(now + ': Waiting... (Use CTRL-C to quit)');
+    } else {
+      throw err;
+    }
+  });
+});
+
+app.get('/api/guests/:id', function(req, res) {
+  let id = req.params.id;
+  connection.query('SELECT * FROM guests WHERE id = ?', id, (err, rows) => {
+    if (!err) {
+      let now = new Date;
+      let guest = rows[0];
+      if (guest) {
+        console.log(`${now}: Guest ${id} returned (${req.connection.remoteAddress})!`);
+        console.log(now + ': Waiting... (Use CTRL-C to quit)');
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify(guest));
+      } else {
+        console.log(`${now}: Guest ${id} doesn't exist (${req.connection.remoteAddress})!`);
+        console.log(now + ': Waiting... (Use CTRL-C to quit)');
+        res.setHeader('Content-Type', 'application/json');
+        res.status(404).end();
+      }
+    } else {
+      throw err;
+    }
+  });
+});
+
 //Posting a new entry into tables
 app.post('/api/guests', function(req, res) {
   let guest = req.body;
@@ -59,6 +96,170 @@ app.post('/api/guests', function(req, res) {
   });
 });
 
+//Updating 1 item in a table
+app.put('/api/guests/:id', function(req, res) {
+  let id = req.params.id
+  let inputGuest = req.body;
+  let now = new Date;
+  console.log(now + ": Changing guest with id: " + id);
+  console.log(now + ': Waiting... (Use CTRL-C to quit)');
+  connection.query(
+    'UPDATE guests SET firstName = ?, lastName = ?, email = ?, phone = ?, address = ?, postalCode = ?, homeTown = ?, country = ?, mobile = ? WHERE id = ?',
+    [inputGuest.firstName, inputGuest.lastName, inputGuest.email, inputGuest.phone, inputGuest.address, inputGuest.postalCode,
+     inputGuest.homeTown, inputGuest.country, inputGuest.mobile, id],
+    (err, result) => {
+      if (!err) {
+        console.log(now + `: Changed ${result.changedRows} row(s)`);
+        console.log(now + ': Waiting... (Use CTRL-C to quit)');
+        connection.query('SELECT * FROM guests WHERE id = ?', [id], (err, rows) => {
+          if (!err) {
+            console.log(now + ': Data received from Database:');
+            let guest = rows[0];
+            console.log(guest);
+            console.log(now + ': Waiting... (Use CTRL-C to quit)');
+            if (guest) {
+              res.setHeader('Content-Type', 'application/json');
+              res.status(205).end(JSON.stringify(guest));
+            } else {
+              res.setHeader('Content-Type', 'application/json');
+              console.log(now + `: Not found!!! (Request from ${req.connection.remoteAddress})`);
+              console.log(now + ': Waiting... (Use CTRL-C to quit)');
+              res.status(404).end();
+            }
+          } else {
+            throw err;
+          }
+        });
+      }
+      else {
+        throw err;
+      }
+    }
+  );
+});
+
+//Deleting 1 item from a table
+app.delete('/api/guests/:id', function(req, res) {
+  let id = req.params.id;
+  connection.query(
+    'DELETE FROM guests WHERE id = ?', [id], (err, result) => {
+      if (!err) {
+        let now = new Date;
+        console.log(now + `: Deleted ${result.affectedRows} row(s)`);
+        console.log(now + ': Waiting... (Use CTRL-C to quit)');
+        res.status(204).end();
+      }
+      else {
+        throw err;
+      }
+    }
+  );
+});
+
+app.get('/api/rooms', function(req, res) {
+  connection.query('SELECT * FROM rooms', (err, rooms) => {
+    if (!err) {
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify(rooms));
+      let now = new Date;
+      console.log(now + `: Rooms List Returned (${req.connection.remoteAddress})!`);
+      console.log(now + ': Waiting... (Use CTRL-C to quit)');
+    } else {
+      throw err;
+    }
+  });
+});
+
+app.get('/api/rooms/:id', function(req, res) {
+  let id = +req.params.id
+  connection.query('SELECT * FROM rooms where id=?', id, (err, rows) => {
+    if (!err) {
+      console.log('Data received from Db:\n');
+      let user = rows[0];
+      if (user) {
+        res.setHeader('Content-Type', 'application/json')
+        res.end(JSON.stringify(user));
+      } else {
+        res.setHeader('Content-Type', 'application/json')
+        res.status(404).end();
+      }
+    } else {
+      throw err;
+    }
+  });
+});
+
+app.post('/api/rooms', function(req, res) {
+  let user = req.body;
+  connection.query('INSERT INTO rooms SET ?', user, (err, result) => {
+    if (!err) {
+      res.setHeader('Content-Type', 'application/json')
+      connection.query('SELECT * FROM rooms where id=?', result.insertId, (err, rows) => {
+        if (!err) {
+          let user = rows[0];
+          if (user) {
+            res.setHeader('Content-Type', 'application/json')
+            res.status(201).end(JSON.stringify(user));
+          } else {
+            res.setHeader('Content-Type', 'application/json')
+            res.status(404).end();
+          }
+        } else {
+          throw err;
+        }
+      });
+    } else {
+      throw err;
+    }
+  });
+});
+
+app.put('/api/rooms/:id', function(req, res) {
+  let id = +req.params.id
+  let inputRoom = req.body;
+  connection.query(
+    'UPDATE rooms SET roomNumber=?, roomType=?, numberOfBeds = ? Where ID = ?',
+    [inputRoom.roomNumber, inputRoom.roomType, inputRoom.numberOfBeds, id],
+    (err, result) => {
+      if (!err) {
+        console.log(`Changed ${result.changedRows} row(s)`);
+        connection.query('SELECT * FROM rooms where id=?', [id], (err, rows) => {
+          if (!err) {
+            console.log('Data received from Db:\n');
+            let user = rows[0];
+            console.log(user);
+            if (user) {
+              res.setHeader('Content-Type', 'application/json')
+              res.end(JSON.stringify(user));
+            } else {
+              res.setHeader('Content-Type', 'application/json')
+              console.log("Not found!!!");
+              res.status(404).end();
+            }
+          } else {
+            throw err;
+          }
+        });
+      } else {
+        throw err;
+      }
+    });
+});
+
+app.delete('/api/rooms/:id', function(req, res) {
+  let id = +req.params.id;
+  connection.query(
+    'DELETE FROM rooms WHERE id = ?', [id], (err, result) => {
+      if (!err) {
+        console.log(`Deleted ${result.affectedRows} row(s)`);
+        res.status(204).end();
+      } else {
+        throw err;
+      }
+    }
+  );
+});
+
 app.post('/api/reservations', function(req, res) {
   let reservation = req.body;
   connection.query('INSERT INTO reservations SET ?', reservation, (err, result) => {
@@ -80,21 +281,6 @@ app.post('/api/reservations', function(req, res) {
           throw err;
         }
       });
-    } else {
-      throw err;
-    }
-  });
-});
-
-//Getting lists from tables
-app.get('/api/guests', function(req, res) {
-  connection.query('SELECT * FROM guests', (err, guests) => {
-    if (!err) {
-      res.setHeader('Content-Type', 'application/json');
-      res.end(JSON.stringify(guests));
-      let now = new Date;
-      console.log(now + `: Guests List Returned (${req.connection.remoteAddress})!`);
-      console.log(now + ': Waiting... (Use CTRL-C to quit)');
     } else {
       throw err;
     }
@@ -190,20 +376,6 @@ app.delete('/api/reservations/:id', function(req, res) {
       }
     }
   );
-});
-
-app.get('/api/rooms', function(req, res) {
-  connection.query('SELECT * FROM rooms', (err, rooms) => {
-    if (!err) {
-      res.setHeader('Content-Type', 'application/json');
-      res.end(JSON.stringify(rooms));
-      let now = new Date;
-      console.log(now + `: Rooms List Returned (${req.connection.remoteAddress})!`);
-      console.log(now + ': Waiting... (Use CTRL-C to quit)');
-    } else {
-      throw err;
-    }
-  });
 });
 
 app.get('/api/accessories', function(req, res) {
