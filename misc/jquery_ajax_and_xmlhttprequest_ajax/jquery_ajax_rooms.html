@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>jQuery Ajax</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="container-fluid">
+  <h3>Rooms</h3>
+  roomNumber:<input type="text" id="roomNumber" /><br/>
+  roomType:<input type="text" id="roomType" /><br/>
+  numberOfBeds:<input type="text" id="numberOfBeds" /><br/>
+  <div id="postData" class="btn btn-primary">Verstuur</div><br>
+  <hr />
+  api: <input type=text id="apiUrl" value="api/rooms" />
+  <div id="getData" class="btn btn-primary">Get room data</div><br>
+  <hr/>
+  api: <input type=text id="apiUrlDelete" value="api/rooms" />
+  <div id="deleteData" class="btn btn-primary">Delete room</div><br>
+  <hr/>
+  api: <input type=text id="apiUrlUpdate" value="api/rooms/" /><br>
+  roomNumber:<input type="text" id="roomNumberUpdate" /><br/>
+  roomType:<input type="text" id="roomTypeUpdate" /><br/>
+  numberOfBeds:<input type="text" id="numberOfBedsUpdate" /><br/>
+  <div id="updateData" class="btn btn-primary">Update room</div><br>
+  <hr/>
+  RESULT SERVER: <div id=demo></div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+</body>
+<script>
+  let api = "http://localhost:8081";
+  // CREATE / POST
+  $('#postData').click(function() {
+    let roomNumber = $('#roomNumber').val();
+    let roomType = $('#roomType').val();
+    let numberOfBeds = $('#numberOfBeds').val();
+    let apiUrl = $('#apiUrl').val();
+
+    let room = {roomNumber: roomNumber, roomType: roomType, numberOfBeds: numberOfBeds}
+
+    $.ajax({
+      url: api + "/" + apiUrl,
+      type: "POST",
+      data: JSON.stringify(room),
+      contentType: "application/json",
+      // The success and error functions are optional but they help with displaying data and debugging
+      success: function() {
+        console.log(`Successfully sent data to DB: ${JSON.stringify(room)}`);
+      },
+      error: function(error) {
+        console.log(error);
+      }
+    });
+  });
+
+  // READ / GET
+  $('#getData').click(function(){
+    let apiUrl = $('#apiUrl').val();
+
+    $.ajax({
+      url: api + "/" + apiUrl,
+      type: "GET",
+      dataType: "json",
+      success: function(data) {
+        console.log(`Successfully received data from DB: ${JSON.stringify(data)}`);
+        $('#demo').html(JSON.stringify(data));
+      },
+      error: function(error) {
+        console.log(error);
+      }
+    });
+  });
+
+  // DELETE
+  $('#deleteData').click(function(){
+    let apiUrl = $('#apiUrlDelete').val();
+    $.ajax({
+      url: api + "/" + apiUrl,
+      type: "DELETE",
+      dataType: "json",
+      success: function(data) {
+        console.log(`Successfully deleted data from DB`);
+      },
+      error: function(error) {
+        console.log(error);
+      }
+    });
+  });
+
+  // UPDATE / PUT
+  $('#updateData').click(function(){
+    let roomNumber = $('#roomNumberUpdate').val();
+    let roomType = $('#roomTypeUpdate').val();
+    let numberOfBeds = $('#numberOfBedsUpdate').val();
+    let apiUrl = $('#apiUrlUpdate').val();
+
+    let room = {roomNumber: roomNumber, roomType: roomType, numberOfBeds: numberOfBeds}
+
+    $.ajax({
+      url: api + "/" + apiUrl,
+      type: "PUT",
+      data: JSON.stringify(room),
+      contentType: "application/json",
+      success: function(data) {
+        console.log(`Successfully updated data to DB: ${JSON.stringify(data)}`);
+      },
+      error: function(error) {
+        console.log(error);
+      }
+    });
+  });
+</script>
+</html>
