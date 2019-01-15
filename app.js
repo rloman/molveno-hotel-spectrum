@@ -218,8 +218,8 @@ app.put('/api/rooms/:id', function(req, res) {
   let id = +req.params.id
   let inputRoom = req.body;
   connection.query(
-    'UPDATE rooms SET roomNumber=?, roomType=?, numberOfBeds = ? Where ID = ?',
-    [inputRoom.roomNumber, inputRoom.roomType, inputRoom.numberOfBeds, id],
+    'UPDATE rooms SET roomNumber=?, roomType=?, numberOfBeds = ?, roomPrice = ? Where ID = ?',
+    [inputRoom.roomNumber, inputRoom.roomType, inputRoom.numberOfBeds, inputRoom.roomPrice, id],
     (err, result) => {
       if (!err) {
         console.log(`Changed ${result.changedRows} row(s)`);

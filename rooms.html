@@ -53,14 +53,6 @@
     table.table-bordered > tfoot > tr > th {
       border:2px solid #8c8cdb;
     }
-
-    .footer {
-      position: absolute;
-      width: 100%;
-      height: 60px;
-      line-height: 60px;
-      background-color: #c7dbdb;
-    }
   </style>
 
 </head>
@@ -106,6 +98,7 @@
             <th>Room Number</th>
             <th>Room Type</th>
             <th>Number of Beds</th>
+            <th>Room Price</th>
           </tr>
         </thead>
         <tbody>
@@ -116,6 +109,7 @@
             <th>Room Number</th>
             <th>Room Type</th>
             <th>Number of Beds</th>
+            <th>Room Price</th>
           </tr>
         </tfoot>
       </table>
@@ -165,6 +159,8 @@
               <input class="form-check-input" type="radio" name="numberOfBeds" id="beds4" value="4">
               <label class="form-check-label" for="beds4">4</label>
             </div>
+            <br><label id="labelRoomPrice" for="roomPrice"><b>Room Price (€):</b></label><br>
+            <input type='text' class="form-control mb-2" name="roomPrice" id="modalRoomPrice">
           </form>
 
         </div>
@@ -207,13 +203,18 @@
         "data": "roomType"
       }, {
         "data": "numberOfBeds"
+      }, {
+        "data": "roomPrice",
+        "render": function(data, type, row) {
+          return '€' + data
+        }
       }]
     });
   }
 
   function getData(api) {
     $.get(api, function(data) {
-      $('#roomTable').DataTable().ajax.reload();
+      $('#roomTable').DataTable().ajax.reload(null, false); // User paging is not reset on reload
     });
   };
 
@@ -300,6 +301,7 @@
     $("#modalRoomNumber").val(record.roomNumber);
     $("#modalRoomType").val(record.roomType);
     $("#modalNumberOfBeds").val(record.numberOfBeds);
+    $('#modalRoomPrice').val(record.roomPrice);
 
     $("#confirmbutton").css('display', 'inline-block');
     console.log("Pre delete create button element: id:" + record.id);

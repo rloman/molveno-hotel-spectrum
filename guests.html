@@ -53,14 +53,6 @@
     table.table-bordered > tfoot > tr > th {
       border:2px solid #8c8cdb;
     }
-
-    .footer {
-      position: absolute;
-      width: 100%;
-      height: 60px;
-      line-height: 60px;
-      background-color: #c7dbdb;
-    }
   </style>
 
 </head>
@@ -217,7 +209,7 @@
 
   function getData(api) {
     $.get(api, function(data) {
-      $('#guestTable').DataTable().ajax.reload();
+      $('#guestTable').DataTable().ajax.reload(null, false); // User paging is not reset on reload
     });
   };
 
