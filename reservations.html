@@ -204,10 +204,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
   <script src="https://cdn.datatables.net/v/bs4/dt-1.10.18/r-2.2.2/datatables.min.js"></script>
-  <script src="js/moment.min.js"></script>
+  <script src="modules/moment.min.js"></script>
 </body>
 <script>
-  let api = "http://localhost:8081/api/reservations"
+  let api = "http://localhost:8081/api/reservations";
   moment().format();
   $(document).ready(function() {
     initDataTable();
@@ -309,7 +309,11 @@
   }
 
   // This function gets called when we click on a table row
-  $('#reservationTable tbody').on('click', 'tr', function() {
+  $('#reservationTable tbody').on('click', 'tr', function(e) {
+    if ($(e.target).hasClass("sorting_1")) {
+      // Do nothing
+      return;
+    }
     $('#modalId').show();
     $('#labelId').show();
     if ($(this).hasClass('selected')) {
@@ -379,13 +383,13 @@
 
   function submitEdit(id, api) {
     // shortcut for filling the formData as a JavaScript object with the fields in the form
-    var formData = $("#modalForm").serializeArray().reduce(function(result, object) {
+    let formData = $("#modalForm").serializeArray().reduce(function(result, object) {
       result[object.name] = object.value;
       return result
     }, {});
     console.log("Formdata =>");
     console.log(formData);
-    for (var key in formData) {
+    for (let key in formData) {
       if (formData[key] == "" || formData == null) delete formData[key];
     }
 
