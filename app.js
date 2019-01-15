@@ -104,9 +104,9 @@ app.put('/api/guests/:id', function(req, res) {
   console.log(now + ": Changing guest with id: " + id);
   console.log(now + ': Waiting... (Use CTRL-C to quit)');
   connection.query(
-    'UPDATE guests SET firstName = ?, lastName = ?, email = ?, phone = ?, address = ?, postalCode = ?, homeTown = ?, country = ?, mobile = ? WHERE id = ?',
-    [inputGuest.firstName, inputGuest.lastName, inputGuest.email, inputGuest.phone, inputGuest.address, inputGuest.postalCode,
-     inputGuest.homeTown, inputGuest.country, inputGuest.mobile, id],
+    'UPDATE guests SET firstName = ?, lastName = ?, address = ?, homeTown = ?, postalCode = ?, country = ?, telephoneNumber = ?, emailAddress = ? WHERE id = ?',
+    [inputGuest.firstName, inputGuest.lastName, inputGuest.address, inputGuest.homeTown, inputGuest.postalCode, inputGuest.country,
+     inputGuest.telephoneNumber, inputGuest.emailAddress, id],
     (err, result) => {
       if (!err) {
         console.log(now + `: Changed ${result.changedRows} row(s)`);
