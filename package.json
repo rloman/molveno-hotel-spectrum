@@ -1,7 +1,7 @@
 {
-  "name": "oefening",
+  "name": "Team Progress REST Service",
   "version": "0.2.0-SNAPSHOT",
-  "description": "oefening",
+  "description": "REST API for Hotel Molveno",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
