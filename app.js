@@ -288,9 +288,10 @@ app.post('/api/reservations', function(req, res) {
 });
 
 app.get('/api/reservations', function(req, res) {
-  connection.query('select guests.firstName, guests.lastName, reservations.*\
-                    from guests inner join reservations on \
-                    guests.id = reservations.guest_id;', (err, reservations) => {
+  connection.query('select guests.firstName, guests.lastName, rooms.roomNumber, \
+  rooms.roomType, reservations.* from guests inner join reservations on \
+  guests.id = reservations.guest_id inner join rooms on \
+  reservations.room_id = rooms.id;', (err, reservations) => {
     if (!err) {
       res.setHeader('Content-Type', 'application/json');
       res.end(JSON.stringify(reservations));

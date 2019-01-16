@@ -96,14 +96,16 @@
           <tr>
             <th>id</th>
             <th>Guest_id</th>
-            <th>First Name</th>
-            <th>Last Name</th>
             <th>Room_id</th>
             <th>Arrival Date (D-M-Y)</th>
             <th>Departure Date (D-M-Y)</th>
             <th>Number of guests</th>
             <th>Guest has checked in</th>
             <th>Guest has paid</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Room Number</th>
+            <th>Room Type</th>
           </tr>
         </thead>
         <tbody>
@@ -112,14 +114,16 @@
           <tr>
             <th>id</th>
             <th>Guest_id</th>
-            <th>First Name</th>
-            <th>Last Name</th>
             <th>Room_id</th>
             <th>Arrival Date (D-M-Y)</th>
             <th>Departure Date (D-M-Y)</th>
             <th>Number of guests</th>
             <th>Guest has checked in</th>
             <th>Guest has paid</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Room Number</th>
+            <th>Room Type</th>
           </tr>
         </tfoot>
       </table>
@@ -204,6 +208,9 @@
   $(document).ready(function() {
     initDataTable();
     getData(api);
+    /* setInterval(function() {
+      getData(api);
+    }, 10000); */
   });
 
   function initDataTable() {
@@ -218,10 +225,6 @@
         "data": "id"
       }, {
         "data": "guest_id"
-      }, {
-        "data": "firstName"
-      }, {
-        "data": "lastName"
       }, {
         "data": "room_id"
       }, {
@@ -242,9 +245,17 @@
           return (data === 1) ? '<i class="fa fa-check" style="color:green"></i>' :
             '<i class="fa fa-times" style="color:red"></i>';
         }
+      }, {
+        "data": "firstName"
+      }, {
+        "data": "lastName"
+      }, {
+        "data": "roomNumber"
+      }, {
+        "data": "roomType"
       }],
       "columnDefs": [{
-        "targets": [5, 6],
+        "targets": [3, 4],
         render: function(data, type, row) {
           if (type === "sort" || type === "type") {
             return data;
