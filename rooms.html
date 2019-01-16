@@ -128,14 +128,14 @@
             <label id="labelId" for="id"><b>ID:</b></label>
             <input type='text' class="form-control mb-2" name="id" id="modalId" disabled>
             <label id="labelRoomNumber" for="roomNumber"><b>Room Number:</b></label>
-            <input type='text' class="form-control mb-2" name="roomNumber" id="modalRoomNumber">
+            <input type='text' class="form-control mb-2" name="roomNumber" id="modalRoomNumber" maxlength="20">
             <label id="labelRoomType" for="roomType"><b>Room Type:</b></label><br>
             <div class="form-check-inline">
               <input class="form-check-input" type="radio" name="roomType" id="roomBudget" value="Budget">
               <label class="form-check-label" for="roomBudget">Budget</label>
             </div>
             <div class="form-check-inline">
-              <input class="form-check-input" type="radio" name="roomType" id="roomStandard" value="Standard" checked>
+              <input class="form-check-input" type="radio" name="roomType" id="roomStandard" value="Standard">
               <label class="form-check-label" for="roomStandard">Standard</label>
             </div>
             <div class="form-check-inline">
@@ -148,7 +148,7 @@
               <label class="form-check-label" for="beds1">1</label>
             </div>
             <div class="form-check-inline">
-              <input class="form-check-input" type="radio" name="numberOfBeds" id="beds2" value="2" checked>
+              <input class="form-check-input" type="radio" name="numberOfBeds" id="beds2" value="2">
               <label class="form-check-label" for="beds2">2</label>
             </div>
             <div class="form-check-inline">
@@ -223,6 +223,8 @@
     document.getElementById("modalForm").reset();
     $('#modalId').hide();
     $('#labelId').hide();
+    $('#roomStandard').prop("checked", true);
+    $('#beds2').prop("checked", true);
     $("#btnsubmit").attr('onclick', 'submitNew("' + api + '");');
     $('#modal').modal('toggle');
   });
@@ -299,9 +301,34 @@
   function fillModal(record) {
     $('#modalId').val(record.id);
     $("#modalRoomNumber").val(record.roomNumber);
-    $("#modalRoomType").val(record.roomType);
-    $("#modalNumberOfBeds").val(record.numberOfBeds);
     $('#modalRoomPrice').val(record.roomPrice);
+
+    switch(record.roomType) {
+      case 'Budget':
+      $('#roomBudget').prop("checked", true);
+      break;
+      case 'Standard':
+      $('#roomStandard').prop("checked", true);
+      break;
+      case 'Luxurious':
+      $('#roomLuxurious').prop("checked", true);
+      break;
+    }
+
+    switch(record.numberOfBeds) {
+      case 1:
+      $('#beds1').prop("checked", true);
+      break;
+      case 2:
+      $('#beds2').prop("checked", true);
+      break;
+      case 3:
+      $('#beds3').prop("checked", true);
+      break;
+      case 4:
+      $('#beds4').prop("checked", true);
+      break;
+    }
 
     $("#confirmbutton").css('display', 'inline-block');
     console.log("Pre delete create button element: id:" + record.id);
