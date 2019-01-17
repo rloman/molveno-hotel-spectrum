@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Molveno Hotel Management</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/r-2.2.2/datatables.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <style>
+    @font-face {
+        font-family: Comfortaa;
+        src: url(css/Comfortaa-Regular.ttf);
+    }
+
+    html {
+      position: relative;
+      min-height: 100vh;
+    }
+
+    body {
+      font-family: "Comfortaa";
+      font-size: 11pt;
+      background: #c7dbdb;
+    }
+
+    .navbar {
+      background: #8c8cdb;
+    }
+
+    a {
+      color: black;
+    }
+
+    #company-image {
+      height: 40px;
+      width: 40px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-md navbar-light fixed-top">
+    <a class="navbar-image"><img id="company-image" src="css/Company_Logo.jpg"></a>
+    <div class="container-fluid">
+      <a class="navbar-brand">Molveno Employee Dashboard</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html">Home<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="guests.html">Guests</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="rooms.html">Rooms</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="reservations.html">Reservations</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Index content -->
+  <div class="jumbotron">
+  <h1 class="display-4">Molveno Hotel Management</h1>
+  <p class="lead">Start by clicking on one of the items in the navigation bar.</p>
+  <hr class="my-4">
+  <p>Each item in the navigation bar will show their respective table obtained from the database.</p>
+</div>
+</body>
+
+</html>

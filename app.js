@@ -104,9 +104,9 @@ app.put('/api/guests/:id', function(req, res) {
   console.log(now + ": Changing guest with id: " + id);
   console.log(now + ': Waiting... (Use CTRL-C to quit)');
   connection.query(
-    'UPDATE guests SET firstName = ?, lastName = ?, email = ?, phone = ?, address = ?, postalCode = ?, homeTown = ?, country = ?, mobile = ? WHERE id = ?',
-    [inputGuest.firstName, inputGuest.lastName, inputGuest.email, inputGuest.phone, inputGuest.address, inputGuest.postalCode,
-     inputGuest.homeTown, inputGuest.country, inputGuest.mobile, id],
+    'UPDATE guests SET firstName = ?, lastName = ?, address = ?, homeTown = ?, postalCode = ?, country = ?, telephoneNumber = ?, emailAddress = ? WHERE id = ?',
+    [inputGuest.firstName, inputGuest.lastName, inputGuest.address, inputGuest.homeTown, inputGuest.postalCode, inputGuest.country,
+     inputGuest.telephoneNumber, inputGuest.emailAddress, id],
     (err, result) => {
       if (!err) {
         console.log(now + `: Changed ${result.changedRows} row(s)`);
@@ -218,8 +218,8 @@ app.put('/api/rooms/:id', function(req, res) {
   let id = +req.params.id
   let inputRoom = req.body;
   connection.query(
-    'UPDATE rooms SET roomNumber=?, roomType=?, numberOfBeds = ? Where ID = ?',
-    [inputRoom.roomNumber, inputRoom.roomType, inputRoom.numberOfBeds, id],
+    'UPDATE rooms SET roomNumber=?, roomType=?, numberOfBeds = ?, roomPrice = ? Where ID = ?',
+    [inputRoom.roomNumber, inputRoom.roomType, inputRoom.numberOfBeds, inputRoom.roomPrice, id],
     (err, result) => {
       if (!err) {
         console.log(`Changed ${result.changedRows} row(s)`);
@@ -288,9 +288,10 @@ app.post('/api/reservations', function(req, res) {
 });
 
 app.get('/api/reservations', function(req, res) {
-  connection.query('select guests.firstName, guests.lastName, reservations.*\
-                    from guests inner join reservations on \
-                    guests.id = reservations.guest_id;', (err, reservations) => {
+  connection.query('select guests.firstName, guests.lastName, rooms.roomNumber, \
+  rooms.roomType, reservations.* from guests inner join reservations on \
+  guests.id = reservations.guest_id inner join rooms on \
+  reservations.room_id = rooms.id;', (err, reservations) => {
     if (!err) {
       res.setHeader('Content-Type', 'application/json');
       res.end(JSON.stringify(reservations));

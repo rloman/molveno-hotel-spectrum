@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Molveno Hotel Management</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/r-2.2.2/datatables.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <style>
+    @font-face {
+        font-family: Comfortaa;
+        src: url(css/Comfortaa-Regular.ttf);
+    }
+
+    html {
+      position: relative;
+      min-height: 100vh;
+    }
+
+    body {
+      font-family: "Comfortaa";
+      font-size: 11pt;
+      background: #c7dbdb;
+    }
+
+    .navbar {
+      background: #8c8cdb;
+    }
+
+    a {
+      color: black;
+    }
+
+    #company-image {
+      height: 40px;
+      width: 40px;
+    }
+
+    table.table-bordered {
+      border:1px solid blue;
+    }
+
+    table.table-bordered > thead > tr > th {
+      border:2px solid #8c8cdb;
+    }
+
+    table.table-bordered > tbody > tr > td {
+      border:2px solid #8c8cdb;
+    }
+
+    table.table-bordered > tfoot > tr > th {
+      border:2px solid #8c8cdb;
+    }
+  </style>
+
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-md navbar-light fixed-top">
+    <a class="navbar-image"><img id="company-image" src="css/Company_Logo.jpg"></a>
+    <div class="container-fluid">
+      <a class="navbar-brand">Molveno Employee Dashboard</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="guests.html">Guests</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="rooms.html">Rooms <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="reservations.html">Reservations</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Room overview -->
+  <div id="roomOverview" class="tab-pane active">
+    <div class="container-fluid">
+      <h1>Overview</h1>
+      <button id="addBtn" class="btn btn-primary mb-3 mt-3">Create new room</button>
+      <table id="roomTable" class="table table-striped table-bordered justify-content-center" cellspacing="0" width="100%">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>Room Number</th>
+            <th>Room Type</th>
+            <th>Number of Beds</th>
+            <th>Room Price</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th>id</th>
+            <th>Room Number</th>
+            <th>Room Type</th>
+            <th>Number of Beds</th>
+            <th>Room Price</th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="modal-title">Enter a post</h3>
+          <button type="button" class="close" onclick="deselect()" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form id="modalForm" enctype='text/plain'>
+            <label id="labelId" for="id"><b>ID:</b></label>
+            <input type='text' class="form-control mb-2" name="id" id="modalId" disabled>
+            <label id="labelRoomNumber" for="roomNumber"><b>Room Number:</b></label>
+            <input type='text' class="form-control mb-2" name="roomNumber" id="modalRoomNumber" maxlength="20">
+            <label id="labelRoomType" for="roomType"><b>Room Type:</b></label><br>
+            <div class="form-check-inline">
+              <input class="form-check-input" type="radio" name="roomType" id="roomBudget" value="Budget">
+              <label class="form-check-label" for="roomBudget">Budget</label>
+            </div>
+            <div class="form-check-inline">
+              <input class="form-check-input" type="radio" name="roomType" id="roomStandard" value="Standard">
+              <label class="form-check-label" for="roomStandard">Standard</label>
+            </div>
+            <div class="form-check-inline">
+              <input class="form-check-input" type="radio" name="roomType" id="roomLuxurious" value="Luxurious">
+              <label class="form-check-label" for="roomLuxurious">Luxurious</label>
+            </div>
+            <br><label id="labelNumberOfBeds" for="numberOfBeds"><b>Number of Beds:</b></label><br>
+            <div class="form-check-inline">
+              <input class="form-check-input" type="radio" name="numberOfBeds" id="beds1" value="1">
+              <label class="form-check-label" for="beds1">1</label>
+            </div>
+            <div class="form-check-inline">
+              <input class="form-check-input" type="radio" name="numberOfBeds" id="beds2" value="2">
+              <label class="form-check-label" for="beds2">2</label>
+            </div>
+            <div class="form-check-inline">
+              <input class="form-check-input" type="radio" name="numberOfBeds" id="beds3" value="3">
+              <label class="form-check-label" for="beds3">3</label>
+            </div>
+            <div class="form-check-inline">
+              <input class="form-check-input" type="radio" name="numberOfBeds" id="beds4" value="4">
+              <label class="form-check-label" for="beds4">4</label>
+            </div>
+            <br><label id="labelRoomPrice" for="roomPrice"><b>Room Price (€):</b></label><br>
+            <input type='text' class="form-control mb-2" name="roomPrice" id="modalRoomPrice">
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" id="btnsubmit">Submit</button>
+          <a href="#" id="confirmbutton" data-title="Are you sure you want to delete this room?" data-trigger="focus" data-toggle="clickover" data-placement="top" class="btn btn-danger">Delete</a>
+          <button type="button" class="btn btn-outline-secondary" id="btnclose" onclick="deselect()" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  <script src="https://cdn.datatables.net/v/bs4/dt-1.10.18/r-2.2.2/datatables.min.js"></script>
+  <script src="modules/moment.min.js"></script>
+</body>
+<script>
+  let api = "http://localhost:8081/api/rooms";
+  moment().format();
+  $(document).ready(function() {
+    initDataTable();
+    getData(api);
+    /* setInterval(function() {
+      getData(api);
+    }, 10000); */
+  });
+
+  function initDataTable() {
+    let roomTable = $('#roomTable').DataTable({
+      "processing": true,
+      "responsive": true,
+      "ajax": {
+        "url": api,
+        dataSrc: ''
+      },
+      "columns": [{
+        "data": "id"
+      }, {
+        "data": "roomNumber"
+      }, {
+        "data": "roomType"
+      }, {
+        "data": "numberOfBeds"
+      }, {
+        "data": "roomPrice",
+        "render": function(data, type, row) {
+          return '€' + data
+        }
+      }]
+    });
+  }
+
+  function getData(api) {
+    $.get(api, function(data) {
+      $('#roomTable').DataTable().ajax.reload(null, false); // User paging is not reset on reload
+    });
+  };
+
+  $("#addBtn").on('click', function() {
+    document.getElementById("modal-title").innerHTML = "Create a room";
+    document.getElementById("modalForm").reset();
+    $('#modalId').hide();
+    $('#labelId').hide();
+    $('#roomStandard').prop("checked", true);
+    $('#beds2').prop("checked", true);
+    $("#btnsubmit").attr('onclick', 'submitNew("' + api + '");');
+    $('#modal').modal('toggle');
+  });
+
+  function submitNew(api) {
+    let formData = $("#modalForm").serializeArray().reduce(function(result, object) {
+      result[object.name] = object.value;
+      return result
+    }, {});
+    for (let key in formData) {
+      if (formData[key] == "" || formData == null) delete formData[key];
+    }
+    console.log("Formdata =>");
+    console.log(formData);
+    $.post({
+      url: api,
+      data: JSON.stringify(formData),
+      dataType: "json",
+      contentType: "application/json",
+      success: getData(api),
+      error: function(error) {
+        console.log(error);
+      }
+    });
+
+    deselect();
+    $('#modal').modal('toggle');
+  }
+
+  function deselect() {
+    $('#roomTable tr.selected').removeClass('selected');
+    document.getElementById("modalForm").reset();
+  }
+
+  // This function gets called when we click on a table row
+  $('#roomTable tbody').on('click', 'tr', function(e) {
+    if ($(e.target).hasClass("sorting_1")) {
+      // Do nothing
+      return;
+    }
+    $('#modalId').show();
+    $('#labelId').show();
+    if ($(this).hasClass('selected')) {
+      $(this).removeClass('selected');
+    }
+    deselect();
+    $(this).addClass('selected');
+    let table = $('#roomTable').DataTable();
+    let data = table.row(this).data();
+
+    // this function fetches one record and fill the modal with the data and shows the modal for editing
+    getSingleRecord(data.id, api);
+
+    $('#modal').modal('toggle');
+  });
+
+  function getSingleRecord(id, api) {
+    apiPath = String(api + "/" + id);
+    console.log(`Logging URL ${apiPath}`);
+    $.get(apiPath, function(data) {
+      if (data) {
+        fillUpdateDiv(data, api);
+      }
+    });
+  }
+
+  function fillUpdateDiv(record, api) {
+    $("#btnsubmit").attr('onclick', 'submitEdit(' + record.id + ', "' + api + '");');
+    document.getElementById("modal-title").innerHTML = "Edit a room";
+    // this function fills the modal
+    fillModal(record);
+  }
+
+  function fillModal(record) {
+    $('#modalId').val(record.id);
+    $("#modalRoomNumber").val(record.roomNumber);
+    $('#modalRoomPrice').val(record.roomPrice);
+
+    switch(record.roomType) {
+      case 'Budget':
+      $('#roomBudget').prop("checked", true);
+      break;
+      case 'Standard':
+      $('#roomStandard').prop("checked", true);
+      break;
+      case 'Luxurious':
+      $('#roomLuxurious').prop("checked", true);
+      break;
+    }
+
+    switch(record.numberOfBeds) {
+      case 1:
+      $('#beds1').prop("checked", true);
+      break;
+      case 2:
+      $('#beds2').prop("checked", true);
+      break;
+      case 3:
+      $('#beds3').prop("checked", true);
+      break;
+      case 4:
+      $('#beds4').prop("checked", true);
+      break;
+    }
+
+    $("#confirmbutton").css('display', 'inline-block');
+    console.log("Pre delete create button element: id:" + record.id);
+    let elem = `<button type="button" class="btn btn-danger" onclick="submitDelete('${record.id}', '${api}');">Confirm delete</button>`;
+    $('#confirmbutton').popover('dispose');
+    $('#confirmbutton').popover({
+      animation: true,
+      content: elem,
+      html: true,
+      container: modal
+    });
+  }
+
+  function submitEdit(id, api) {
+    // shortcut for filling the formData as a JavaScript object with the fields in the form
+    let formData = $("#modalForm").serializeArray().reduce(function(result, object) {
+      result[object.name] = object.value;
+      return result
+    }, {});
+    console.log("Formdata =>");
+    console.log(formData);
+    for (let key in formData) {
+      if (formData[key] == "" || formData == null) delete formData[key];
+    }
+
+    console.log("Updating row with id:" + id)
+    $.ajax({
+      url: api + "/" + id,
+      type: "put",
+      data: JSON.stringify(formData),
+      dataType: "json",
+      contentType: "application/json",
+      success: getData(api),
+      error: function(error) {
+        console.log(error);
+      }
+    });
+
+    deselect();
+    $('#modal').modal('toggle');
+  }
+
+  function submitDelete(id, api) {
+
+    console.log(`Deleting row with id: ${id}`);
+    $.ajax({
+      url: api + "/" + id,
+      type: "DELETE",
+      dataType: 'json',
+      contentType: 'application/json',
+      success: getData(api),
+      error: function(error) {
+        console.log(error);
+      }
+    });
+
+    $('#modal').modal('toggle');
+  }
+</script>
+
+</html>
