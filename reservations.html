@@ -142,9 +142,9 @@
             <label id="labelId" for="id"><b>ID:</b></label>
             <input type='text' class="form-control mb-2" name="id" id="modalId" disabled>
             <label id="labelGuestId" for="guest_id"><b>Guest ID:</b></label>
-            <input type='text' class="form-control mb-2" name='guest_id' id="modalGuestId">
+            <input type='text' class="form-control mb-2" name='guest_id' id="modalGuestId" required>
             <label id="labelRoomId" for="room_id"><b>Room ID:</b></label>
-            <input type='text' class="form-control mb-2" name='room_id' id="modalRoomId">
+            <input type='text' class="form-control mb-2" name='room_id' id="modalRoomId" required>
             <label id="labelArrivalDate" for="arrivalDate"><b>Arrival Date:</b></label>
             <input type='date' class="form-control mb-2" name='arrivalDate' id="modalArrivalDate">
             <label id="labelDepartureDate" for="departureDate"><b>Departure Date:</b></label>
@@ -190,7 +190,7 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-success" id="btnsubmit">Submit</button>
           <a href="#" id="confirmbutton" data-title="Are you sure you want to delete this reservation?" data-trigger="focus" data-toggle="clickover" data-placement="top" class="btn btn-danger">Delete</a>
-          <button type="button" class="btn btn-default" id="btnclose" onclick="deselect()" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-outline-secondary" id="btnclose" onclick="deselect()" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>

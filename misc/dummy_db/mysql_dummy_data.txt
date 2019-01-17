@@ -42,6 +42,7 @@ insert into res_acc values (2, 3);
 select * from reservations where arrivalDate between cast('2018-12-01' AS DATE) and cast('2018-12-31' AS DATE);
 
 select guests.firstName, guests.lastName, reservations.* from guests inner join reservations on guests.id = reservations.guest_id;
+select reservations.*, guests.firstName, guests.lastName from reservations left join guests on reservations.guest_id = guests.id;
 
 select res_acc.*, reservations.* from res_acc inner join reservations on res_acc.reservation_id = reservations.id;
 
