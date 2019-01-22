@@ -209,6 +209,8 @@
   $(document).ready(function() {
     initDataTable();
     getData(api);
+    $('#modalId').hide();
+    $('#labelId').hide();
     /* setInterval(function() {
       getData(api);
     }, 10000); */
@@ -276,8 +278,6 @@
   $("#addBtn").on('click', function() {
     document.getElementById("modal-title").innerHTML = "Create a reservation";
     document.getElementById("modalForm").reset();
-    $('#modalId').hide();
-    $('#labelId').hide();
     let today = moment(new Date).format('YYYY-MM-DD');
     $('#modalArrivalDate').prop("min", today);
     $('#modalDepartureDate').prop("min", today);
@@ -324,8 +324,6 @@
       // Do nothing
       return;
     }
-    $('#modalId').show();
-    $('#labelId').show();
     if ($(this).hasClass('selected')) {
       $(this).removeClass('selected');
     }
