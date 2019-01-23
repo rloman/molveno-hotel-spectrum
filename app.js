@@ -19,7 +19,7 @@ const connection = mysql.createConnection({
   host: 'localhost',
   user: 'hotelmolveno',
   password: 'hotelmolvenorocks2018!',
-  database: 'molveno'
+  database: 'molveno_acct'
 });
 
 connection.connect((err) => {
@@ -558,7 +558,7 @@ app.delete('/api/guests/:id', function(req, res) {
   );
 });
 
-var server = app.listen(8081, function() {
+var server = app.listen(8082, function() {
   let now = new Date;
   console.log(now + ": Rest app listening at http://%s:%s", server.address().address, server.address().port);
 });
