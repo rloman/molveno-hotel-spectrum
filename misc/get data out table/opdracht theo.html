@@ -1,0 +1,101 @@
+<html>
+
+<head>
+  <script>
+    let jsonObject;
+
+    function onload() {
+      document.getElementById("buttonGetData").style.display = "";
+      document.getElementById("button2").style.display = "none";
+    }
+    // deze code is om data optehalen uit de table
+    function getData(api) {
+      // dit hoord er niet bij
+      document.getElementById("buttonGetData").style.display = "none";
+      document.getElementById("button2").style.display = "";
+      // hieonder wel
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("demo").innerHTML = this.responseText;
+          jsonObject = JSON.parse(this.responseText);
+        }
+      };
+      xhttp.open("GET", "http://localhost:8081/" + api);
+      xhttp.setRequestHeader("Content-type", "application/json");
+      xhttp.send();
+      console.log("xhttp is verzonden");
+    }
+    // hierboven is code om data uit de table op te hallen
+
+
+    function keuzenMenu(){
+      let value = document.getElementById('keuzenMenu').value;
+      if (value === "zoekOpNederland"){
+        zoekLand(jsonObject)
+        return
+      }
+      if (value === "naam"){
+        lijstNamen(jsonObject);
+        return
+      }
+      if (value === "alfabetischeVolgorde"){
+        alfabetischeVolgorde(jsonObject);
+        return
+      }
+    }
+    // sort op alfabetischeVolgorde
+    function alfabetischeVolgorde(data){
+      // code onder is om kopie van json object te maken
+      let copy = JSON.parse(JSON.stringify(data));
+      // hier onder een functie om te sorteren op achternaam
+      // copy.sort(function(a, b){return a.surname.localeCompare(b.surname)});
+      copy.sort((a, b) => a.surname.localeCompare(b.surname));
+      console.log(copy);
+      lijstNamen(copy);
+    }
+
+    // hieronder code om data in tabellen in de browser ze zetten
+    function lijstNamen(data) {
+      let lines = '';
+      for (let g of data) {
+        lines += `<tr>
+                    <td>${g.id}</td><td>${g.firstName}</td><td>${g.surname}</td><td>${g.address}</td><td>${g.homeTown}</td><td>${g.postalCode}</td><td>${g.telephonenumber}</td><td>${g.emailAddress}</td><td>${g.country}</td>
+                  </tr>`;
+      }
+      document.getElementById("demo2").innerHTML = `<table>
+            <thead>
+              <td>id</td><td>first name</td><td>surname</td><td>address</td><td>home town</td><td>postal code</td><td>telephonenumber</td><td>email address</td><td>country</td>
+
+            ${lines}
+          </table>`
+    }
+
+    // arrow functie om te zoeken in table naar 'The Netherlands'
+    function zoekLand(data) {
+      let guests = data.filter(({country}) => country === "The Netherlands");
+      lijstNamen(guests);
+    }
+  </script>
+</head>
+
+<body onload="onload()">
+  RESULT SERVER: <div id=demo></div>
+  <hr>
+  <div id="buttonGetData">
+    <button onclick="getData('api/guest')">getData 'all users'</button>
+  </div>
+  <div id="button2">
+    Data: <div id=demo2></div>
+    <button onclick="zoekLand(jsonObject)">zoek op land</button>
+    <select id="keuzenMenu">
+      <option selected>Maak zoek keuzen</option>
+      <option value="zoekOpNederland">zoek op nederland</option>
+      <option value="naam">op naam</option>
+      <option value="alfabetischeVolgorde">alfabetische volgorde</option>
+    </select>
+    <button onclick=" keuzenMenu()">zoek</button>
+  </div>
+</body>
+
+</html>
