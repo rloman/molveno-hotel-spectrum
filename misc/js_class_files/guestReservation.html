@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Molveno Hotel Management</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  <style>
+    @font-face {
+        font-family: Comfortaa;
+        src: url(css/Comfortaa-Regular.ttf);
+    }
+
+    body {
+      font-family: "Comfortaa";
+      font-size: 11pt;
+    }
+
+    .container-bg {
+      background: #c7dbdb;
+      min-width: 100vh;
+      min-height: 100vh;
+      padding-top: 56px;
+    }
+
+    .navbar {
+      background: #8c8cdb;
+    }
+
+    a {
+      color: black;
+    }
+
+    #company-image {
+      height: 40px;
+      width: 40px;
+    }
+
+    table.table-bordered {
+      border:1px solid blue;
+    }
+
+    table.table-bordered > thead > tr > th {
+      border:2px solid #8c8cdb;
+    }
+
+    table.table-bordered > tbody > tr > td {
+      border:2px solid #8c8cdb;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <a class="navbar-image"><img id="company-image" src="css/Company_Logo.jpg"></a>
+    <div class="container">
+      <a class="navbar-brand">Molveno Employee Dashboard</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="api/guests">Guests</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="api/rooms">Rooms</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="api/reservations">Reservations <span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container-bg">
+    <div class="container">
+      <h1>Test</h1>
+      <table id="reservationTable" class="table table-striped table-bordered table-hover text-center" style="width:100%">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>guest_id</th>
+            <th>firstName</th>
+            <th>lastName</th>
+            <th>room_id</th>
+            <th>arrivalDate</th>
+            <th>departureDate</th>
+            <th>numberOfGuests</th>
+            <th>guestHasCheckedIn</th>
+            <th>guestHasPaid</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+<script>
+  function getData(api) {
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState === 4 && this.status === 200) {
+        console.log(`${this.responseText}`);
+        parseJSON(this.responseText);
+      }
+    };
+    xhttp.open("GET", "http://localhost:8081/" + api);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send();
+  }
+
+  function parseJSON(data) {
+    let reservations = JSON.parse(data)
+    for (let reservation of reservations) {
+      console.log(reservation.id);
+    }
+  }
+  getData('api/reservations')
+
+  $(document).ready(function() {
+    console.log("ready!");
+    let xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "http://localhost:8081/api/reservations");
+    xhttp.setRequestHeader("Content-type", "application/json");
+
+    xhttp.onload = function() {
+      if (xhttp.status === 200) {
+        let reservations = JSON.parse(xhttp.responseText)
+
+        let i;
+        i = 0;
+
+        while (i <= reservations.length - 1) {
+          let obj = reservations[i];
+          $('#reservationTable tbody').append(
+            `<tr><td> ${obj.id} </td><td> ${obj.guest_id} </td><td> ${obj.firstName}
+            </td><td> ${obj.lastName} </td><td> ${obj.room_id} </td><td> ${obj.arrivalDate}
+            </td><td> ${obj.departureDate} </td><td> ${obj.numberOfGuests} </td><td>
+            ${obj.guestHasCheckedIn} </td><td> ${obj.guestHasPaid} </td></tr>`
+          );
+          i++;
+        }
+      }
+    }
+    xhttp.send();
+  });
+</script>
+
+</html>

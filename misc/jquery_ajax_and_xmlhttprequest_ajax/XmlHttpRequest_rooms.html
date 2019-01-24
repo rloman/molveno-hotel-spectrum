@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      // CREATE / POST
+      function userVersturen(){
+        var api = "api/rooms";
+        var roomNumber = document.getElementById("roomNumber").value;
+        var roomType = document.getElementById("roomType").value;
+        var numberOfBeds = document.getElementById("numberOfBeds").value;
+
+        var room = {roomNumber:roomNumber, roomType:roomType, numberOfBeds:numberOfBeds};
+        postData(api, JSON.stringify(room));
+      }
+
+      function postData(api, data){
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 201) {
+            document.getElementById("demo").innerHTML = this.responseText;
+            }
+          };
+          xhttp.open("POST", "http://localhost:8081/"+api, true);
+          xhttp.setRequestHeader("Content-type", "application/json");
+          xhttp.send(data);
+      }
+
+      // READ / GET
+      function getApiUrl(){
+        var api = document.getElementById("apiUrl").value;
+        getData(api);
+      }
+      function getData(api){
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("demo").innerHTML = this.responseText;
+            // parseJson(this.responseText);
+            JSON.parse(this.responseText);
+            }
+        };
+        xhttp.open("GET", "http://localhost:8081/"+api);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send();
+      }
+
+      // DELETE
+      function deleteApiUrl(){
+        var api = document.getElementById("apiUrlDelete").value;
+        deleteData(api);
+      }
+      function deleteData(api){
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("DELETE", "http://localhost:8081/"+api);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send();
+      }
+
+      // UPDATE / PUT
+      function UpdateApiUrl(){
+        var api = document.getElementById("apiUrlUpdate").value;
+        var roomNumber = document.getElementById("roomNumberUpdate").value;
+        var roomType = document.getElementById("roomTypeUpdate").value;
+        var numberOfBeds = document.getElementById("numberOfBedsUpdate").value;
+
+        var room = {roomNumber:roomNumber, roomType:roomType, numberOfBeds:numberOfBeds};
+        updateData(api, JSON.stringify(room));
+      }
+
+      function updateData(api, data){
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("demo").innerHTML = this.responseText;
+            }
+          };
+          xhttp.open("PUT", "http://localhost:8081/"+api, true);
+          xhttp.setRequestHeader("Content-type", "application/json");
+          xhttp.send(data);
+      }
+
+    </script>
+  </head>
+  <body>
+    <h3>Rooms</h3>
+    roomNumber:<input type="text" id="roomNumber" /><br/>
+    roomType:<input type="text" id="roomType" /><br/>
+    numberOfBeds:<input type="text" id="numberOfBeds" /><br/>
+    <button onclick="userVersturen()">Verstuur</button><br>
+    <hr />
+    api: <input type=text id="apiUrl" value="api/rooms" />
+    <button onclick="getApiUrl()">getData rooms</button><br>
+    <hr/>
+    api: <input type=text id="apiUrlDelete" value="api/rooms/" />
+    <button onclick="deleteApiUrl()"> delete room</button><br>
+    <hr/>
+    api: <input type=text id="apiUrlUpdate" value="api/rooms/" /><br>
+    roomNumber:<input type="text" id="roomNumberUpdate" /><br/>
+    roomType:<input type="text" id="roomTypeUpdate" /><br/>
+    numberOfBeds:<input type="text" id="numberOfBedsUpdate" /><br/>
+    <button onclick="UpdateApiUrl()"> update room</button><br>
+    <hr/>
+    RESULT SERVER: <div id=demo></div>
+  </body>
+</html>
