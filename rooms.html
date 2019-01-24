@@ -180,11 +180,14 @@
   <script src="modules/moment.min.js"></script>
 </body>
 <script>
-  let api = "http://localhost:8081/api/rooms";
+  // let api = "http://localhost:8081/api/rooms";
+  let api = "http://api.test.hotelmolveno.carpago.nl/api/rooms";
   moment().format();
   $(document).ready(function() {
     initDataTable();
     getData(api);
+    $('#modalId').hide();
+    $('#labelId').hide();
     /* setInterval(function() {
       getData(api);
     }, 10000); */
@@ -224,8 +227,6 @@
   $("#addBtn").on('click', function() {
     document.getElementById("modal-title").innerHTML = "Create a room";
     document.getElementById("modalForm").reset();
-    $('#modalId').hide();
-    $('#labelId').hide();
     $('#roomStandard').prop("checked", true);
     $('#beds2').prop("checked", true);
     $("#btnsubmit").attr('onclick', 'submitNew("' + api + '");');
@@ -268,8 +269,6 @@
       // Do nothing
       return;
     }
-    $('#modalId').show();
-    $('#labelId').show();
     if ($(this).hasClass('selected')) {
       $(this).removeClass('selected');
     }

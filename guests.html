@@ -170,9 +170,12 @@
   <script src="modules/moment.min.js"></script>
 </body>
 <script>
-  let api = "http://localhost:8081/api/guests";
+  // let api = "http://localhost:8081/api/guests";
+  let api = "http://api.test.hotelmolveno.carpago.nl/api/guests";
   moment().format();
   $(document).ready(function() {
+    $('#modalId').hide();
+    $('#labelId').hide();
     initDataTable();
     getData(api);
     /* setInterval(function() {
@@ -219,8 +222,6 @@
   $("#addBtn").on('click', function() {
     document.getElementById("modal-title").innerHTML = "Add a guest";
     document.getElementById("modalForm").reset();
-    $('#modalId').hide();
-    $('#labelId').hide();
     $("#btnsubmit").attr('onclick', 'submitNew("' + api + '");');
     $('#modal').modal('toggle');
   });
@@ -261,8 +262,6 @@
       // Do nothing
       return;
     }
-    $('#modalId').show();
-    $('#labelId').show();
     if ($(this).hasClass('selected')) {
       $(this).removeClass('selected');
     }
