@@ -174,7 +174,7 @@
   moment().format();
   $(document).ready(function() {
     initDataTable();
-    getData(api);
+    getData();
     /* setInterval(function() {
       getData(api);
     }, 10000); */
@@ -210,10 +210,8 @@
     });
   }
 
-  function getData(api) {
-    $.get(api, function(data) {
-      $('#guestTable').DataTable().ajax.reload(null, false); // User paging is not reset on reload
-    });
+  function getData() {
+      $('#guestTable').dataTable().api().ajax.reload(null, false); // User paging is not reset on reload
   };
 
   $("#addBtn").on('click', function() {
@@ -240,7 +238,7 @@
       data: JSON.stringify(formData),
       dataType: "json",
       contentType: "application/json",
-      success: getData(api),
+      success: getData,
       error: function(error) {
         console.log(error);
       }
@@ -336,7 +334,7 @@
       data: JSON.stringify(formData),
       dataType: "json",
       contentType: "application/json",
-      success: getData(api),
+      success: getData,
       error: function(error) {
         console.log(error);
       }
@@ -354,7 +352,7 @@
       type: "DELETE",
       dataType: 'json',
       contentType: 'application/json',
-      success: getData(api),
+      success: getData,
       error: function(error) {
         console.log(error);
       }
