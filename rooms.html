@@ -195,6 +195,7 @@
 
   function initDataTable() {
     let roomTable = $('#roomTable').DataTable({
+      "lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"] ],
       "processing": true,
       "responsive": true,
       "ajax": {
