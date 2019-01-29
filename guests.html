@@ -94,7 +94,6 @@
       <table id="guestTable" class="table table-striped table-bordered justify-content-center" cellspacing="0" width="100%">
         <thead>
           <tr>
-            <th>id</th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Address</th>
@@ -103,13 +102,13 @@
             <th>Country</th>
             <th>Telephone Number</th>
             <th>Email Address</th>
+            <th>id</th>
           </tr>
         </thead>
         <tbody>
         </tbody>
         <tfoot>
           <tr>
-            <th>id</th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Address</th>
@@ -118,6 +117,7 @@
             <th>Country</th>
             <th>Telephone Number</th>
             <th>Email Address</th>
+            <th>id</th>
           </tr>
         </tfoot>
       </table>
@@ -184,7 +184,13 @@
 
   function initDataTable() {
     let guestTable = $('#guestTable').DataTable({
-      "lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"] ],
+      "lengthMenu": [
+        [10, 25, 50, 100, -1],
+        [10, 25, 50, 100, "All"]
+      ],
+      "order": [
+        [8, "asc"]
+      ],
       "processing": true,
       "responsive": true,
       "ajax": {
@@ -192,8 +198,6 @@
         dataSrc: ''
       },
       "columns": [{
-        "data": "id"
-      }, {
         "data": "firstName"
       }, {
         "data": "lastName"
@@ -209,13 +213,25 @@
         "data": "telephoneNumber"
       }, {
         "data": "emailAddress"
-      }]
+      }, {
+        "data": "id"
+      }],
+      "columnDefs": [{
+          "targets": [8],
+          "visible": false,
+          "searchable": false
+        },
+        {
+          "className": "responsiveButton",
+          "targets": [0]
+        }
+      ]
     });
   }
 
   function getData() {
     console.log(`I am in getData`);
-    $.get(api, function (data) {
+    $.get(api, function(data) {
       $('#guestTable').DataTable().ajax.reload(null, false); // User paging is not reset on reload
     });
   };
@@ -259,7 +275,7 @@
 
   // This function gets called when we click on a table row
   $('#guestTable tbody').on('click', 'tr', function(e) {
-    if ($(e.target).hasClass("sorting_1")) {
+    if ($(e.target).hasClass("responsiveButton")) {
       // Do nothing
       return;
     }

@@ -94,9 +94,6 @@
       <table id="reservationTable" class="table table-striped table-bordered justify-content-center" cellspacing="0" width="100%">
         <thead>
           <tr>
-            <th>id</th>
-            <th>Guest_id</th>
-            <th>Room_id</th>
             <th>Arrival Date (D-M-Y)</th>
             <th>Departure Date (D-M-Y)</th>
             <th>Number of guests</th>
@@ -106,15 +103,15 @@
             <th>Last Name</th>
             <th>Room Number</th>
             <th>Room Type</th>
+            <th>id</th>
+            <th>Guest_id</th>
+            <th>Room_id</th>
           </tr>
         </thead>
         <tbody>
         </tbody>
         <tfoot>
           <tr>
-            <th>id</th>
-            <th>Guest_id</th>
-            <th>Room_id</th>
             <th>Arrival Date (D-M-Y)</th>
             <th>Departure Date (D-M-Y)</th>
             <th>Number of guests</th>
@@ -124,6 +121,9 @@
             <th>Last Name</th>
             <th>Room Number</th>
             <th>Room Type</th>
+            <th>id</th>
+            <th>Guest_id</th>
+            <th>Room_id</th>
           </tr>
         </tfoot>
       </table>
@@ -218,7 +218,13 @@
 
   function initDataTable() {
     let reservationTable = $('#reservationTable').DataTable({
-      "lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"] ],
+      "lengthMenu": [
+        [10, 25, 50, 100, -1],
+        [10, 25, 50, 100, "All"]
+      ],
+      "order": [
+        [9, "asc"]
+      ],
       "processing": true,
       "responsive": true,
       "ajax": {
@@ -226,12 +232,6 @@
         dataSrc: ''
       },
       "columns": [{
-        "data": "id"
-      }, {
-        "data": "guest_id"
-      }, {
-        "data": "room_id"
-      }, {
         "data": "arrivalDate"
       }, {
         "data": "departureDate"
@@ -257,16 +257,32 @@
         "data": "roomNumber"
       }, {
         "data": "roomType"
+      }, {
+        "data": "id"
+      }, {
+        "data": "guest_id"
+      }, {
+        "data": "room_id"
       }],
       "columnDefs": [{
-        "targets": [3, 4],
-        render: function(data, type, row) {
-          if (type === "sort" || type === "type") {
-            return data;
+          "targets": [9, 10, 11],
+          "visible": false,
+          "searchable": false
+        },
+        {
+          "className": "responsiveButton",
+          "targets": [0]
+        },
+        {
+          "targets": [0, 1],
+          render: function(data, type, row) {
+            if (type === "sort" || type === "type") {
+              return data;
+            }
+            return moment(data).format("DD-MM-YYYY");
           }
-          return moment(data).format("DD-MM-YYYY");
         }
-      }]
+      ]
     });
   }
 
@@ -321,7 +337,7 @@
 
   // This function gets called when we click on a table row
   $('#reservationTable tbody').on('click', 'tr', function(e) {
-    if ($(e.target).hasClass("sorting_1")) {
+    if ($(e.target).hasClass("responsiveButton")) {
       // Do nothing
       return;
     }
@@ -370,37 +386,37 @@
     $('#modalArrivalDate').prop("value", arrivalDate);
     $('#modalDepartureDate').prop("value", departureDate);
 
-    switch(record.numberOfGuests) {
+    switch (record.numberOfGuests) {
       case 1:
-      $('#guests1').prop("checked", true);
-      break;
+        $('#guests1').prop("checked", true);
+        break;
       case 2:
-      $('#guests2').prop("checked", true);
-      break;
+        $('#guests2').prop("checked", true);
+        break;
       case 3:
-      $('#guests3').prop("checked", true);
-      break;
+        $('#guests3').prop("checked", true);
+        break;
       case 4:
-      $('#guests4').prop("checked", true);
-      break;
+        $('#guests4').prop("checked", true);
+        break;
     }
 
-    switch(record.guestHasCheckedIn) {
+    switch (record.guestHasCheckedIn) {
       case 0:
-      $('#guestCheckIn0').prop("checked", true);
-      break;
+        $('#guestCheckIn0').prop("checked", true);
+        break;
       case 1:
-      $('#guestCheckIn1').prop("checked", true);
-      break;
+        $('#guestCheckIn1').prop("checked", true);
+        break;
     }
 
-    switch(record.guestHasPaid) {
+    switch (record.guestHasPaid) {
       case 0:
-      $('#guestHasPaid0').prop("checked", true);
-      break;
+        $('#guestHasPaid0').prop("checked", true);
+        break;
       case 1:
-      $('#guestHasPaid1').prop("checked", true);
-      break;
+        $('#guestHasPaid1').prop("checked", true);
+        break;
     }
 
     $("#confirmbutton").css('display', 'inline-block');

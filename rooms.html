@@ -94,22 +94,22 @@
       <table id="roomTable" class="table table-striped table-bordered justify-content-center" cellspacing="0" width="100%">
         <thead>
           <tr>
-            <th>id</th>
             <th>Room Number</th>
             <th>Room Type</th>
             <th>Number of Beds</th>
             <th>Room Price</th>
+            <th>id</th>
           </tr>
         </thead>
         <tbody>
         </tbody>
         <tfoot>
           <tr>
-            <th>id</th>
             <th>Room Number</th>
             <th>Room Type</th>
             <th>Number of Beds</th>
             <th>Room Price</th>
+            <th>id</th>
           </tr>
         </tfoot>
       </table>
@@ -195,7 +195,13 @@
 
   function initDataTable() {
     let roomTable = $('#roomTable').DataTable({
-      "lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"] ],
+      "lengthMenu": [
+        [10, 25, 50, 100, -1],
+        [10, 25, 50, 100, "All"]
+      ],
+      "order": [
+        [4, "asc"]
+      ],
       "processing": true,
       "responsive": true,
       "ajax": {
@@ -203,8 +209,6 @@
         dataSrc: ''
       },
       "columns": [{
-        "data": "id"
-      }, {
         "data": "roomNumber"
       }, {
         "data": "roomType"
@@ -215,6 +219,17 @@
         "render": function(data, type, row) {
           return '€' + data
         }
+      }, {
+        "data": "id"
+      }],
+      "columnDefs": [{
+        "targets": [4],
+        "visible": false,
+        "searchable": false
+      },
+      {
+        "className": "responsiveButton",
+        "targets": [0]
       }]
     });
   }
@@ -266,7 +281,7 @@
 
   // This function gets called when we click on a table row
   $('#roomTable tbody').on('click', 'tr', function(e) {
-    if ($(e.target).hasClass("sorting_1")) {
+    if ($(e.target).hasClass("responsiveButton")) {
       // Do nothing
       return;
     }
@@ -306,31 +321,31 @@
     $("#modalRoomNumber").val(record.roomNumber);
     $('#modalRoomPrice').val(record.roomPrice);
 
-    switch(record.roomType) {
+    switch (record.roomType) {
       case 'Budget':
-      $('#roomBudget').prop("checked", true);
-      break;
+        $('#roomBudget').prop("checked", true);
+        break;
       case 'Standard':
-      $('#roomStandard').prop("checked", true);
-      break;
+        $('#roomStandard').prop("checked", true);
+        break;
       case 'Luxurious':
-      $('#roomLuxurious').prop("checked", true);
-      break;
+        $('#roomLuxurious').prop("checked", true);
+        break;
     }
 
-    switch(record.numberOfBeds) {
+    switch (record.numberOfBeds) {
       case 1:
-      $('#beds1').prop("checked", true);
-      break;
+        $('#beds1').prop("checked", true);
+        break;
       case 2:
-      $('#beds2').prop("checked", true);
-      break;
+        $('#beds2').prop("checked", true);
+        break;
       case 3:
-      $('#beds3').prop("checked", true);
-      break;
+        $('#beds3').prop("checked", true);
+        break;
       case 4:
-      $('#beds4').prop("checked", true);
-      break;
+        $('#beds4').prop("checked", true);
+        break;
     }
 
     $("#confirmbutton").css('display', 'inline-block');
