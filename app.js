@@ -333,8 +333,8 @@ app.put('/api/reservations/:id', function(req, res) {
   let inputReservations = req.body;
 
   connection.query(
-    'UPDATE reservations SET guest_id=?, room_id=?, arrivalDate=?, departureDate=?, numberOfGuests=?, guestHasCheckedIn=?, guestHasPaid=? Where ID = ?',
-    [inputReservations.guest_id, inputReservations.room_id, inputReservations.arrivalDate, inputReservations.departureDate, inputReservations.numberOfGuests, inputReservations.guestHasCheckedIn, inputReservations.guestHasPaid, id],
+    'UPDATE reservations SET guest_id=?, room_id=?, numberOfGuests=?, arrivalDate=?, departureDate=?, guestHasCheckedIn=?, guestHasPaid=?, guestHasCheckedOut=? Where ID = ?',
+    [inputReservations.guest_id, inputReservations.room_id, inputReservations.numberOfGuests, inputReservations.arrivalDate, inputReservations.departureDate, inputReservations.guestHasCheckedIn, inputReservations.guestHasPaid, inputReservations.guestHasCheckedOut, id],
     (err, result) => {
       if (!err) {
         console.log(`Changed ${result.changedRows} row(s)`);
