@@ -94,13 +94,14 @@
       <table id="reservationTable" class="table table-striped table-bordered justify-content-center" cellspacing="0" width="100%">
         <thead>
           <tr>
-            <th>Arrival Date (D-M-Y)</th>
-            <th>Departure Date (D-M-Y)</th>
-            <th>Number of guests</th>
-            <th>Guest has checked in</th>
-            <th>Guest has paid</th>
             <th>First Name</th>
             <th>Last Name</th>
+            <th>Number of guests</th>
+            <th>Arrival Date (D-M-Y)</th>
+            <th>Departure Date (D-M-Y)</th>
+            <th>Guest has checked in</th>
+            <th>Guest has paid</th>
+            <th>Guest has checked out</th>
             <th>Room Number</th>
             <th>Room Type</th>
             <th>id</th>
@@ -112,13 +113,14 @@
         </tbody>
         <tfoot>
           <tr>
-            <th>Arrival Date (D-M-Y)</th>
-            <th>Departure Date (D-M-Y)</th>
-            <th>Number of guests</th>
-            <th>Guest has checked in</th>
-            <th>Guest has paid</th>
             <th>First Name</th>
             <th>Last Name</th>
+            <th>Number of guests</th>
+            <th>Arrival Date (D-M-Y)</th>
+            <th>Departure Date (D-M-Y)</th>
+            <th>Guest has checked in</th>
+            <th>Guest has paid</th>
+            <th>Guest has checked out</th>
             <th>Room Number</th>
             <th>Room Type</th>
             <th>id</th>
@@ -145,10 +147,6 @@
             <input type='text' class="form-control mb-2" name='guest_id' id="modalGuestId" required>
             <label id="labelRoomId" for="room_id"><b>Room ID:</b></label>
             <input type='text' class="form-control mb-2" name='room_id' id="modalRoomId" required>
-            <label id="labelArrivalDate" for="arrivalDate"><b>Arrival Date:</b></label>
-            <input type='date' class="form-control mb-2" name='arrivalDate' id="modalArrivalDate">
-            <label id="labelDepartureDate" for="departureDate"><b>Departure Date:</b></label>
-            <input type='date' class="form-control mb-2" name='departureDate' id="modalDepartureDate">
             <label id="labelNumberOfGuests" for="numberOfGuests"><b>Number of guests:</b></label><br>
             <div class="form-check-inline">
               <input class="form-check-input" type="radio" name="numberOfGuests" id="guests1" value="1">
@@ -166,7 +164,12 @@
               <input class="form-check-input" type="radio" name="numberOfGuests" id="guests4" value="4">
               <label class="form-check-label" for="guests4">4</label>
             </div>
-            <br><label id="labelGuestHasCheckedIn" for="guestHasCheckedIn"><b>Guest has checked in:</b></label><br>
+            <br>
+            <label id="labelArrivalDate" for="arrivalDate"><b>Arrival Date:</b></label>
+            <input type='date' class="form-control mb-2" name='arrivalDate' id="modalArrivalDate">
+            <label id="labelDepartureDate" for="departureDate"><b>Departure Date:</b></label>
+            <input type='date' class="form-control mb-2" name='departureDate' id="modalDepartureDate">
+            <label id="labelGuestHasCheckedIn" for="guestHasCheckedIn"><b>Guest has checked in:</b></label><br>
             <div class="form-check-inline">
               <input class="form-check-input" type="radio" name="guestHasCheckedIn" id="guestCheckIn1" value="1">
               <label class="form-check-label" for="guestCheckIn1">Yes</label>
@@ -183,6 +186,15 @@
             <div class="form-check-inline">
               <input class="form-check-input" type="radio" name="guestHasPaid" id="guestHasPaid0" value="0">
               <label class="form-check-label" for="guestHasPaid0">No</label>
+            </div>
+            <br><label id="labelGuestHasCheckedOut" for="guestHasCheckedOut"><b>Guest has checked out:</b></label><br>
+            <div class="form-check-inline">
+              <input class="form-check-input" type="radio" name="guestHasCheckedOut" id="guestCheckOut1" value="1">
+              <label class="form-check-label" for="guestCheckOut1">Yes</label>
+            </div>
+            <div class="form-check-inline">
+              <input class="form-check-input" type="radio" name="guestHasCheckedOut" id="guestCheckOut0" value="0">
+              <label class="form-check-label" for="guestCheckOut0">No</label>
             </div>
           </form>
 
@@ -208,7 +220,6 @@
   moment().format();
   $(document).ready(function() {
     initDataTable();
-    getData(api);
     $('#modalId').hide();
     $('#labelId').hide();
     /* setInterval(function() {
@@ -223,7 +234,7 @@
         [10, 25, 50, 100, "All"]
       ],
       "order": [
-        [9, "asc"]
+        [10, "asc"]
       ],
       "processing": true,
       "responsive": true,
@@ -232,11 +243,15 @@
         dataSrc: ''
       },
       "columns": [{
+        "data": "firstName"
+      }, {
+        "data": "lastName"
+      }, {
+        "data": "numberOfGuests"
+      }, {
         "data": "arrivalDate"
       }, {
         "data": "departureDate"
-      }, {
-        "data": "numberOfGuests"
       }, {
         "data": "guestHasCheckedIn",
         "render": function(data, type, row) {
@@ -250,9 +265,11 @@
             '<i class="fa fa-times" style="color:red"></i>';
         }
       }, {
-        "data": "firstName"
-      }, {
-        "data": "lastName"
+        "data": "guestHasCheckedOut",
+        "render": function(data, type, row) {
+          return (data === 1) ? '<i class="fa fa-check" style="color:green"></i>' :
+            '<i class="fa fa-times" style="color:red"></i>';
+        }
       }, {
         "data": "roomNumber"
       }, {
@@ -265,7 +282,7 @@
         "data": "room_id"
       }],
       "columnDefs": [{
-          "targets": [9, 10, 11],
+          "targets": [10, 11, 12],
           "visible": false,
           "searchable": false
         },
@@ -274,7 +291,7 @@
           "targets": [0]
         },
         {
-          "targets": [0, 1],
+          "targets": [3, 4],
           render: function(data, type, row) {
             if (type === "sort" || type === "type") {
               return data;
@@ -286,7 +303,8 @@
     });
   }
 
-  function getData(api) {
+  function getData() {
+    console.log(`I am in getData`);
     $.get(api, function(data) {
       $('#reservationTable').DataTable().ajax.reload(null, false); // User paging is not reset on reload
     });
@@ -301,6 +319,7 @@
     $('#guests2').prop("checked", true);
     $('#guestCheckIn0').prop("checked", true);
     $('#guestHasPaid0').prop("checked", true);
+    $('#guestCheckOut0').prop("checked", true);
     $("#btnsubmit").attr('onclick', 'submitNew("' + api + '");');
     $('#modal').modal('toggle');
   });
@@ -320,7 +339,7 @@
       data: JSON.stringify(formData),
       dataType: "json",
       contentType: "application/json",
-      success: getData(api),
+      success: getData,
       error: function(error) {
         console.log(error);
       }
@@ -419,6 +438,15 @@
         break;
     }
 
+    switch (record.guestHasCheckedOut) {
+      case 0:
+        $('#guestCheckOut0').prop("checked", true);
+        break;
+      case 1:
+        $('#guestCheckOut1').prop("checked", true);
+        break;
+    }
+
     $("#confirmbutton").css('display', 'inline-block');
     console.log("Pre delete create button element: id:" + record.id);
     let elem = `<button type="button" class="btn btn-danger" onclick="submitDelete('${record.id}', '${api}');">Confirm delete</button>`;
@@ -450,7 +478,7 @@
       data: JSON.stringify(formData),
       dataType: "json",
       contentType: "application/json",
-      success: getData(api),
+      success: getData,
       error: function(error) {
         console.log(error);
       }
@@ -468,7 +496,7 @@
       type: "DELETE",
       dataType: 'json',
       contentType: 'application/json',
-      success: getData(api),
+      success: getData,
       error: function(error) {
         console.log(error);
       }

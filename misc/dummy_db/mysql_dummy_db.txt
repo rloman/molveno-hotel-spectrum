@@ -14,7 +14,8 @@ create table rooms (
 id int not null auto_increment primary key,
 roomNumber varchar(30) not null, 
 roomType varchar(30) not null,
-numberOfBeds int not null
+numberOfBeds int not null,
+roomPrice double not null
 );
 
 create table blocked_rooms (
@@ -34,6 +35,7 @@ departureDate date not null,
 numberOfGuests int not null,
 guestHasCheckedIn bool not null,
 guestHasPaid bool not null,
+guestHasCheckedOut tinyint(1) not null,
 constraint `fk_guest_info`
 foreign key (guest_id) references guests (id)
 on delete cascade

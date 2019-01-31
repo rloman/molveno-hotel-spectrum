@@ -185,7 +185,6 @@
   moment().format();
   $(document).ready(function() {
     initDataTable();
-    getData(api);
     $('#modalId').hide();
     $('#labelId').hide();
     /* setInterval(function() {
@@ -234,7 +233,8 @@
     });
   }
 
-  function getData(api) {
+  function getData() {
+    console.log(`I am in getData`);
     $.get(api, function(data) {
       $('#roomTable').DataTable().ajax.reload(null, false); // User paging is not reset on reload
     });
@@ -264,7 +264,7 @@
       data: JSON.stringify(formData),
       dataType: "json",
       contentType: "application/json",
-      success: getData(api),
+      success: getData,
       error: function(error) {
         console.log(error);
       }
@@ -379,7 +379,7 @@
       data: JSON.stringify(formData),
       dataType: "json",
       contentType: "application/json",
-      success: getData(api),
+      success: getData,
       error: function(error) {
         console.log(error);
       }
@@ -397,7 +397,7 @@
       type: "DELETE",
       dataType: 'json',
       contentType: 'application/json',
-      success: getData(api),
+      success: getData,
       error: function(error) {
         console.log(error);
       }
