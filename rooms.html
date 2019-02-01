@@ -129,6 +129,7 @@
             <input type='text' class="form-control mb-2" name="id" id="modalId" disabled>
             <label id="labelRoomNumber" for="roomNumber"><b>Room Number:</b></label>
             <input type='text' class="form-control mb-2" name="roomNumber" id="modalRoomNumber" maxlength="20">
+            <div id="duplicateRoomNumber" class="text-danger font-weight-bold"></div>
             <label id="labelRoomType" for="roomType"><b>Room Type:</b></label><br>
             <div class="form-check-inline">
               <input class="form-check-input" type="radio" name="roomType" id="roomBudget" value="Budget">
@@ -222,14 +223,15 @@
         "data": "id"
       }],
       "columnDefs": [{
-        "targets": [4],
-        "visible": false,
-        "searchable": false
-      },
-      {
-        "className": "responsiveButton",
-        "targets": [0]
-      }]
+          "targets": [4],
+          "visible": false,
+          "searchable": false
+        },
+        {
+          "className": "responsiveButton",
+          "targets": [0]
+        }
+      ]
     });
   }
 
@@ -243,11 +245,29 @@
   $("#addBtn").on('click', function() {
     document.getElementById("modal-title").innerHTML = "Create a room";
     document.getElementById("modalForm").reset();
+    $('#duplicateRoomNumber').empty();
     $('#roomStandard').prop("checked", true);
     $('#beds2').prop("checked", true);
-    $("#btnsubmit").attr('onclick', 'submitNew("' + api + '");');
+    $("#btnsubmit").attr('onclick', 'validityCheck("' + api + '");');
     $('#modal').modal('toggle');
   });
+
+  function validityCheck(api) {
+    $.get({
+      url: api,
+      dataType: "json",
+      contentType: "application/json",
+      success: function(data) {
+        let roomInfo = data.map(x => x.roomNumber);
+        let roomNumber = $('#modalRoomNumber').val();
+        if (roomInfo.includes(roomNumber) === true) {
+          $('#duplicateRoomNumber').html('This room number already exists.');
+        } else {
+          submitNew(api);
+        }
+      }
+    });
+  }
 
   function submitNew(api) {
     let formData = $("#modalForm").serializeArray().reduce(function(result, object) {
@@ -281,6 +301,7 @@
 
   // This function gets called when we click on a table row
   $('#roomTable tbody').on('click', 'tr', function(e) {
+    $('#duplicateRoomNumber').empty();
     if ($(e.target).hasClass("responsiveButton")) {
       // Do nothing
       return;
