@@ -147,10 +147,34 @@
           <form id="modalForm" enctype='text/plain'>
             <label id="labelId" for="id"><b>ID:</b></label>
             <input type='text' class="form-control mb-2" name="id" id="modalId" disabled>
-            <label id="labelGuestId" for="guest_id"><b>Guest ID:</b></label>
-            <input type='text' class="form-control mb-2" name='guest_id' id="modalGuestId" required>
-            <label id="labelRoomId" for="room_id"><b>Room ID:</b></label>
-            <input type='text' class="form-control mb-2" name='room_id' id="modalRoomId" required>
+            <div class="form-row">
+              <div class="form-group col-3">
+                <label id="labelGuestId" for="guest_id"><b>Guest ID:</b></label>
+                <input type='text' class="form-control mb-2" name='guest_id' id="modalGuestId" oninput="updateGuestInfo()" required>
+              </div>
+              <div class="form-group col-4">
+                <label id="labelFirstName" for="firstName"><b>First Name:</b></label>
+                <input type="text" class="form-control mb-2" name="firstName" id="modalFirstName" disabled>
+              </div>
+              <div class="form-group col-4">
+                <label id="labelLastName" for="lastName"><b>Last Name:</b></label>
+                <input type="text" class="form-control mb-2" name="lastName" id="modalLastName" disabled>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-3">
+                <label id="labelRoomId" for="room_id"><b>Room ID:</b></label>
+                <input type='text' class="form-control mb-2" name='room_id' id="modalRoomId" oninput="updateRoomInfo()" required>
+              </div>
+              <div class="form-group col-4">
+                <label id="labelRoomNumber" for="roomNumber"><b>Room Number:</b></label>
+                <input type="text" class="form-control mb-2" name="roomNumber" id="modalRoomNumber" disabled>
+              </div>
+              <div class="form-group col-4">
+                <label id="labelRoomType" for="roomType"><b>Room Type:</b></label>
+                <input type="text" class="form-control mb-2" name="roomType" id="modalRoomType" disabled>
+              </div>
+            </div>
             <label id="labelNumberOfGuests" for="numberOfGuests"><b>Number of guests:</b></label><br>
             <div class="form-check-inline">
               <input class="form-check-input" type="radio" name="numberOfGuests" id="guests1" value="1">
@@ -221,6 +245,10 @@
 <script>
   // let api = "http://localhost:8081/api/reservations";
   let api = "http://api.test.hotelmolveno.carpago.nl/api/reservations";
+  // let guestsApi = "http://localhost:8081/api/guests";
+  let guestsApi = "http://api.test.hotelmolveno.carpago.nl/api/guests";
+  // let roomsApi = "http://localhost:8081/api/rooms";
+  let roomsApi = "http://api.test.hotelmolveno.carpago.nl/api/rooms";
   moment().format();
   $(document).ready(function() {
     initDataTable();
@@ -398,7 +426,11 @@
   function fillModal(record) {
     $('#modalId').val(record.id);
     $("#modalGuestId").val(record.guest_id);
+    $("#modalFirstName").val(record.firstName);
+    $("#modalLastName").val(record.lastName);
     $("#modalRoomId").val(record.room_id);
+    $("#modalRoomNumber").val(record.roomNumber);
+    $("#modalRoomType").val(record.roomType);
     // HTML date input only accepts YYYY-MM-DD format for min and value attributes
     let today = moment(new Date).format('YYYY-MM-DD');
     $('#modalArrivalDate').prop("min", today);
@@ -461,6 +493,46 @@
       html: true,
       container: modal
     });
+  }
+
+  function updateGuestInfo() {
+    let id = $('#modalGuestId').val();
+    if (id === "" || isNaN(id) === true) {
+      return;
+    } else {
+      $.get({
+        url: guestsApi + "/" + id,
+        dataType: "json",
+        contentType: "application/json",
+        success: function(data) {
+          $('#modalFirstName').val(data.firstName);
+          $('#modalLastName').val(data.lastName);
+        },
+        error: function(error) {
+          console.log(error);
+        }
+      });
+    }
+  }
+
+  function updateRoomInfo() {
+    let id = $('#modalRoomId').val();
+    if (id === "" || isNaN(id) === true) {
+      return;
+    } else {
+      $.get({
+        url: roomsApi + "/" + id,
+        dataType: "json",
+        contentType: "application/json",
+        success: function(data) {
+          $('#modalRoomNumber').val(data.roomNumber);
+          $('#modalRoomType').val(data.roomType);
+        },
+        error: function(error) {
+          console.log(error);
+        }
+      });
+    }
   }
 
   function submitEdit(id, api) {

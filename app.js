@@ -308,7 +308,10 @@ app.get('/api/reservations/:id', function(req, res) {
 
   let id = +req.params.id
 
-  connection.query('SELECT * FROM reservations where id=?', id, (err, rows) => {
+  connection.query('select guests.firstName, guests.lastName, rooms.roomNumber, \
+  rooms.roomType, reservations.* from guests inner join reservations on \
+  guests.id = reservations.guest_id inner join rooms on \
+  reservations.room_id = rooms.id where reservations.id=?', id, (err, rows) => {
     if (!err) {
       console.log('Data received from Db:\n');
 
