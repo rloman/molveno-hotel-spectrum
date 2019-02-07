@@ -82,7 +82,7 @@
           <li class="nav-item">
             <a class="nav-link" href="rooms.html">Rooms</a>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item">
             <a class="nav-link" href="reservations.html">Reservations <span class="sr-only">(current)</span></a>
           </li>
         </ul>
@@ -101,7 +101,10 @@
   <div id="reservationOverview" class="tab-pane active">
     <div class="container-fluid">
       <h1>Overview</h1>
-      <button id="addBtn" class="btn btn-primary mb-3 mt-3">Create new reservation</button>
+      <!--<button id="addBtn" class="btn btn-primary mb-3 mt-3">Create new reservation</button>-->
+      <button onclick="window.print()" class="btn btn-danger mb-3 mt-3">Print Screen</button>
+      <br>
+      <br>
       <table id="reservationTable" class="table table-striped table-bordered justify-content-center" cellspacing="0" width="100%">
         <thead>
           <tr>
@@ -123,6 +126,7 @@
         <tbody>
         </tbody>
         <tfoot>
+          <!-- column names also in footer-->
           <tr>
             <th>First Name</th>
             <th>Last Name</th>
@@ -143,7 +147,7 @@
     </div>
   </div>
 
-  <div class="modal fade" id="modal" role="dialog">
+  <!-- <div class="modal fade" id="modal" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -217,7 +221,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -239,7 +243,7 @@
   });
 
   function initDataTable() {
-    let reservationTable = $('#reservationTable').DataTable({
+    let reservationTable = $('#reservationTable').DataTable({ // call datatable function
       "lengthMenu": [
         [10, 25, 50, 100, -1],
         [10, 25, 50, 100, "All"]
@@ -260,7 +264,7 @@
       }, {
         "data": "numberOfGuests"
       }, {
-        "data": "arrivalDate"
+        "data": "arrivalDate",
       }, {
         "data": "departureDate"
       }, {
@@ -293,7 +297,7 @@
         "data": "room_id"
       }],
       "columnDefs": [{
-          "targets": [10, 11, 12],
+          "targets": [3, 5, 6, 7, 9, 10, 11, 12],
           "visible": false,
           "searchable": false
         },
@@ -313,6 +317,9 @@
       ]
     });
   }
+
+
+  
 
   function getData() {
     console.log(`I am in getData`);
@@ -362,7 +369,7 @@
 
   function deselect() {
     $('#reservationTable tr.selected').removeClass('selected');
-    document.getElementById("modalForm").reset();
+    //document.getElementById("modalForm").reset();
   }
 
   // This function gets called when we click on a table row
