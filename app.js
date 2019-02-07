@@ -423,7 +423,7 @@ app.get('/api/reservations/:arrival', function(req, res) {
 app.get('/api/reservationjoinguest/:arrival', function(req, res) {
   let arrival = req.params.arrival;
   let columns = "guests.firstName, guests.lastName, guests.address, guests.postalCode, guests.homeTown,\
-                 guests.country, guests.email, guests.phone, guests.mobile, reservations.id, reservations.guest_id,\
+                 guests.country, guests.emailAddress, guests.telephoneNumber, reservations.id, reservations.guest_id,\
                  reservations.room_id, reservations.arrivalDate, reservations.departureDate, reservations.numberofGuests,\
                  reservations.guestHasCheckedIn, reservations.guestHasPaid, reservations.paymentMethod, reservations.cardNumber,\
                  rooms.roomNumber, rooms.roomType, rooms.numberOfBeds, rooms.price";
@@ -449,14 +449,43 @@ app.get('/api/reservationjoinguest/:arrival', function(req, res) {
   });
 });
 
+app.get('/api/reservationjoinguestonid/:id', function(req, res) {
+  let id = req.params.id;
+  let columns = "guests.firstName, guests.lastName, guests.address, guests.postalCode, guests.homeTown,\
+                 guests.country, guests.emailAddress, guests.telephoneNumber, reservations.id, reservations.guest_id,\
+                 reservations.room_id, reservations.arrivalDate, reservations.departureDate, reservations.numberofGuests,\
+                 reservations.guestHasCheckedIn, reservations.guestHasPaid, reservations.guestHasCheckedOut,\
+                 rooms.roomNumber, rooms.roomType, rooms.numberOfBeds, rooms.roomPrice";
+  connection.query(
+    `SELECT ${columns} FROM guests INNER JOIN reservations ON reservations.guest_id = guests.id INNER JOIN rooms ON\
+     reservations.room_id = rooms.id WHERE reservations.id = ?`,
+    id, (err, reservations) => {
+    if (!err) {
+      let now = new Date;
+      if (reservations[0]) {
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify(reservations));
+        console.log(now + `: Reservation ${id} returned with guest and room info (${req.connection.remoteAddress})!`);
+      } else {
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify(reservations));
+        console.log(now + `: Reservation ${id} doesn't exist! (${req.connection.remoteAddress})!`);
+        console.log(now + ': Waiting... (Use CTRL-C to quit)');
+      }
+    } else {
+      throw err;
+    }
+  });
+});
+
 // get accessories of a reservation
 app.get('/api/accessoriesofreservation/:id', function(req, res) {
   let id = req.params.id;
   connection.query(
     `SELECT reservations.id,\
-     accessories.name, accessories.price, accessories.amount\
-     FROM reservations JOIN reservationaccessories ON reservations.id = reservationaccessories.reservations_id JOIN accessories ON\
-     reservationaccessories.accessories_id = accessories.id WHERE reservations.id = ${id}`,
+     accessories.accessoryName, accessories.accessoryPrice, accessories.accessoryAvailability\
+     FROM reservations JOIN res_acc ON reservations.id = res_acc.reservation_id JOIN accessories ON\
+     res_acc.accessory_id = accessories.id WHERE reservations.id = ${id}`,
     (err, acces) => {
     if (!err) {
       let now = new Date;
