@@ -162,6 +162,7 @@
 
         </div>
         <div class="modal-footer">
+          <div id="emptyFields" class="text-danger font-weight-bold"></div>
           <button type="button" class="btn btn-success" id="btnsubmit">Submit</button>
           <a href="#" id="confirmbutton" data-title="Are you sure you want to delete this guest?" data-trigger="focus" data-toggle="clickover" data-placement="top" class="btn btn-danger">Delete</a>
           <button type="button" class="btn btn-outline-secondary" id="btnclose" onclick="deselect()" data-dismiss="modal">Close</button>
@@ -244,11 +245,28 @@
   };
 
   $("#addBtn").on('click', function() {
+    $('#emptyFields').empty();
     document.getElementById("modal-title").innerHTML = "Add a guest";
     document.getElementById("modalForm").reset();
-    $("#btnsubmit").attr('onclick', 'submitNew("' + api + '");');
+    $("#btnsubmit").attr('onclick', 'validityCheck("' + api + '");');
     $('#modal').modal('toggle');
   });
+
+  function validityCheck(api) {
+    let firstName = $('#modalFirstName').val();
+    let lastName = $('#modalLastName').val();
+    let address = $('#modalAddress').val();
+    let homeTown = $('#modalHomeTown').val();
+    let postalCode = $('#modalPostalCode').val();
+    let country = $('#modalCountry').val();
+    let emailAddress = $('#modalEmailAddress').val();
+    let telephoneNumber = $('#modalTelephoneNumber').val();
+    if (firstName === "" || lastName === "" || address === "" || homeTown === "" || postalCode === "" || country === "" || emailAddress === "" && telephoneNumber === "") {
+      $('#emptyFields').html("One or more required fields are empty");
+    } else {
+      submitNew(api);
+    }
+  }
 
   function submitNew(api) {
     let formData = $("#modalForm").serializeArray().reduce(function(result, object) {
@@ -282,6 +300,7 @@
 
   // This function gets called when we click on a table row
   $('#guestTable tbody').on('click', 'tr', function(e) {
+    $('#emptyFields').empty();
     if ($(e.target).hasClass("responsiveButton")) {
       // Do nothing
       return;
