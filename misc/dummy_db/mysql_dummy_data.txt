@@ -53,3 +53,6 @@ select reservations.*, accessories.accessoryName from res_acc inner join accesso
 inner join reservations on res_acc.reservation_id = reservations.id where reservations.id = 2;
 
 select guests.firstName, guests.lastName, rooms.roomNumber, rooms.roomType, reservations.* from guests inner join reservations on guests.id = reservations.guest_id inner join rooms on reservations.room_id = rooms.id;
+
+alter table reservations add guestHasCheckedOut tinyint(1) not null;
+
