@@ -147,7 +147,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h3 class="modal-title" id="modal-title">Enter a post</h3>
+          <h3 class="modal-title" id="modal-title">Enter a post</h3><br>
           <button type="button" class="close" onclick="deselect()" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
@@ -235,6 +235,7 @@
 
         </div>
         <div class="modal-footer">
+          <div class="btn btn-primary" id="printInvoice" onclick="openInvoiceWindow()">Print Invoice <i class="fa fa-print"></i></div>
           <button type="button" class="btn btn-success" id="btnsubmit">Submit</button>
           <a href="#" id="confirmbutton" data-title="Are you sure you want to delete this reservation?" data-trigger="focus" data-toggle="clickover" data-placement="top" class="btn btn-danger">Delete</a>
           <button type="button" class="btn btn-outline-secondary" id="btnclose" onclick="deselect()" data-dismiss="modal">Close</button>
@@ -352,6 +353,7 @@
   $("#addBtn").on('click', function() {
     document.getElementById("modal-title").innerHTML = "Create a reservation";
     document.getElementById("modalForm").reset();
+    $('#printInvoice').hide();
     let today = moment(new Date).format('YYYY-MM-DD');
     $('#modalArrivalDate').prop("min", today);
     $('#modalDepartureDate').prop("min", today);
@@ -406,6 +408,7 @@
     $(this).addClass('selected');
     let table = $('#reservationTable').DataTable();
     let data = table.row(this).data();
+    $('#printInvoice').show();
 
     // this function fetches one record and fill the modal with the data and shows the modal for editing
     getSingleRecord(data.id, api);
@@ -586,6 +589,12 @@
     });
 
     $('#modal').modal('toggle');
+  }
+
+  function openInvoiceWindow() {
+    let id = $('#modalId').val();
+    sessionStorage.setItem("sent", id);
+    window.open("invoice.html");
   }
 </script>
 
