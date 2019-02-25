@@ -12,7 +12,6 @@ function invoice(reservationID) {
       let arrival = moment(reservationData.arrivalDate).format('DD-MM-YYYY');
       let departure = moment(reservationData.departureDate).format('DD-MM-YYYY');
       let total = totalDays(reservationData.arrivalDate, reservationData.departureDate);
-      console.log(reservationData.numberofGuests);
       let vat = reservationData.numberofGuests * 2 * total; // VAT is €2 per guest per night stayed at the hotel
       let totalPrice = reservationData.roomPrice * total + vat;
       $("#invoiceModal").html(`
