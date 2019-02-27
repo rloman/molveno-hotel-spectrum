@@ -423,12 +423,12 @@
         $.each(data, function() {
           options.append($("<option/>").val(this.id).text(this.firstName + ' ' + this.lastName));
         });
+        getSingleRecord(id, api); // Change this when adding new reservation
       },
       error: function(error) {
         console.log(error);
       }
     });
-    getSingleRecord(id, api);
   }
 
   function getSingleRecord(id, api) {
@@ -450,7 +450,7 @@
 
   function fillModal(record) {
     $('#modalId').val(record.id);
-    $('#modalGuestId').val(record.guest_id);
+    $('#modalGuestId').val(record.guest_id).change();
     $("#modalFirstName").val(record.firstName);
     $("#modalLastName").val(record.lastName);
     $("#modalRoomId").val(record.room_id);
