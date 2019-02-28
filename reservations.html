@@ -156,21 +156,16 @@
           <form id="modalForm" enctype='text/plain'>
             <label id="labelId" for="id"><b>ID:</b></label>
             <input type='text' class="form-control mb-2" name="id" id="modalId" disabled>
-            <select class="custom-select custom-select-lg" id="modalGuestId" style="width: 100%" name="guest_id">
-            </select>
             <div class="form-row">
-              <div class="form-group col-3">
-                <label id="labelRoomId" for="room_id"><b>Room ID:</b></label>
-                <input type='text' class="form-control mb-2" name='room_id' id="modalRoomId" oninput="updateRoomInfo()" required>
-              </div>
-              <div class="form-group col-4">
-                <label id="labelRoomNumber" for="roomNumber"><b>Room Number:</b></label>
-                <input type="text" class="form-control mb-2" name="roomNumber" id="modalRoomNumber" disabled>
-              </div>
-              <div class="form-group col-4">
-                <label id="labelRoomType" for="roomType"><b>Room Type:</b></label>
-                <input type="text" class="form-control mb-2" name="roomType" id="modalRoomType" disabled>
-              </div>
+              <label id="labelGuestId" for="guest_id"><b>Guest name:</b></label><br>
+              <select class="custom-select custom-select-lg" id="modalGuestId" style="width: 100%" name="guest_id">
+              </select>
+            </div>
+            <br>
+            <div class="form-row">
+              <label id="labelRoomId" for="room_id"><b>Room number & room type:</b></label><br>
+              <select class="custom-select custom-select-lg" id="modalRoomId" style="width: 100%" name="room_id">
+              </select>
             </div>
             <label id="labelNumberOfGuests" for="numberOfGuests"><b>Number of guests:</b></label><br>
             <div class="form-check-inline">
@@ -242,20 +237,21 @@
   <script src="modules/moment.min.js"></script>
 </body>
 <script>
-  let api = "http://localhost:8081/api/reservations";
-  // let api = "http://api.test.hotelmolveno.carpago.nl/api/reservations";
-  let guestsApi = "http://localhost:8081/api/guests";
-  // let guestsApi = "http://api.test.hotelmolveno.carpago.nl/api/guests";
-  let roomsApi = "http://localhost:8081/api/rooms";
-  // let roomsApi = "http://api.test.hotelmolveno.carpago.nl/api/rooms";
+  // let api = "http://localhost:8081/api/reservations";
+  let api = "http://api.test.hotelmolveno.carpago.nl/api/reservations";
+  // let guestsApi = "http://localhost:8081/api/guests";
+  let guestsApi = "http://api.test.hotelmolveno.carpago.nl/api/guests";
+  // let roomsApi = "http://localhost:8081/api/rooms";
+  let roomsApi = "http://api.test.hotelmolveno.carpago.nl/api/rooms";
   moment().format();
   $(document).ready(function() {
     $.fn.modal.Constructor.prototype._enforceFocus = function() {}; // Fix for select2 search function not working
-    $.fn.select2.defaults.set( "theme", "bootstrap" ); // Sets select2 dropdown to bootstrap theme
+    $.fn.select2.defaults.set("theme", "bootstrap"); // Sets select2 dropdown to bootstrap theme
     initDataTable();
     $('#modalId').hide();
     $('#labelId').hide();
     $('#modalGuestId').select2();
+    $('#modalRoomId').select2();
     /* setInterval(function() {
       getData(api);
     }, 10000); */
@@ -423,6 +419,25 @@
         $.each(data, function() {
           options.append($("<option/>").val(this.id).text(this.firstName + ' ' + this.lastName));
         });
+        populateRoomDropdown(id, api); // Change this when adding new reservation
+      },
+      error: function(error) {
+        console.log(error);
+      }
+    });
+  }
+
+  function populateRoomDropdown(id, api) {
+    let options = $('#modalRoomId');
+    options.empty();
+    $.get({
+      url: roomsApi,
+      dataType: "json",
+      contentType: "application/json",
+      success: function(data) {
+        $.each(data, function() {
+          options.append($("<option/>").val(this.id).text(this.roomNumber + ' - ' + this.roomType));
+        });
         getSingleRecord(id, api); // Change this when adding new reservation
       },
       error: function(error) {
@@ -432,13 +447,17 @@
   }
 
   function getSingleRecord(id, api) {
-    apiPath = String(api + "/" + id);
-    console.log(`Logging URL ${apiPath}`);
-    $.get(apiPath, function(data) {
-      if (data) {
-        fillUpdateDiv(data, api);
-      }
-    });
+    if (isNaN(id) === true) {
+      return;
+    } else {
+      apiPath = String(api + "/" + id);
+      console.log(`Logging URL ${apiPath}`);
+      $.get(apiPath, function(data) {
+        if (data) {
+          fillUpdateDiv(data, api);
+        }
+      });
+    }
   }
 
   function fillUpdateDiv(record, api) {
@@ -451,11 +470,7 @@
   function fillModal(record) {
     $('#modalId').val(record.id);
     $('#modalGuestId').val(record.guest_id).change();
-    $("#modalFirstName").val(record.firstName);
-    $("#modalLastName").val(record.lastName);
-    $("#modalRoomId").val(record.room_id);
-    $("#modalRoomNumber").val(record.roomNumber);
-    $("#modalRoomType").val(record.roomType);
+    $('#modalRoomId').val(record.room_id).change();
     // HTML date input only accepts YYYY-MM-DD format for min and value attributes
     let today = moment(new Date).format('YYYY-MM-DD');
     $('#modalArrivalDate').prop("min", today);
@@ -518,46 +533,6 @@
       html: true,
       container: modal
     });
-  }
-
-  function updateGuestInfo() {
-    let id = $('#modalGuestId').val();
-    if (id === "" || isNaN(id) === true) {
-      return;
-    } else {
-      $.get({
-        url: guestsApi + "/" + id,
-        dataType: "json",
-        contentType: "application/json",
-        success: function(data) {
-          $('#modalFirstName').val(data.firstName);
-          $('#modalLastName').val(data.lastName);
-        },
-        error: function(error) {
-          console.log(error);
-        }
-      });
-    }
-  }
-
-  function updateRoomInfo() {
-    let id = $('#modalRoomId').val();
-    if (id === "" || isNaN(id) === true) {
-      return;
-    } else {
-      $.get({
-        url: roomsApi + "/" + id,
-        dataType: "json",
-        contentType: "application/json",
-        success: function(data) {
-          $('#modalRoomNumber').val(data.roomNumber);
-          $('#modalRoomType').val(data.roomType);
-        },
-        error: function(error) {
-          console.log(error);
-        }
-      });
-    }
   }
 
   function submitEdit(id, api) {
