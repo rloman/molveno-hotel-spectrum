@@ -420,7 +420,7 @@
         $.each(data, function() {
           options.append($("<option/>").val(this.id).text(this.firstName + ' ' + this.lastName));
         });
-        populateRoomDropdown(id, api); // Change this when adding new reservation
+        populateRoomDropdown(id, api);
       },
       error: function(error) {
         console.log(error);
@@ -439,7 +439,7 @@
         $.each(data, function() {
           options.append($("<option/>").val(this.id).text(this.roomNumber + ' - ' + this.roomType));
         });
-        getSingleRecord(id, api); // Change this when adding new reservation
+        getSingleRecord(id, api);
       },
       error: function(error) {
         console.log(error);
