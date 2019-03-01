@@ -364,7 +364,7 @@
     let arrivalDate = $('#modalArrivalDate').val();
     let departureDate = $('#modalDepartureDate').val();
     if (arrivalDate === "" || departureDate === "") {
-      $('#emptyFields').html("One or more fields are empty");
+      $('#emptyFields').html("One or more required fields are empty");
     } else {
       submitNew(api);
     }
@@ -555,7 +555,7 @@
     let arrivalDate = $('#modalArrivalDate').val();
     let departureDate = $('#modalDepartureDate').val();
     if (arrivalDate === "" || departureDate === "") {
-      $('#emptyFields').html("One or more fields are empty");
+      $('#emptyFields').html("One or more required fields are empty");
     } else {
       submitEdit(id, api);
     }
