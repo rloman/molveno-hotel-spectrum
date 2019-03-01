@@ -421,7 +421,7 @@ app.get('/api/reservations/:arrival', function(req, res) {
 
 //Getting 1 item from tables with join
 app.get('/api/reservationjoinguest/:arrival', function(req, res) {
-  let arrival = req.params.arrival;
+  let id = req.params.arrival;
   let columns = "guests.firstName, guests.lastName, guests.address, guests.postalCode, guests.homeTown,\
                  guests.country, guests.emailAddress, guests.telephoneNumber, reservations.id, reservations.guest_id,\
                  reservations.room_id, reservations.arrivalDate, reservations.departureDate, reservations.numberofGuests,\
@@ -450,7 +450,7 @@ app.get('/api/reservationjoinguest/:arrival', function(req, res) {
 });
 
 app.get('/api/reservationjoinguestonid/:id', function(req, res) {
-  let id = req.params.id;
+  let id = +req.params.id;
   let columns = "guests.firstName, guests.lastName, guests.address, guests.postalCode, guests.homeTown,\
                  guests.country, guests.emailAddress, guests.telephoneNumber, reservations.id, reservations.guest_id,\
                  reservations.room_id, reservations.arrivalDate, reservations.departureDate, reservations.numberofGuests,\
@@ -459,10 +459,11 @@ app.get('/api/reservationjoinguestonid/:id', function(req, res) {
   connection.query(
     `SELECT ${columns} FROM guests INNER JOIN reservations ON reservations.guest_id = guests.id INNER JOIN rooms ON\
      reservations.room_id = rooms.id WHERE reservations.id = ?`,
-    id, (err, reservations) => {
+    id, (err, rows) => {
     if (!err) {
       let now = new Date;
-      if (reservations[0]) {
+      let reservations = rows[0];
+      if (reservations) {
         res.setHeader('Content-Type', 'application/json');
         res.end(JSON.stringify(reservations));
         console.log(now + `: Reservation ${id} returned with guest and room info (${req.connection.remoteAddress})!`);

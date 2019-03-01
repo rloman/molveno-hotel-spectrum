@@ -170,6 +170,7 @@
             </div>
             <br><label id="labelRoomPrice" for="roomPrice"><b>Room Price (€):</b></label><br>
             <input type='text' class="form-control mb-2" name="roomPrice" id="modalRoomPrice">
+            <div id="emptyFields" class="text-danger font-weight-bold"></div>
           </form>
 
         </div>
@@ -253,7 +254,6 @@
   $("#addBtn").on('click', function() {
     document.getElementById("modal-title").innerHTML = "Create a room";
     document.getElementById("modalForm").reset();
-    $('#duplicateRoomNumber').empty();
     $('#roomStandard').prop("checked", true);
     $('#beds2').prop("checked", true);
     $("#btnsubmit").attr('onclick', 'validityCheck("' + api + '");');
@@ -261,13 +261,20 @@
   });
 
   function validityCheck(api) {
+    $('#duplicateRoomNumber').empty();
+    $('#emptyFields').empty();
+    let roomNumber = $('#modalRoomNumber').val();
+    let roomPrice = $('#modalRoomPrice').val();
+    if (roomNumber === "" || roomPrice === "") {
+      $('#emptyFields').html("One or more required fields are empty");
+      return;
+    }
     $.get({
       url: api,
       dataType: "json",
       contentType: "application/json",
       success: function(data) {
         let roomInfo = data.map(x => x.roomNumber);
-        let roomNumber = $('#modalRoomNumber').val();
         if (roomInfo.includes(roomNumber) === true) {
           $('#duplicateRoomNumber').html('This room number already exists.');
         } else {
@@ -310,6 +317,7 @@
   // This function gets called when we click on a table row
   $('#roomTable tbody').on('click', 'tr', function(e) {
     $('#duplicateRoomNumber').empty();
+    $('#emptyFields').empty();
     if ($(e.target).hasClass("responsiveButton")) {
       // Do nothing
       return;
@@ -339,7 +347,7 @@
   }
 
   function fillUpdateDiv(record, api) {
-    $("#btnsubmit").attr('onclick', 'submitEdit(' + record.id + ', "' + api + '");');
+    $("#btnsubmit").attr('onclick', 'validityCheckEdit(' + record.id + ', "' + api + '");');
     document.getElementById("modal-title").innerHTML = "Edit a room";
     // this function fills the modal
     fillModal(record);
@@ -387,6 +395,19 @@
       html: true,
       container: modal
     });
+  }
+
+  function validityCheckEdit(id, api) {
+    $('#duplicateRoomNumber').empty();
+    $('#emptyFields').empty();
+    let roomNumber = $('#modalRoomNumber').val();
+    let roomPrice = $('#modalRoomPrice').val();
+    if (roomNumber === "" || roomPrice === "") {
+      $('#emptyFields').html("One or more required fields are empty");
+      return;
+    } else {
+      submitEdit(id, api);
+    }
   }
 
   function submitEdit(id, api) {

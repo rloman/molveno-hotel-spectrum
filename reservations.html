@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/r-2.2.2/datatables.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css">
   <style>
     @font-face {
         font-family: Comfortaa;
@@ -147,7 +149,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h3 class="modal-title" id="modal-title">Enter a post</h3>
+          <h3 class="modal-title" id="modal-title">Enter a post</h3><br>
           <button type="button" class="close" onclick="deselect()" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
@@ -155,33 +157,17 @@
             <label id="labelId" for="id"><b>ID:</b></label>
             <input type='text' class="form-control mb-2" name="id" id="modalId" disabled>
             <div class="form-row">
-              <div class="form-group col-3">
-                <label id="labelGuestId" for="guest_id"><b>Guest ID:</b></label>
-                <input type='text' class="form-control mb-2" name='guest_id' id="modalGuestId" oninput="updateGuestInfo()" required>
-              </div>
-              <div class="form-group col-4">
-                <label id="labelFirstName" for="firstName"><b>First Name:</b></label>
-                <input type="text" class="form-control mb-2" name="firstName" id="modalFirstName" disabled>
-              </div>
-              <div class="form-group col-4">
-                <label id="labelLastName" for="lastName"><b>Last Name:</b></label>
-                <input type="text" class="form-control mb-2" name="lastName" id="modalLastName" disabled>
-              </div>
+              <label id="labelGuestId" for="guest_id"><b>Guest name:</b></label><br>
+              <select class="custom-select custom-select-lg" id="modalGuestId" style="width: 100%" name="guest_id">
+              </select>
             </div>
+            <br>
             <div class="form-row">
-              <div class="form-group col-3">
-                <label id="labelRoomId" for="room_id"><b>Room ID:</b></label>
-                <input type='text' class="form-control mb-2" name='room_id' id="modalRoomId" oninput="updateRoomInfo()" required>
-              </div>
-              <div class="form-group col-4">
-                <label id="labelRoomNumber" for="roomNumber"><b>Room Number:</b></label>
-                <input type="text" class="form-control mb-2" name="roomNumber" id="modalRoomNumber" disabled>
-              </div>
-              <div class="form-group col-4">
-                <label id="labelRoomType" for="roomType"><b>Room Type:</b></label>
-                <input type="text" class="form-control mb-2" name="roomType" id="modalRoomType" disabled>
-              </div>
+              <label id="labelRoomId" for="room_id"><b>Room number & room type:</b></label><br>
+              <select class="custom-select custom-select-lg" id="modalRoomId" style="width: 100%" name="room_id">
+              </select>
             </div>
+            <br>
             <label id="labelNumberOfGuests" for="numberOfGuests"><b>Number of guests:</b></label><br>
             <div class="form-check-inline">
               <input class="form-check-input" type="radio" name="numberOfGuests" id="guests1" value="1">
@@ -231,10 +217,12 @@
               <input class="form-check-input" type="radio" name="guestHasCheckedOut" id="guestCheckOut0" value="0">
               <label class="form-check-label" for="guestCheckOut0">No</label>
             </div>
+            <div id="emptyFields" class="text-danger font-weight-bold"></div>
           </form>
 
         </div>
         <div class="modal-footer">
+          <div class="btn btn-primary" id="printInvoice" onclick="openInvoiceWindow()">Print Invoice <i class="fa fa-print"></i></div>
           <button type="button" class="btn btn-success" id="btnsubmit">Submit</button>
           <a href="#" id="confirmbutton" data-title="Are you sure you want to delete this reservation?" data-trigger="focus" data-toggle="clickover" data-placement="top" class="btn btn-danger">Delete</a>
           <button type="button" class="btn btn-outline-secondary" id="btnclose" onclick="deselect()" data-dismiss="modal">Close</button>
@@ -247,6 +235,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
   <script src="https://cdn.datatables.net/v/bs4/dt-1.10.18/r-2.2.2/datatables.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
   <script src="modules/moment.min.js"></script>
 </body>
 <script>
@@ -258,9 +247,13 @@
   let roomsApi = "http://api.test.hotelmolveno.carpago.nl/api/rooms";
   moment().format();
   $(document).ready(function() {
+    $.fn.modal.Constructor.prototype._enforceFocus = function() {}; // Fix for select2 search function not working
+    $.fn.select2.defaults.set("theme", "bootstrap"); // Sets select2 dropdown to bootstrap theme
     initDataTable();
     $('#modalId').hide();
     $('#labelId').hide();
+    $('#modalGuestId').select2();
+    $('#modalRoomId').select2();
     /* setInterval(function() {
       getData(api);
     }, 10000); */
@@ -352,6 +345,9 @@
   $("#addBtn").on('click', function() {
     document.getElementById("modal-title").innerHTML = "Create a reservation";
     document.getElementById("modalForm").reset();
+    $('#emptyFields').empty();
+    populateGuestDropdown(api);
+    $('#printInvoice').hide();
     let today = moment(new Date).format('YYYY-MM-DD');
     $('#modalArrivalDate').prop("min", today);
     $('#modalDepartureDate').prop("min", today);
@@ -359,9 +355,20 @@
     $('#guestCheckIn0').prop("checked", true);
     $('#guestHasPaid0').prop("checked", true);
     $('#guestCheckOut0').prop("checked", true);
-    $("#btnsubmit").attr('onclick', 'submitNew("' + api + '");');
+    $("#btnsubmit").attr('onclick', 'validityCheck("' + api + '");');
     $('#modal').modal('toggle');
   });
+
+  function validityCheck(api) {
+    $('#emptyFields').empty();
+    let arrivalDate = $('#modalArrivalDate').val();
+    let departureDate = $('#modalDepartureDate').val();
+    if (arrivalDate === "" || departureDate === "") {
+      $('#emptyFields').html("One or more required fields are empty");
+    } else {
+      submitNew(api);
+    }
+  }
 
   function submitNew(api) {
     let formData = $("#modalForm").serializeArray().reduce(function(result, object) {
@@ -395,6 +402,7 @@
 
   // This function gets called when we click on a table row
   $('#reservationTable tbody').on('click', 'tr', function(e) {
+    $('#emptyFields').empty();
     if ($(e.target).hasClass("responsiveButton")) {
       // Do nothing
       return;
@@ -406,25 +414,69 @@
     $(this).addClass('selected');
     let table = $('#reservationTable').DataTable();
     let data = table.row(this).data();
+    $('#printInvoice').show();
+    populateGuestDropdown(data.id, api);
 
     // this function fetches one record and fill the modal with the data and shows the modal for editing
-    getSingleRecord(data.id, api);
+
 
     $('#modal').modal('toggle');
   });
 
-  function getSingleRecord(id, api) {
-    apiPath = String(api + "/" + id);
-    console.log(`Logging URL ${apiPath}`);
-    $.get(apiPath, function(data) {
-      if (data) {
-        fillUpdateDiv(data, api);
+  function populateGuestDropdown(id, api) {
+    let options = $('#modalGuestId');
+    options.empty();
+    $.get({
+      url: guestsApi,
+      dataType: "json",
+      contentType: "application/json",
+      success: function(data) {
+        $.each(data, function() {
+          options.append($("<option/>").val(this.id).text(this.firstName + ' ' + this.lastName));
+        });
+        populateRoomDropdown(id, api);
+      },
+      error: function(error) {
+        console.log(error);
       }
     });
   }
 
+  function populateRoomDropdown(id, api) {
+    let options = $('#modalRoomId');
+    options.empty();
+    $.get({
+      url: roomsApi,
+      dataType: "json",
+      contentType: "application/json",
+      success: function(data) {
+        $.each(data, function() {
+          options.append($("<option/>").val(this.id).text(this.roomNumber + ' - ' + this.roomType));
+        });
+        getSingleRecord(id, api);
+      },
+      error: function(error) {
+        console.log(error);
+      }
+    });
+  }
+
+  function getSingleRecord(id, api) {
+    if (isNaN(id) === true) {
+      return;
+    } else {
+      apiPath = String(api + "/" + id);
+      console.log(`Logging URL ${apiPath}`);
+      $.get(apiPath, function(data) {
+        if (data) {
+          fillUpdateDiv(data, api);
+        }
+      });
+    }
+  }
+
   function fillUpdateDiv(record, api) {
-    $("#btnsubmit").attr('onclick', 'submitEdit(' + record.id + ', "' + api + '");');
+    $("#btnsubmit").attr('onclick', 'validityCheckEdit(' + record.id + ', "' + api + '");');
     document.getElementById("modal-title").innerHTML = "Edit a reservation";
     // this function fills the modal
     fillModal(record);
@@ -432,12 +484,8 @@
 
   function fillModal(record) {
     $('#modalId').val(record.id);
-    $("#modalGuestId").val(record.guest_id);
-    $("#modalFirstName").val(record.firstName);
-    $("#modalLastName").val(record.lastName);
-    $("#modalRoomId").val(record.room_id);
-    $("#modalRoomNumber").val(record.roomNumber);
-    $("#modalRoomType").val(record.roomType);
+    $('#modalGuestId').val(record.guest_id).change();
+    $('#modalRoomId').val(record.room_id).change();
     // HTML date input only accepts YYYY-MM-DD format for min and value attributes
     let today = moment(new Date).format('YYYY-MM-DD');
     $('#modalArrivalDate').prop("min", today);
@@ -502,43 +550,14 @@
     });
   }
 
-  function updateGuestInfo() {
-    let id = $('#modalGuestId').val();
-    if (id === "" || isNaN(id) === true) {
-      return;
+  function validityCheckEdit(id, api) {
+    $('#emptyFields').empty();
+    let arrivalDate = $('#modalArrivalDate').val();
+    let departureDate = $('#modalDepartureDate').val();
+    if (arrivalDate === "" || departureDate === "") {
+      $('#emptyFields').html("One or more required fields are empty");
     } else {
-      $.get({
-        url: guestsApi + "/" + id,
-        dataType: "json",
-        contentType: "application/json",
-        success: function(data) {
-          $('#modalFirstName').val(data.firstName);
-          $('#modalLastName').val(data.lastName);
-        },
-        error: function(error) {
-          console.log(error);
-        }
-      });
-    }
-  }
-
-  function updateRoomInfo() {
-    let id = $('#modalRoomId').val();
-    if (id === "" || isNaN(id) === true) {
-      return;
-    } else {
-      $.get({
-        url: roomsApi + "/" + id,
-        dataType: "json",
-        contentType: "application/json",
-        success: function(data) {
-          $('#modalRoomNumber').val(data.roomNumber);
-          $('#modalRoomType').val(data.roomType);
-        },
-        error: function(error) {
-          console.log(error);
-        }
-      });
+      submitEdit(id, api);
     }
   }
 
@@ -586,6 +605,12 @@
     });
 
     $('#modal').modal('toggle');
+  }
+
+  function openInvoiceWindow() {
+    let id = $('#modalId').val();
+    sessionStorage.setItem("sent", id);
+    window.open("invoice.html");
   }
 </script>
 
