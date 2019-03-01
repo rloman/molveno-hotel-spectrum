@@ -217,6 +217,7 @@
               <input class="form-check-input" type="radio" name="guestHasCheckedOut" id="guestCheckOut0" value="0">
               <label class="form-check-label" for="guestCheckOut0">No</label>
             </div>
+            <div id="emptyFields" class="text-danger font-weight-bold"></div>
           </form>
 
         </div>
@@ -344,6 +345,7 @@
   $("#addBtn").on('click', function() {
     document.getElementById("modal-title").innerHTML = "Create a reservation";
     document.getElementById("modalForm").reset();
+    $('#emptyFields').empty();
     populateGuestDropdown(api);
     $('#printInvoice').hide();
     let today = moment(new Date).format('YYYY-MM-DD');
@@ -353,9 +355,20 @@
     $('#guestCheckIn0').prop("checked", true);
     $('#guestHasPaid0').prop("checked", true);
     $('#guestCheckOut0').prop("checked", true);
-    $("#btnsubmit").attr('onclick', 'submitNew("' + api + '");');
+    $("#btnsubmit").attr('onclick', 'validityCheck("' + api + '");');
     $('#modal').modal('toggle');
   });
+
+  function validityCheck(api) {
+    $('#emptyFields').empty();
+    let arrivalDate = $('#modalArrivalDate').val();
+    let departureDate = $('#modalDepartureDate').val();
+    if (arrivalDate === "" || departureDate === "") {
+      $('#emptyFields').html("One or more fields are empty");
+    } else {
+      submitNew(api);
+    }
+  }
 
   function submitNew(api) {
     let formData = $("#modalForm").serializeArray().reduce(function(result, object) {
@@ -389,6 +402,7 @@
 
   // This function gets called when we click on a table row
   $('#reservationTable tbody').on('click', 'tr', function(e) {
+    $('#emptyFields').empty();
     if ($(e.target).hasClass("responsiveButton")) {
       // Do nothing
       return;
@@ -462,7 +476,7 @@
   }
 
   function fillUpdateDiv(record, api) {
-    $("#btnsubmit").attr('onclick', 'submitEdit(' + record.id + ', "' + api + '");');
+    $("#btnsubmit").attr('onclick', 'validityCheckEdit(' + record.id + ', "' + api + '");');
     document.getElementById("modal-title").innerHTML = "Edit a reservation";
     // this function fills the modal
     fillModal(record);
@@ -534,6 +548,17 @@
       html: true,
       container: modal
     });
+  }
+
+  function validityCheckEdit(id, api) {
+    $('#emptyFields').empty();
+    let arrivalDate = $('#modalArrivalDate').val();
+    let departureDate = $('#modalDepartureDate').val();
+    if (arrivalDate === "" || departureDate === "") {
+      $('#emptyFields').html("One or more fields are empty");
+    } else {
+      submitEdit(id, api);
+    }
   }
 
   function submitEdit(id, api) {
