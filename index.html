@@ -4,13 +4,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Molveno Hotel Management</title>
+  <title>Molveno Hotel Management System</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/r-2.2.2/datatables.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
   <style>
     @font-face {
-        font-family: Comfortaa;
+        font-family: "Comfortaa";
         src: url(css/Comfortaa-Regular.ttf);
     }
 
@@ -27,7 +27,7 @@
 
     .navbar {
       background: #8c8cdb;
-    }
+        }
 
     #emergency_button {
       background: red;
@@ -38,6 +38,14 @@
       height: 40px;
       width: 40px;
     }
+
+    .jumbotron h1 {
+      margin-top: 20px;
+      font-size: 200%;
+      text-shadow: 1px 1px 15px #8c8cdb;
+      /* horizontal - vertical - width - color */
+    }
+
   </style>
 
 </head>
@@ -46,8 +54,8 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-md navbar-light fixed-top">
     <div class="container-fluid">
-      <a class="navbar-image"><img id="company-image" src="css/Company_Logo.jpg"></a>
-      <a class="navbar-brand ml-3">Molveno Employee Dashboard</a>
+      <a class="navbar-image "><img id="company-image" src="css/Company_Logo.jpg"></a>
+      <a class="navbar-brand ml-3 d-none d-md-block">Molveno Employee Dashboard</a>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -86,8 +94,9 @@
   <!-- Index content -->
   <br>
   <div class="jumbotron">
-    <h1 class="display-4">Molveno Hotel Management</h1>
-    <p class="lead">Start by clicking on one of the items in the navigation bar.</p>
+    <h1 class="display-5">Molveno Hotel Management System</h1>
+    <br>
+    <p class="lead"><i class="far fa-lightbulb" style="color:#F4B400"></i> Start by clicking on one of the items in the navigation bar.</p>
     <hr class="my-4">
     <p>Each item in the navigation bar will show their respective table obtained from the database.</p>
   </div>
