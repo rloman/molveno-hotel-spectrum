@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: url(img/mountain.png) no-repeat center center fixed;
+  background-size: cover;
+}
+
+.main-section {
+  margin: 0 auto;
+  /* to center it on the page */
+  margin-top: 130px;
+  /* add some space to the top */
+  padding: 0;
+}
+
+.modal-content {
+  background-color: #434e5a;
+  opacity: .8;
+  /* let's add the opacity to make it transparent  */
+  padding: 0 18px;
+  /* 0 padding top and bottom. 18px padding on the left and right */
+  border-radius: 10px;
+  /* make it a little more rounded on our corners */
+  box-shadow: 0px 0px 3px #848484;
+
+}
+
+.modalCenter{
+  top: 150% !important;
+  transform: translateY(-50%) !important;
+}
+
+.user-img img {
+  height: 120px;
+  width: 120px;
+}
+
+.user-img {
+  margin-top: -60px;
+  margin-bottom: 45px;
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-group input {
+  height: 42px;
+  /* invoerveld hoger maken */
+  border-radius: 5px;
+  /* make it a little more rounded on our corners */
+  border: 0;
+  /* geen border */
+  font-size: 18px;
+  /* grotere letters (standaard 16 px) */
+  letter-spacing: 2px;
+  padding-left: 54px;
+  /* make room for our icons */
+}
+
+.form-group::before {
+  /* add our icons from fontawesome */
+  font-family: 'Font Awesome\ 5 Free';
+  content: "\f1fa";
+  position: absolute;
+  /* use position:absolute to get it inside of the actual input section */
+  font-size: 22px;
+  left: 28px;
+  /* pull it off to the left */
+  padding-top: 4px;
+  /* to center it */
+  color: #55e60;
+}
+
+.form-group:last-of-type::before {
+  /* change the the second @ symbol to the lock */
+  content: "\f023";
+  /* lock icon */
+}
+
+.form-input button {
+  width: 40%;
+  /* to make it a good bit wider  */
+  margin: 5px 0 25px;
+  /*change the spacing around it. 5px on the top. 0 left and right. 25px on the bottom. */
+}
+
+.btn-success {
+  background-color: #1c6288;
+  font-size: 19px;
+  border-radius: 5px;
+  padding: 7px 14px;
+  /* 7px top and bottom and 14px left and right */
+  border: 1px solid #daf1ff;
+}
+
+.btn-primary:hover {
+  background-color: #13445e;
+  border: 1px solid #daf1ff;
+}
+
+.forgot {
+  padding: 5px 0 25px;
+  /* 5px top. Zero left and right and 25px bottom */
+}
+
+.forgot a {
+  /* change the color of the link */
+  color: #daf1ff;
+}
+
+@media (max-width: 768px) {
+  .modal-dialog {
+    width: 700px;
+    /* New width for default modal */
+  }
+
+  .modal-sm {
+    width: 350px;
+    /* New width for small modal */
+  }
+}
+
+@media (max-width:992px) {
+  .modal-lg {
+    width: 950px;
+    /* New width for large modal */
+  }
+}
