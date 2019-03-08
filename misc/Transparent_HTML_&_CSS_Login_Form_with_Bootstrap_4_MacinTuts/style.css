@@ -2,7 +2,7 @@
 
 body {
   font-family: 'Roboto', sans-serif;
-  background: url(img/mountain.png) no-repeat center center fixed;
+  background: url(img/lago-di-molveno.jpeg) no-repeat center center fixed;
   background-size: cover;
 }
 
@@ -27,8 +27,8 @@ body {
 }
 
 .modalCenter{
-  top: 150% !important;
-  transform: translateY(-50%) !important;
+  top: 200px !important;
+
 }
 
 .user-img img {
@@ -108,23 +108,4 @@ body {
 .forgot a {
   /* change the color of the link */
   color: #daf1ff;
-}
-
-@media (max-width: 768px) {
-  .modal-dialog {
-    width: 700px;
-    /* New width for default modal */
-  }
-
-  .modal-sm {
-    width: 350px;
-    /* New width for small modal */
-  }
-}
-
-@media (max-width:992px) {
-  .modal-lg {
-    width: 950px;
-    /* New width for large modal */
-  }
 }
