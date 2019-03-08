@@ -4,6 +4,7 @@ const mysql = require('mysql');
 let express = require('express');
 let http = require('http');
 let app = express();
+let jwt = require('jsonwebtoken');
 let bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
@@ -507,7 +508,66 @@ app.get('/api/accessoriesofreservation/:id', function(req, res) {
   });
 });
 
-var server = app.listen(8081, function() {
+// Obtains a list of all guests in the database if the authorization token is correct, else it will return 403 Forbidden
+// In Postman you'll have to add a key (authorization) with the value (bearer <token_value>)
+app.get('/api/guestsJWT', verifyToken, (req, res) => {
+  jwt.verify(req.token, 'its_a_secret_to_everyone', (err) => {
+      if (err) {
+          res.sendStatus(403);
+      } else {
+          connection.query('SELECT * FROM guests', (err, guests) => {
+              if (!err) {
+                  res.setHeader('Content-Type', 'application/json');
+                  res.end(JSON.stringify(guests));
+              } else {
+                  throw err;
+              }
+          });
+      }
+  });
+});
+
+app.post('/api/login', (req, res) => {
+  // Mock user
+  let user = {
+      id: 1,
+      username: 'nick',
+      password: 'nick2019!'
+  }
+  // Signs the JSON Web Token with the private key (its_a_secret_to_everyone) which expires in 10 minutes!
+  jwt.sign({ user }, 'its_a_secret_to_everyone', { expiresIn: '10m' }, (err, token) => {
+      if (err) {
+          throw err;
+      } else {
+          res.json({ token });
+      }
+  });
+});
+
+// Format of token
+// Authorization: Bearer <token_value>
+
+// Verify token
+function verifyToken(req, res, next) {
+  // Get auth header value
+  const bearerHeader = req.headers['authorization'];
+  // Check if bearer is undefined
+  if (typeof bearerHeader !== 'undefined') {
+      // Split at the space
+      const bearer = bearerHeader.split(' ');
+      // Get token from array
+      const bearerToken = bearer[1];
+      // Set the token
+      req.token = bearerToken;
+      // Next middleware
+      next();
+  } else {
+      // Forbidden
+      res.sendStatus(403);
+  }
+}
+
+let server = app.listen(8081, () => {
   let now = new Date;
   console.log(now + ": Rest app listening at http://%s:%s", server.address().address, server.address().port);
 });
