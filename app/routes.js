@@ -44,29 +44,29 @@ module.exports = function (app, passport) {
         res.redirect('/');
     });
 
-    app.get('/guests', function (req, res) {
+    app.get('/guests', isLoggedIn, function (req, res) {
         res.render('guests.ejs', {
         });
     });
 
-    app.get('/rooms', function (req, res) {
+    app.get('/rooms', isLoggedIn, function (req, res) {
         res.render('rooms.ejs', {
         });
     });
 
-    app.get('/reservations', function (req, res) {
+    app.get('/reservations', isLoggedIn, function (req, res) {
         res.render('reservations.ejs', {
 
         });
     });
 
-    app.get('/emergency', function (req, res) {
+    app.get('/emergency', isLoggedIn, function (req, res) {
         res.render('emergency.ejs', {
 
         });
     });
 
-    app.get('/invoice', function (req, res) {
+    app.get('/invoice', isLoggedIn, function (req, res) {
         res.render('invoice.ejs', {
 
         });
