@@ -4,6 +4,7 @@ const apiURL = "http://api.test.hotelmolveno.carpago.nl/api";
 // full URL: http://api.test.hotelmolveno.carpago.nl/api/reservationjoinguestonid/1
 // Joins on reservation ID
 function invoice(reservationID) {
+  console.log(`Logging reservation with ID: ${reservationID}`);
   $.ajax({
     url: `${apiURL}/reservationjoinguestonid/${reservationID}`,
     type: "get",

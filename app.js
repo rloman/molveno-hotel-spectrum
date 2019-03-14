@@ -18,8 +18,8 @@ app.use(function(req, res, next) {
 
 const connection = mysql.createConnection({
   host: 'localhost',
-  user: 'nick',
-  password: 'nick2018!',
+  user: 'root',
+  password: 'root',
   database: 'molveno'
 });
 
@@ -516,6 +516,40 @@ app.get('/api/guestsJWT', verifyToken, (req, res) => {
           res.sendStatus(403);
       } else {
           connection.query('SELECT * FROM guests', (err, guests) => {
+              if (!err) {
+                  res.setHeader('Content-Type', 'application/json');
+                  res.end(JSON.stringify(guests));
+              } else {
+                  throw err;
+              }
+          });
+      }
+  });
+});
+
+app.get('/api/roomsJWT', verifyToken, (req, res) => {
+  jwt.verify(req.token, 'its_a_secret_to_everyone', (err) => {
+      if (err) {
+          res.sendStatus(403);
+      } else {
+          connection.query('SELECT * FROM rooms', (err, guests) => {
+              if (!err) {
+                  res.setHeader('Content-Type', 'application/json');
+                  res.end(JSON.stringify(guests));
+              } else {
+                  throw err;
+              }
+          });
+      }
+  });
+});
+
+app.get('/api/reservationsJWT', verifyToken, (req, res) => {
+  jwt.verify(req.token, 'its_a_secret_to_everyone', (err) => {
+      if (err) {
+          res.sendStatus(403);
+      } else {
+          connection.query('SELECT * FROM reservations', (err, guests) => {
               if (!err) {
                   res.setHeader('Content-Type', 'application/json');
                   res.end(JSON.stringify(guests));

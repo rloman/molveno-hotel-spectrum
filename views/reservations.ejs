@@ -393,6 +393,8 @@
   }
 
   function populateRoomDropdown(id, api) {
+    // Might do something with better filtering of reserved rooms using dep and arr dates
+    // If this departure date <= arrival date OR arrival date => departure date
     let options = $('#modalRoomId');
     options.empty();
     $.get({
@@ -401,7 +403,7 @@
       contentType: "application/json",
       success: function(data) {
         $.each(data, function() {
-          options.append($("<option/>").val(this.id).text(this.roomNumber + ' - ' + this.roomType));
+          options.append($("<option/>").val(this.id).text(this.roomNumber + ' - ' + this.roomType + ' - ' + this.numberOfBeds + ' beds'));
         });
         getSingleRecord(id, api);
       },
@@ -560,7 +562,7 @@
   function openInvoiceWindow() {
     let id = $('#modalId').val();
     sessionStorage.setItem("sent", id);
-    window.open("invoice.html");
+    window.open("invoice");
   }
 </script>
 

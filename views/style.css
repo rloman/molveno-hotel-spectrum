@@ -1,6 +1,6 @@
 @font-face {
-    font-family: Comfortaa;
-    src: url(src/Comfortaa-Regular.ttf);
+  font-family: Comfortaa;
+  src: url(src/Comfortaa-Regular.ttf);
 }
 
 html {
@@ -27,21 +27,26 @@ a {
   width: 40px;
 }
 
+[min] {
+  box-shadow: none !important;
+}
+
 #labelTelephoneNumber {
   margin-top: 10px;
 }
+
 table.table-bordered {
-  border:1px solid blue;
+  border: 1px solid blue;
 }
 
-table.table-bordered > thead > tr > th {
-  border:2px solid #8c8cdb;
+table.table-bordered>thead>tr>th {
+  border: 2px solid #8c8cdb;
 }
 
-table.table-bordered > tbody > tr > td {
-  border:2px solid #8c8cdb;
+table.table-bordered>tbody>tr>td {
+  border: 2px solid #8c8cdb;
 }
 
-table.table-bordered > tfoot > tr > th {
-  border:2px solid #8c8cdb;
+table.table-bordered>tfoot>tr>th {
+  border: 2px solid #8c8cdb;
 }

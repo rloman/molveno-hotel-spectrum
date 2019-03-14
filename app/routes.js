@@ -66,27 +66,41 @@ module.exports = function (app, passport) {
         });
     });
 
-    app.get('/style.css', function(req,res) {
-        res.writeHead(200, { 'Content-Type': 'text/css' });
-        fs.readFile('views/style.css', function(err, data) {
-          res.write(data);
-          res.end();
-        });
-    })
+    app.get('/invoice', function (req, res) {
+        res.render('invoice.ejs', {
 
-    app.get('/Company_Logo.jpg', function(req, res) {
-        res.writeHead(200, { 'Content-Type': 'text/css' });
-        fs.readFile(`views/Company_Logo.jpg`, function(err, data) {
+        });
+    });
+
+    app.get('/js/invoice.js', function(req,res) {
+        res.writeHead(200, { 'Content-Type': 'application/js' });
+        fs.readFile('js/invoice.js', function(err, data) {
           res.write(data);
           res.end();
         });
     });
 
-    app.get('/src/Comfortaa-Regular.ttf', function(req, res) {
+    app.get('/style.css', function (req, res) {
+        res.writeHead(200, { 'Content-Type': 'text/css' });
+        fs.readFile('views/style.css', function (err, data) {
+            res.write(data);
+            res.end();
+        });
+    })
+
+    app.get('/Company_Logo.jpg', function (req, res) {
+        res.writeHead(200, { 'Content-Type': 'text/css' });
+        fs.readFile(`views/Company_Logo.jpg`, function (err, data) {
+            res.write(data);
+            res.end();
+        });
+    });
+
+    app.get('/src/Comfortaa-Regular.ttf', function (req, res) {
         res.writeHead(200, { 'Content-Type': 'text/html' });
-        fs.readFile(`views/src/Comfortaa-Regular.ttf`, function(err, data) {
-          res.write(data);
-          res.end();
+        fs.readFile(`views/src/Comfortaa-Regular.ttf`, function (err, data) {
+            res.write(data);
+            res.end();
         });
     })
 
