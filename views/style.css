@@ -1,0 +1,47 @@
+@font-face {
+    font-family: Comfortaa;
+    src: url(src/Comfortaa-Regular.ttf);
+}
+
+html {
+  position: relative;
+  min-height: 100vh;
+}
+
+body {
+  font-family: "Comfortaa";
+  font-size: 11pt;
+  background: #c7dbdb;
+}
+
+.navbar {
+  background: #8c8cdb;
+}
+
+a {
+  color: black;
+}
+
+#company-image {
+  height: 40px;
+  width: 40px;
+}
+
+#labelTelephoneNumber {
+  margin-top: 10px;
+}
+table.table-bordered {
+  border:1px solid blue;
+}
+
+table.table-bordered > thead > tr > th {
+  border:2px solid #8c8cdb;
+}
+
+table.table-bordered > tbody > tr > td {
+  border:2px solid #8c8cdb;
+}
+
+table.table-bordered > tfoot > tr > th {
+  border:2px solid #8c8cdb;
+}

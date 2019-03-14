@@ -5,6 +5,8 @@ var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var app = express();
 var port = process.env.PORT || 8080;
+var path = require('path');
+var fs = require('fs');
 
 var passport = require('passport');
 var flash = require('connect-flash');
@@ -16,6 +18,8 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({
  extended: true
 }));
+
+app.use(express.static(path.join(__dirname, 'css')));
 
 app.set('view engine', 'ejs');
 
