@@ -93,6 +93,14 @@ module.exports = function (app, passport) {
         });
     });
 
+    app.get('/lago-di-molveno.jpeg', function (req, res) {
+        res.writeHead(200, { 'Content-Type': 'text/css' });
+        fs.readFile(`views/lago-di-molveno.jpeg`, function (err, data) {
+            res.write(data);
+            res.end();
+        });
+    });
+
     app.get('/src/Comfortaa-Regular.ttf', function (req, res) {
         res.writeHead(200, { 'Content-Type': 'text/html' });
         fs.readFile(`views/src/Comfortaa-Regular.ttf`, function (err, data) {
