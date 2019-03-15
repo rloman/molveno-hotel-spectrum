@@ -10,7 +10,7 @@ module.exports = function (app, passport) {
     });
 
     app.post('/login', passport.authenticate('local-login', {
-        successRedirect: '/guests',
+        successRedirect: '/home',
         failureRedirect: '/login',
         failureFlash: true
     }),
@@ -28,20 +28,19 @@ module.exports = function (app, passport) {
     });
 
     app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect: '/profile',
+        successRedirect: '/login',
         failureRedirect: '/signup',
         failureFlash: true
     }));
 
-    app.get('/profile', isLoggedIn, function (req, res) {
-        res.render('profile.ejs', {
-            user: req.user
-        });
-    });
-
     app.get('/logout', function (req, res) {
         req.logout();
         res.redirect('/');
+    });
+
+    app.get('/home', isLoggedIn, function (req, res) {
+        res.render('home.ejs', {
+        });
     });
 
     app.get('/guests', isLoggedIn, function (req, res) {
@@ -56,27 +55,24 @@ module.exports = function (app, passport) {
 
     app.get('/reservations', isLoggedIn, function (req, res) {
         res.render('reservations.ejs', {
-
         });
     });
 
     app.get('/emergency', isLoggedIn, function (req, res) {
         res.render('emergency.ejs', {
-
         });
     });
 
     app.get('/invoice', isLoggedIn, function (req, res) {
         res.render('invoice.ejs', {
-
         });
     });
 
-    app.get('/js/invoice.js', function(req,res) {
+    app.get('/js/invoice.js', function (req, res) {
         res.writeHead(200, { 'Content-Type': 'application/js' });
-        fs.readFile('js/invoice.js', function(err, data) {
-          res.write(data);
-          res.end();
+        fs.readFile('js/invoice.js', function (err, data) {
+            res.write(data);
+            res.end();
         });
     });
 
