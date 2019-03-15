@@ -11,13 +11,18 @@
     <style>
         html {
             padding: 50px;
-            background-color: #8c8cdb
+            background-color: #c7dbdb
+        }
+
+        .container-small,
+        .container-large {
+            max-width: 100%;
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
+    <div class="container-large">
         <div class="col-sm-6 col-sm-offset-3">
             <h2>Register</h2>
 
@@ -26,11 +31,11 @@
             <% } %>
 
             <form action="/signup" method="post">
-                <div class="form-group">
+                <div class="form-group col-4">
                     <label>Username</label>
                     <input type="text" class="form-control" name="username">
                 </div>
-                <div class="form-group">
+                <div class="form-group col-4">
                     <label>Password</label>
                     <input type="text" class="form-control" name="password">
                 </div>
