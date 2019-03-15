@@ -56,27 +56,24 @@ module.exports = function (app, passport) {
 
     app.get('/reservations', isLoggedIn, function (req, res) {
         res.render('reservations.ejs', {
-
         });
     });
 
     app.get('/emergency', isLoggedIn, function (req, res) {
         res.render('emergency.ejs', {
-
         });
     });
 
     app.get('/invoice', isLoggedIn, function (req, res) {
         res.render('invoice.ejs', {
-
         });
     });
 
-    app.get('/js/invoice.js', function(req,res) {
+    app.get('/js/invoice.js', function (req, res) {
         res.writeHead(200, { 'Content-Type': 'application/js' });
-        fs.readFile('js/invoice.js', function(err, data) {
-          res.write(data);
-          res.end();
+        fs.readFile('js/invoice.js', function (err, data) {
+            res.write(data);
+            res.end();
         });
     });
 
